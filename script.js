@@ -10,9 +10,8 @@ var c_w = 1;
 
 function man() {
     alert("Welcome to Dijkstra's algorithm visualization. Read the mannual carefully ---->> ");
-    alert("To start vizualization lick start vizualization button. For again starting vizualization first click clear board then click again start vizualization.");
-    alert("Click on any block to add wall block and click on any wall block to remove that wall block.");
-    alert("Click on the start or end block and then click on any other block to change their position.");
+    alert("To start visualization lick start visualization button. For again starting vizualization first click clear board then click again start visualization.");
+    alert("Click on change walls to add or remove walls also you can change the start and end positions");
     alert("          Enjoy     !          ");
 }
 
@@ -35,7 +34,7 @@ function setup() {
     noStroke();
     fill(225);
     textSize(20);
-    text(" Start Vizualization ! ", (width / 2) - 80, (height / 4) + 71);
+    text(" Start Visualization ! ", (width / 2) - 80, (height / 4) + 71);
     pop();
     push();
     stroke(225);
