@@ -25,7 +25,10 @@ function showNotes() {
     var basic = "";
     var notesObj = localStorage.getItem('notes');
     var notesSpace;
-    if (notesObj != null) {
+    if (notesObj == null || JSON.parse(notesObj).length == 0) {
+        notesSpace = document.getElementById('notes');
+        notesSpace.innerHTML = `<em>You have no notes. Take down some notes and be organised.</em>`;
+    } else {
         var ourNotes = JSON.parse(notesObj);
         ourNotes.forEach((element, index) => {
             basic += `
@@ -40,11 +43,7 @@ function showNotes() {
         });
         notesSpace = document.getElementById('notes');
         notesSpace.innerHTML = basic;
-    } else {
-        notesSpace = document.getElementById('notes');
-        notesSpace.innerHTML = `<em>You have no notes. Take down some notes and be organised.</em>`;
     }
-
 }
 
 function delNote(index) {
