@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* background-image: url("../img/main.jpg"); */
+    background-color: black;
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+}
+
+.myStyle {}
+
+.intro {
+    margin-bottom: 50px;
+    padding-left: 20px;
+    border-left: 8px solid rgba(255, 255, 255, 0.514);
+}
+
+.blogs {
+    /* padding-top: 40px; */
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.blog {
+    text-align: center;
+    margin-top: 80px;
+    padding: 20px;
+    transition-duration: 1s;
+}
+
+.blog:hover {
+    background-color: rgba(0, 223, 252, 0.336);
+    transition-duration: 1s;
+    border-radius: 10px;
+}
+
+.b_head {
+    letter-spacing: 5px;
+    word-spacing: 10px;
+    font-weight: 500;
+    color: white;
+}
+
+.b_body {
+    letter-spacing: 5px;
+    word-spacing: 10px;
+    padding-left: 30px;
+    border-left: 8px solid rgba(255, 255, 255, 0.514);
+    margin-top: 30px;
+    color: white;
+}
+
+.firstSec {
+    margin: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: rgba(0, 0, 0, 0.432);
+}
+
+
+/* .t_i {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+} */
+
+.bgs {
+    /* background-image: url(../img/notes.JPG); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    /* filter: opacity(0.2); */
+    height: 100%;
+}
+
+.m {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
