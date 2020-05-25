@@ -21,9 +21,22 @@ body {
 
 .intro {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     /* padding-left: 20px; */
-    border-left: 8px solid rgba(255, 255, 255, 0.514);
+    /* border-left: 8px solid rgba(255, 255, 255, 0.514); */
+}
+
+.outro {
+    margin-top: 50px;
+    text-align: center;
+    /* padding-left: 20px; */
+    /* border-left: 8px solid rgba(255, 255, 255, 0.514); */
+}
+
+.myName {
+    margin-bottom: 40px;
+    padding-left: 15px;
+    border-left: 8px solid rgba(58, 238, 3, 0.514);
 }
 
 .m_b {
@@ -32,12 +45,17 @@ body {
     padding-right: 50px;
 }
 
+.desc {
+    color: white;
+    font-size: 18px;
+}
+
 .firstSec {
     margin-left: 10vw;
     margin-right: 10vw;
     /* margin-left: 2vw;
     margin-right: 2vw; */
-    margin-top: 150px;
+    margin-top: 100px;
     margin-bottom: 50px;
     padding-left: 5vw;
     padding-right: 5vw;
