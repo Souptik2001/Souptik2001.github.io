@@ -12,7 +12,12 @@ body {
     background-size: cover;
 }
 
-.myStyle {}
+.myStyle {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.808);
+}
 
 .intro {
     margin-bottom: 50px;
@@ -22,19 +27,18 @@ body {
 
 .blogs {
     /* padding-top: 40px; */
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .blog {
-    text-align: center;
     margin-top: 80px;
     padding: 20px;
     transition-duration: 1s;
 }
 
 .blog:hover {
-    background-color: rgba(0, 223, 252, 0.336);
+    background-color: rgba(0, 223, 252, 0.219);
     transition-duration: 1s;
     border-radius: 10px;
 }
@@ -44,6 +48,7 @@ body {
     word-spacing: 10px;
     font-weight: 500;
     color: white;
+    word-wrap: break-word;
 }
 
 .b_body {
@@ -57,6 +62,7 @@ body {
 
 .firstSec {
     margin: 50px;
+    margin-top: 100px;
     padding-left: 50px;
     padding-right: 50px;
     background-color: rgba(0, 0, 0, 0.432);
