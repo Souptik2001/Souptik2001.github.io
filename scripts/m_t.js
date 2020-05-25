@@ -1,6 +1,6 @@
 /*jshint esversion:6*/
 var main_b = document.getElementById("firstSec_i");
-var blogs = document.getElementById("blogs_i");
+var blogs = document.getElementById("m_b_i");
 setInterval(checkSize, 300);
 
 function checkSize() {

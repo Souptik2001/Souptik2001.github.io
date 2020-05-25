@@ -26,38 +26,10 @@ body {
     border-left: 8px solid rgba(255, 255, 255, 0.514);
 }
 
-.blogs {
+.m_b {
     /* padding-top: 40px; */
     padding-left: 50px;
     padding-right: 50px;
-}
-
-.blog {
-    margin-top: 80px;
-    padding: 40px;
-    transition-duration: 1s;
-}
-
-.blog:hover {
-    background-color: rgba(0, 223, 252, 0.219);
-    transition-duration: 1s;
-    border-radius: 10px;
-}
-
-.b_head {
-    letter-spacing: 5px;
-    word-spacing: 10px;
-    font-weight: 500;
-    color: white;
-}
-
-.b_body {
-    letter-spacing: 5px;
-    word-spacing: 10px;
-    padding-left: 30px;
-    border-left: 8px solid rgba(255, 255, 255, 0.514);
-    margin-top: 30px;
-    color: white;
 }
 
 .firstSec {
