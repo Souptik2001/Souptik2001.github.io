@@ -7,9 +7,11 @@ body {
     margin: 0;
     padding: 0;
     /* background-image: url("../img/main.jpg"); */
-    background-color: black;
-    /* background-repeat: no-repeat; */
-    background-size: cover;
+    /* background-image: url(../img/1.jpg); */
+    background: linear-gradient( -90deg, rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0.616), rgb(0, 0, 0), rgb(0, 0, 0)), url('../img/1.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: center;
 }
 
 .myStyle {
@@ -23,13 +25,19 @@ body {
     text-align: center;
     margin-bottom: 50px;
     /* padding-left: 20px; */
-    border-left: 8px solid rgba(255, 255, 255, 0.514);
+    /* border-left: 8px solid rgba(255, 255, 255, 0.514); */
 }
 
 .m_b {
     /* padding-top: 40px; */
     padding-left: 50px;
     padding-right: 50px;
+}
+
+.desc {
+    color: white;
+    font-size: 18px;
+    padding-top: 20px;
 }
 
 .firstSec {
@@ -41,5 +49,21 @@ body {
     margin-bottom: 50px;
     padding-left: 5vw;
     padding-right: 5vw;
-    background-color: rgba(0, 0, 0, 0.432);
+}
+
+.myImg {
+    margin: 15px;
+    width: 30%;
+    height: 30%;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 8px 0 rgba(0, 255, 21, 0.452), 0 8px 20px 0 rgba(0, 255, 85, 0.5);
+    transition-duration: 0.5s;
+}
+
+.myImg:hover {
+    width: 32%;
+    height: 32%;
+    transition-duration: 0.5s;
+    transform: translateY(-5%);
+    box-shadow: 0 10px 10px 0 rgba(0, 228, 19, 0.452), 0 12px 22px 0 rgba(0, 253, 0, 0.5);
 }
