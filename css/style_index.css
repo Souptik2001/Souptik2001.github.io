@@ -7,8 +7,9 @@ body {
     margin: 0;
     padding: 0;
     /* background-image: url("../img/main.jpg"); */
-    background-color: black;
-    /* background-repeat: no-repeat; */
+    background: radial-gradient(rgba(0, 0, 0, 0.76), rgba(5, 5, 5, 0.829)), url('../img/main_b.jpg');
+    background-repeat: no-repeat;
+    background-position-x: center;
     background-size: cover;
 }
 
@@ -69,5 +70,4 @@ body {
     margin-bottom: 50px;
     padding-left: 5vw;
     padding-right: 5vw;
-    background-color: rgba(0, 0, 0, 0.432);
 }
