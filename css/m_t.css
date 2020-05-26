@@ -51,19 +51,12 @@ body {
     padding-right: 5vw;
 }
 
-.myImg {
-    margin: 15px;
-    width: 30%;
-    height: 30%;
-    margin-bottom: 30px;
-    box-shadow: 0 6px 8px 0 rgba(0, 255, 21, 0.452), 0 8px 20px 0 rgba(0, 255, 85, 0.5);
+.m_music {
+    opacity: 30%;
     transition-duration: 0.5s;
 }
 
-.myImg:hover {
-    width: 32%;
-    height: 32%;
+.m_music:hover {
+    opacity: 100%;
     transition-duration: 0.5s;
-    transform: translateY(-5%);
-    box-shadow: 0 10px 10px 0 rgba(0, 228, 19, 0.452), 0 12px 22px 0 rgba(0, 253, 0, 0.5);
 }
