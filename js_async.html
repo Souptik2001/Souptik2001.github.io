@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	    <!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<title>Souptik's Blog | JS Async</title>
+<style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		/* margin: 2em auto;
+		max-width: 900px; */
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	/* white-space: pre-wrap; */
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.myStyle {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.808);
+}
+	
+</style></head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark navbar-fixed-top myStyle">
+        <a class="navbar-brand" href="https://souptik2001.github.io/" style=" text-decoration: none;">✍🏻</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item\" style="list-style: none;">
+                    <a class="nav-link" href="https://souptik2001.github.io/" style=" text-decoration: none;">📖Home </a>
+                </li>
+                <li class="nav-item" style="list-style: none;">
+                    <a class="nav-link" href="https://souptik2001.github.io/m_t.html" style=" text-decoration: none;">📚My Tastes</a>
+                </li>
+                <li class="nav-item active" style="list-style: none;">
+                    <a class="nav-link" href="https://souptik2001.github.io/about.html" style=" text-decoration: none;">👋🏻About <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <a href="https://souptik2001.github.io/notes.html"><button class="btn btn-outline-success my-2 my-sm-0">✏️Your Space !</button></a>
+        </div>
+    </nav>
+	<article id="d512d44e-b0c6-45d6-a9a5-300e0cc30207" class="page sans"><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_space_shuttle_columbia_and_sunrise.jpg" style="object-position:center 45.56%"/>
+		<div style="margin-left: 10vw; margin-right: 10vw;"><header><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🕧</span></div><h1 class="page-title">Javascript Async </h1></header><div class="page-body"><p id="373b1500-a332-46f9-8b80-6b5d5c96bf2e" class="">Hello everyone this is a complete article on asynchronous Javascript. So, let&#x27;s start with a simple block of code :</p><pre id="0b0dd58b-bb5a-43b9-be91-9f2160900471" class="code"><code>function hello(){
+	console.log(&quot;A block of code which is very important...&quot;);
+}
+console.log(&quot;Print at start&quot;);
+hello();
+console.log(&quot;Print at end&quot;);</code></pre><p id="a21de4ea-768a-4422-ae2c-57024d5ef7a6" class="">Output of the above code :</p><figure id="b5dcf1f6-2d93-47b6-aee2-582c7f9c6421" class="image"><a href="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture.jpg"><img style="width:576px" src="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture.jpg"/></a></figure><p id="40bd8ff6-16ff-4a6c-94c3-482f38b9ae9b" class="">Everything looks good till now because the code we are running synchronous code. But suppose we want to run the hello() function after 5 secs. So we have to use the setTimeout() function which is a asynchronous function so just have a look how it runs :</p><pre id="d83286e2-10bb-40c2-be12-53227b9dc0f9" class="code"><code>function hello(){
+	console.log(&quot;A block of code which is very important...&quot;);
+}
+console.log(&quot;Print at start&quot;);
+setTimeout(hello,5000);
+console.log(&quot;Print at end&quot;);</code></pre><figure id="ef68f7f5-0a53-47c5-9436-5818bc795bfd" class="image"><a href="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%201.jpg"><img style="width:576px" src="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%201.jpg"/></a></figure><p id="ab942192-5ff2-4dc0-816f-0ca8b4dec3a1" class="">Oh..What happened? The hello() function runs after 5 secs but the <mark class="highlight-yellow_background">console.log(&quot;Print at end&quot;)</mark>executed before the end of hello() function. This is because whenever a async code is hit it runs in the background and all the other codes after that keep on executing as normal. But this was not what we wanted. We wanted that that hello should run after 5 secs and then <mark class="highlight-yellow_background">console.log(&quot;Print at end&quot;)</mark> should have executed. So how to do this?</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f3377c81-c5d0-437b-a3db-b06da45c66cb"><div style="font-size:1.5em"><span class="icon">📢</span></div><div style="width:100%">Before thinking about how to solve this problem let&#x27;s see that why is it important..  Firstly it increases the execution speed of the code. Other parts of the code doesn&#x27;t wait for that part to be completed. Another very important thing is that certain things needs to run in the background and should not block the rest of the code. Like addEventListener()...Suppose we add an event listener  of click which waits for the user to click on an element. So it will wait for long time and just think should it halt the remaining code for that long time and for this exact reason asynchronous code is so important.</div></figure><blockquote id="0b9b9888-a8e1-4d32-9142-70537e2c11ab" class="">From here comes the concept of blocking code and non-blocking code. Hope these two words make sense.</blockquote><p id="80dfbd84-2717-40fb-be54-3d01803fcc11" class="">So now we understood that we should not block the whole code after the delayed function but we should block the part of the code which we need to run after the delayed function has been completed. For this the concept of <mark class="highlight-yellow_background">callbacks</mark> are very useful.</p><blockquote id="29da2bb2-039c-48ed-9264-65954b587c52" class="">Actually callbacks means passing a function as an parameter of another function. So the function we are using in the setTimeout() function is also a callback function. And the function which accepts callback function in parameter are called <mark class="highlight-yellow_background">higher-order functions</mark>. </blockquote><p id="6ef3f9aa-5cc2-455e-8c6a-9b23e3874993" class="">So until now we got an idea that javascript code runs synchronously but as soon as it hits some asynchronous code like setTimeout etc. it sends it to the background and runs rest of the code.</p><p id="2f553f9c-6fa1-4cf3-86ef-abe5d2e1d5cf" class="">Now we can conclude that again the code within the setTimeout function runs synchronously...!!</p><p id="5d2685b1-bce7-4875-b2c9-5fa11833a9f5" class="">So if we create a function (create separately or create it anonymously its same) inside the setTimeout() function and move our console statement inside the function then it should run synchronously...Let&#x27;s see the same example :</p><pre id="77e325b3-29f2-48ac-9af2-1c9dfa88da26" class="code"><code>function hello(){
+	console.log(&quot;A block of code which is very important...&quot;);
+}
+
+console.log(&quot;Print at start&quot;);
+setTimeout(()=&gt;{
+    hello();
+    console.log(&quot;Print at end&quot;);
+},5000);</code></pre><p id="150ed284-721e-48ac-95e1-a6b102e9a179" class="">Output : </p><figure id="11b83e26-c07a-4df7-bdf7-69b092ca879d" class="image"><a href="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%202.jpg"><img style="width:528px" src="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%202.jpg"/></a></figure><p id="50a0c40d-2607-4951-a7f1-332534707ec8" class="">Yay... it runs well !! Actually this example doesn&#x27;t require callback so much so let&#x27;s see another example : </p><pre id="918c7df0-b0da-43cf-ba89-402c798c4ff5" class="code"><code>function getStudent(callback){
+    console.log(&quot;Fetching data&quot;);
+    setTimeout(()=&gt;{
+        let name = &quot;Souptik&quot;; // Data fetched from database
+        callback(name); 
+    },5000); /* Simulating that the name of the student is fetched from 
+    a database and due to network traffic takes 5 ses */
+}
+
+getStudent((student)=&gt;{
+    console.log(student);
+});</code></pre><p id="309a8c0b-146d-4360-a651-4ff38a475350" class="">So here the name of the student can only be printed after the data has been fetched otherwise the name would show undefined. Now you may ask that why send the callback function and receive the name as a parameter of the callback function and then print it. We can directly write the console statement inside the function of setTimeout. But this is only a console statement and in real world there would be huge chunks of code and writing them inside that same function would be very bad and also we will be destroying the concept of functional programming i.e pack different actions in function and use them as needed.</p><p id="89b80d32-2cf4-4e94-a714-6324c0febd2d" class="">So by this hope concept of callbacks are clear and you would be able to write the previous code using callbacks.</p><p id="adcf67cb-8c3d-47e3-8c89-24f85dad72ae" class="">Now everything looks good till now. But let make things a bit more complex. Here you have to do one task after the first have finished but suppose there are like this many tasks one after another let&#x27;s see a few console log tasks in sequence :</p><pre id="03b8daac-02be-4669-99ba-93009f1cb023" class="code"><code>setTimeout(()=&gt;{
+    console.log(&quot;First&quot;);
+   setTimeout(()=&gt;{
+       console.log(&quot;Second&quot;);
+       setTimeout(()=&gt;{
+           console.log(&quot;Third&quot;);
+           setTimeout(()=&gt;{
+               console.log(&quot;Fourth&quot;);
+           },50000);
+       },5000);
+   },5000);
+},5000);</code></pre><pre id="722688b0-7ed0-464f-864f-533806769953" class="code"><code>// Two three four these functions are some functions which are already defined
+function one(two){
+    setTimeout(()=&gt;{
+        two(()=&gt;{
+            three(()=&gt;{
+                four();
+            });
+        });
+    },5000);
+}</code></pre><p id="3075c90a-d4c4-47bf-8aec-046afbe34863" class="">So this is the ugliness of callbacks. These are extremely simple things written but when the callback functions will be more complex big and increase in number the clumsiness and the right indentation will increase ultimately the readability of the code will be lost. This situation is called the <mark class="highlight-yellow_background">callback hell</mark>.</p><p id="ea22f569-05d9-4797-a959-0e4096f14be4" class="">Don&#x27;t want hell? Then let&#x27;s promise that we will understand <mark class="highlight-yellow_background">promises</mark>....</p><pre id="df387274-2b89-4b31-8392-45000180f416" class="code"><code>let first = new Promise((resolve, reject)=&gt;{
+    console.log(&quot;Started working&quot;);
+    setTimeout(() =&gt; {
+        console.log(&quot;Work finished&quot;);
+        let error = false; // true or false
+        if (error == false){
+            let name = &quot;Souptik&quot;;
+            resolve(name);
+        }
+        else{
+            let errCode = &quot;404&quot;;
+            reject(errCode);
+        }
+    }, 5000);
+});
+
+first.then((name)=&gt;{
+    console.log(&quot;This is the resolve function passed inside then function.&quot;);
+    console.log(&quot;Student name is &quot; + name);
+}).catch((errCode)=&gt;{
+    console.log(&quot;This is the reject function passed inside catch function.&quot;);
+    console.log(&quot;Some error happened and the error code is : &quot; + errCode);
+});</code></pre><p id="4f0d4eb4-d30c-4ba8-ae68-7ede07bfd664" class="">Output if error = false :</p><figure id="7ce5b7ae-5e6e-468b-90f8-cdfefe3a0831" class="image"><a href="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%203.jpg"><img style="width:576px" src="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%203.jpg"/></a></figure><p id="d7690071-0afc-473c-a68d-c6507191bd1f" class="">Output if error = true :</p><figure id="5d9c2924-faf2-4b0d-9eb7-51a1eaa9d4b1" class="image"><a href="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%204.jpg"><img style="width:576px" src="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%204.jpg"/></a></figure><p id="01df5ba3-08f9-4cfc-a843-6a5f7a90f1e4" class="">This is the format of promises. The resolve and reject acts as the callback functions. If the resolve function is called then the function inside the <mark class="highlight-yellow_background">then</mark> will be executed and if reject is called then the function inside the <mark class="highlight-yellow_background">catch</mark> will be called.</p><p id="624e8eb4-4017-483b-9a82-9ebb389bf80a" class="">Now lets see how the chaining can be done in a proper way and we can get out of the callback hell.</p><p id="a0894943-3c22-4ba9-8c23-00e192a3f689" class="">Lets define some functions which are to be sequenced but this tie returning promises : </p><pre id="e370b6ad-0b11-41ca-9279-0788cca1989a" class="code"><code>function getStudent(){
+    return new Promise((resolve, reject)=&gt;{
+        setTimeout(()=&gt;{
+            console.log(&quot;Fetching student name....&quot;);
+            console.log(&quot;Fetched student name&quot;);
+            let name = &quot;Souptik&quot;;
+            resolve(name);
+        },5000);
+    });
+}
+function getClassStrength(std){
+    return new Promise((resolve, reject)=&gt;{
+        setTimeout(()=&gt;{
+            console.log(&quot;Class :&quot; + std);
+            console.log(&quot;Fetching class strength.... of class &quot; + std);
+            console.log(&quot;Fetched class strength&quot;);
+            let classStrength = &quot;50&quot;;
+            resolve(classStrength);
+        },5000);
+    });
+}
+function getClass(name){
+    return new Promise((resolve, reject)=&gt;{
+        setTimeout(()=&gt;{
+            console.log(&quot;Student name : &quot; + name);
+            console.log(&quot;Fetching class..... of &quot; + name);
+            console.log(&quot;Fetched class&quot;);
+            let std = &quot;1st Year&quot;;
+            resolve(std);
+        },5000);
+    });
+}</code></pre><p id="03d45616-26d5-4208-ad17-839d9051e95a" class="">The code will run in the following sequence : getStudent → getClass → getClassStrength. As we have used promises our code will be just this small :</p><pre id="e67e4f38-28d2-4bbd-9380-9cb3397b5338" class="code"><code>getStudent()
+    .then(name =&gt; getClass(name))
+    .then(std =&gt; getClassStrength(std))
+    .then(strength =&gt; console.log(&quot;His class strength : &quot; + strength));</code></pre><p id="f20b8b83-26fd-40d2-88ba-10fc66c659c3" class="">Just using then after then we can sequence the functions. Each function returns a promise so when each function is called, using  then we can easily declare that what function needs to be executed next. At first look it might seem a bit complicated but a bit of practice will make it very easy. </p><p id="fac37de4-ebcb-483e-96b6-f425d365ed2f" class="">Output of the above code :</p><p id="c4e78e17-613a-4fee-8398-eed39e3026ec" class=""> </p><figure id="b8d5b7c1-e949-4c14-bca9-8b996ae0b6fb" class="image"><a href="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%205.jpg"><img style="width:576px" src="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture%205.jpg"/></a></figure><p id="07633d2d-fa54-4af5-a0de-45f0080e4749" class="">Also if we have two functions returning Promises and want to run them together and have a common resolve functions for both and also run the resolve function only when both are finished we can use something like :</p><pre id="7b624ef1-6aef-4d5a-8c6a-0f07dfacd948" class="code"><code>Promise.all([first1, first2]).then(()=&gt;{//My resolve function});</code></pre><p id="bed17b09-b70b-464c-a91d-28d55475f25d" class="">So, all well and also we are not stuck at the call back hell.</p><p id="9e0622aa-af16-4f89-90b5-cc5fcc127365" class="">Still can we make it more easier and sequence the functions without then and in synchronous style. So, the function declarations will be same. Only we can sequence our code like :</p><pre id="c74840fd-4d68-420a-b6c0-eb4bb983e060" class="code"><code>async function mySequencedCode(){
+    let name = await getStudent();
+    let std = await getClass(name); 
+    let classStrength = await getClassStrength(std);
+    console.log(&quot;His class strength : &quot; + classStrength);
+
+}
+mySequencedCode();</code></pre><p id="12d5d61b-76a6-4bb5-8b5e-a1df5437c6b0" class="">The out put of the above will be the exactly same, only this is written in a much easier format. This is <mark class="highlight-yellow_background">async-await</mark> (only available at Es8) concept.</p><p id="a7fcde54-8864-4d40-99a8-334e58c15106" class="">So, that&#x27;s it for Javascript async with a bit of practice this will be very helpful in many situations.</p><p id="b61c811d-0ada-4347-9b5b-7474810db820" class="">Thank you. Stay safe.</p></div></div></article>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body></html>
