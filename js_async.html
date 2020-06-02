@@ -666,7 +666,7 @@ blockquote {
 }
 console.log(&quot;Print at start&quot;);
 hello();
-console.log(&quot;Print at end&quot;);</code></pre><p id="a21de4ea-768a-4422-ae2c-57024d5ef7a6" class="">Output of the above code :</p><figure id="b5dcf1f6-2d93-47b6-aee2-582c7f9c6421" class="image"><a href="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture.jpg"><img style="width:576px" src="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture.jpg"/></a></figure><p id="40bd8ff6-16ff-4a6c-94c3-482f38b9ae9b" class="">Everything looks good till now because the code we are running synchronous code. But suppose we want to run the hello() function after 5 secs. So we have to use the setTimeout() function which is a asynchronous function so just have a look how it runs :</p><pre id="d83286e2-10bb-40c2-be12-53227b9dc0f9" class="code"><code>function hello(){
+console.log(&quot;Print at end&quot;);</code></pre><p id="a21de4ea-768a-4422-ae2c-57024d5ef7a6" class="">Output of the above code :</p><figure id="b5dcf1f6-2d93-47b6-aee2-582c7f9c6421" class="image"><a href="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture.jpg"><img style="width:576px" src="Javascript%20Async%20b5dcf1f62d9347b6aee2582c7f9c6421/Capture.jpg"/></a></figure><p id="40bd8ff6-16ff-4a6c-94c3-482f38b9ae9b" class="">Everything looks good till now because the code we are running is synchronous code. But suppose we want to run the hello() function after 5 secs. So we have to use the setTimeout() function which is an asynchronous function. So just have a look how it runs :</p><pre id="d83286e2-10bb-40c2-be12-53227b9dc0f9" class="code"><code>function hello(){
 	console.log(&quot;A block of code which is very important...&quot;);
 }
 console.log(&quot;Print at start&quot;);
