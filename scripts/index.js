@@ -47,7 +47,7 @@ function writeLetter(){
         i=i+14;
         j= j + 1;
     }
-    if(i==0){wait = "t"}
+    if(i==0){wait = "t";}
     if (i==14*(text1.length)){wait="t"; stat="d";}
     if(wait == "t"){
         wait = "f";
