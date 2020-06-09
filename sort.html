@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="./img/icon.png"> 
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -24,15 +25,17 @@
               <a class="nav-link" href="https://souptik2001.github.io/" style="color: rgb(137, 43, 226);">Return To Blog<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sorting technique
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span id="s_tech">Sorting technique</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item">Selection Sort</a>
-                <a class="dropdown-item">Bubble Sort</a>
-                <a class="dropdown-item">Merge Sort</a>
+                <a class="dropdown-item" onclick="s_method('s_s', 'Selection Sort')">Selection Sort</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item">Quick Sort</a>
+                <a class="dropdown-item" onclick="s_method('h_s', 'Heap Sort')">Heap Sort</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" onclick="s_method('m_s', 'Merge Sort')">Merge Sort</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" onclick="s_method('q_s', 'Quick Sort')">Quick Sort</a>
               </div>
             </li>
           </ul>
@@ -46,6 +49,7 @@
 
       <div class="container" id="bars">
       </div>
+      <div id="time_d" style="text-align: center; font-weight: bolder; letter-spacing: 2px; color: rgb(104, 3, 3);"><em>Time consumed will be displayed here</em></div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

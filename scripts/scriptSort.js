@@ -1,18 +1,23 @@
 const bars = document.getElementById('bars');
 const n_c = document.getElementById('n_c');
+var time_d = document.getElementById('time_d');
+var starting;
+var stoping;
 var sorted = "f";
 var sorting = "f";
+var sort_m = "";
 var arr=[];
 gColumns(40);
 function c_c(){
-    console.log("ok");
     if (sorting=="f"){
         const columns = n_c.value;
-        if (columns == ""){gColumns(40);sorted = "f";}// Todo - To limit the no. of columns in aa decorated way 
+        if (columns == ""){gColumns(40); sorted = "f"; n_c.style.border = ""; n_c.placeholder="Number of colums to Sort (Default 40)";}
+        else if(columns > 40 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="40 > Value > 0";}
         else{
             n_c.value = "";
             gColumns(columns);
             sorted = "f";
+            n_c.style.border = ""; n_c.placeholder="Number of colums to Sort (Default 40)";
         }
     }
 }
@@ -29,6 +34,10 @@ function gColumns(n){
         arr.push(h);
         p.style.height = h+"vh";
     }
+}
+function s_method(method, method_name){
+    sort_m=method;
+    document.getElementById('s_tech').innerText = method_name;
 }
 // SELECTION SORT
 var min;
@@ -91,9 +100,105 @@ async function s_sort(){
 }
 // SELECTION SORT
 
-function mySort(){// Todo - Logic of choosing the sorting technique
+// QUICK SORT
+function swap_q(i, j){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            // Change columns
+            var bar1 = document.getElementById('id'+i);
+            var bar2 = document.getElementById('id'+j);
+            var temp_h = bar1.style.height;
+            bar1.style.height = bar2.style.height;
+            bar2.style.height = temp_h;
+            var temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            resolve();
+        },0);
+    });
+
+}
+function comp(i, j, p_v){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            var bar2 = document.getElementById('id'+i);
+            if(arr[i]<p_v){
+                swap(i, j);
+                j++;
+            }
+            bar2.style.backgroundColor = "rgb(10, 157, 255)";
+            resolve(j);
+        }, 20);
+    });
+}
+async function findPivot(start, end){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            var pivot_v = arr[end];
+            var pivot_i = start;
+            var bar1 = document.getElementById('id'+pivot_i);
+            bar1.style.backgroundColor="rgb(230, 156, 19)";
+            for (var i=start; i<end; i++){
+                var bar2 = document.getElementById('id'+i);
+                bar2.style.backgroundColor = "rgb(147, 15, 255)";
+                pivot_i = await comp(i, pivot_i, pivot_v);
+                bar1.style.backgroundColor="rgb(230, 156, 19)";
+            }
+            resolve(pivot_i);
+        },0);
+    });
+
+}
+async function q_sort(start, end){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            if(start<end){
+                var pivot = await findPivot(start, end);
+                await swap_q(pivot, end);
+                await q_sort(start, pivot-1);
+                await q_sort(pivot+1, end);
+            }
+            resolve();
+        },0);
+    });
+
+}
+// QUICK SORT
+
+async function mySort(){
     if(sorted=="f"){
-        console.log(sorted);
-        s_sort();
+        if(sort_m=="s_s"){
+            starting = new Date().getTime();
+            await s_sort();
+            stoping = new Date().getTime();
+            time_d.innerHTML = "<em>Time taken by Selection Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/60+" seconds</em>";
+        }
+        else if (sort_m=="q_s"){
+            sorted = "t";
+            sorting = "t";
+            starting = new Date().getTime();
+            await q_sort(0, arr.length-1);
+            stoping = new Date().getTime();
+            time_d.innerHTML = "<em>Time taken by Quick Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/60+" seconds</em>";
+            sorting = "f";
+        }
+        else if (sort_m=="m_s"){
+            alert("Will be available soon");
+        }
+        else if (sort_m=="h_s"){
+            alert("Will be available soon");
+        }
+        else{
+            // sort_m="s_s";
+            // document.getElementById('s_tech').innerText = "Selection Sort";
+            // mySort();
+            document.getElementById('s_tech').style.color = "red";
+            document.getElementById('s_tech').style.fontWeight = "bolder";
+            setTimeout(()=>{
+                document.getElementById('s_tech').style.color = "black";
+                document.getElementById('s_tech').style.fontWeight = "300";
+            },500);
+
+        }
     }
 }
