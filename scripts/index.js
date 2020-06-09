@@ -54,7 +54,7 @@ function writeLetter(){
         setTimeout(writeLetter, 1000);
     }
     else{
-        setTimeout(writeLetter, 200);
+        setTimeout(writeLetter, 50);
     }
 }
 writeLetter();
