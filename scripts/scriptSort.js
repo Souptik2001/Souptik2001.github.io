@@ -5,6 +5,7 @@ var sorting = "f";
 var arr=[];
 gColumns(40);
 function c_c(){
+    console.log("ok");
     if (sorting=="f"){
         const columns = n_c.value;
         if (columns == ""){gColumns(40);sorted = "f";}// Todo - To limit the no. of columns in aa decorated way 
