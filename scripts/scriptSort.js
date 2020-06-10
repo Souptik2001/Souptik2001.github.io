@@ -9,15 +9,16 @@ var sorting = "f";
 var sort_m = "";
 var arr=[];
 gColumns(40);
-function removestopBtn(){
-    var rmBtn = document.getElementById('rmBtn');
-    rmBtn.remove();
-    stopBogo = "t";
-}
+// function removestopBtn(){
+//     var rmBtn = document.getElementById('rmBtn');
+//     rmBtn.remove();
+//     stopBogo = "t";
+// }
 function reverseArr(){
     if (sorting=="f"){
         bars.innerHTML="";
         var columns = n_c.value;
+        n_c.value = "";
         arr=[];
         if (columns == ""){
             columns=40;
@@ -43,7 +44,9 @@ function reverseArr(){
 
 }
 function c_c(){
+    console.log(sorting);
     if (sorting=="f"){
+        console.log(n_c.value);
         const columns = n_c.value;
         if (columns == ""){gColumns(40); sorted = "f"; n_c.style.border = ""; n_c.placeholder="Number of colums to Sort (Default 40)";}
         else if(columns > 50 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="50 > Value > 0";}
@@ -486,7 +489,7 @@ async function mySort(){
             sorting = "f";
         }
         else if (sort_m=="b_s"){
-            document.getElementById('navbarSupportedContent').innerHTML += '<button class="btn btn-outline-success my-2 my-sm-0" onclick="removestopBtn()" id="rmBtn">Stop</button>';
+            // document.getElementById('navbarSupportedContent').innerHTML += '<button class="btn btn-outline-success my-2 my-sm-0" onclick="removestopBtn()" id="rmBtn">Stop</button>';
             sorted = "t";
             sorting = "t";
             starting = new Date().getTime();
