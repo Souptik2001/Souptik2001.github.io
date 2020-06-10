@@ -449,7 +449,7 @@ async function bogoSort(starting){
     while(await notArranged() == false && stopBogo=="f"){
         await shuffle();
         var p = new Date().getTime();
-        time_d.innerHTML = "<em>(Worst case time taken is infinite) Time elapsed in Bogo Sorting an array of size "+ arr.length +" is "+(p-starting)/1000+" seconds.</em>";
+        time_d.innerHTML = "<em>(Worst case time taken is infinite) Time elapsed in Bogo Sorting an array of size "+ arr.length +" is "+(p-starting)/1000+" seconds. Click on the top left <strong style=\"color:red\">Sorting Visualization</strong> to stop.</em>";
     }
 }
 // BOGO SORT
