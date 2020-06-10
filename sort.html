@@ -29,6 +29,8 @@
                 <span id="s_tech">Sorting technique</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" onclick="s_method('b_s', 'Bogo Sort')">Bogo Sort</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" onclick="s_method('s_s', 'Selection Sort')">Selection Sort</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" onclick="s_method('h_s', 'Heap Sort')">Heap Sort</a>
@@ -39,9 +41,11 @@
               </div>
             </li>
           </ul>
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="reverseArr()">Reverse Sorting Array</button>
             <input class="form-control mr-sm-2" placeholder="Number of colums to Sort (Default 40)" aria-label="n_c" style="width: 300px;" id="n_c">
             <button class="btn btn-outline-success my-2 my-sm-0" onclick="c_c()">Change Columns</button>
             <button class="btn btn-outline-success my-2 my-sm-0" onclick="mySort()">Sort !</button>
+            <!-- <button class="btn btn-outline-success my-2 my-sm-0" onclick="removestopBtn()">Stop</button> -->
         </div>
       </nav>
 

@@ -8,11 +8,39 @@ var sorting = "f";
 var sort_m = "";
 var arr=[];
 gColumns(40);
+function reverseArr(){
+    if (sorting=="f"){
+        bars.innerHTML="";
+        var columns = n_c.value;
+        arr=[];
+        if (columns == ""){
+            columns=40;
+            for(var i = columns; i>=1; i--){
+                arr.push(i);
+                bars.innerHTML += "<div class=\"bar\" id=\"id"+(columns-i)+"\"></div>";
+                var p = document.getElementById('id'+(columns-i));
+                p.style.height = i+"vh";
+            }
+            sorted = "f";
+        }
+        else if(columns > 50 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="50 > Value > 0";}
+        else{
+            for(var i = columns; i>=1; i--){
+                arr.push(i);
+                bars.innerHTML += "<div class=\"bar\" id=\"id"+(columns-i)+"\"></div>";
+                var p = document.getElementById('id'+(columns-i));
+                p.style.height = i+"vh";
+            }
+            sorted = "f";
+        }
+    }
+
+}
 function c_c(){
     if (sorting=="f"){
         const columns = n_c.value;
         if (columns == ""){gColumns(40); sorted = "f"; n_c.style.border = ""; n_c.placeholder="Number of colums to Sort (Default 40)";}
-        else if(columns > 40 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="40 > Value > 0";}
+        else if(columns > 50 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="50 > Value > 0";}
         else{
             n_c.value = "";
             gColumns(columns);
@@ -118,7 +146,7 @@ function swap_q(i, j){
     });
 
 }
-function comp(i, j, p_v){
+function comp_q(i, j, p_v){
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
             var bar2 = document.getElementById('id'+i);
@@ -141,7 +169,7 @@ async function findPivot(start, end){
             for (var i=start; i<end; i++){
                 var bar2 = document.getElementById('id'+i);
                 bar2.style.backgroundColor = "rgb(147, 15, 255)";
-                pivot_i = await comp(i, pivot_i, pivot_v);
+                pivot_i = await comp_q(i, pivot_i, pivot_v);
                 bar1.style.backgroundColor="rgb(230, 156, 19)";
             }
             resolve(pivot_i);
@@ -164,14 +192,241 @@ async function q_sort(start, end){
 
 }
 // QUICK SORT
+// MERGE SORT
+function comp_m(i, j, temp){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            console.log(temp);
+            if(arr[i]<arr[j]){
+                temp.push(arr[i]);
+                i++;
+                resolve(i);
+            }
+            else{
+                temp.push(arr[j]);
+                j++;
+                resolve(j);
+            }
+        },20);
+    });
+}
+function insertRest(iorj, temp){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            document.getElementById('id'+iorj).style.backgroundColor = "rgb(147, 15, 255)";
+            temp.push(arr[iorj]);
+            iorj++;
+            resolve(iorj);
+        },20);
+    });
+}
+function swap_m(z, k, temp){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            arr[z] = temp[k];
+            document.getElementById('id'+z).style.height = temp[k]+"vh";
+            document.getElementById('id'+z).style.backgroundColor = "rgb(230, 156, 19)";
+            z++;
+            resolve(z);
+        },20);
+    });
+}
+function merge(start, mid, end){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            var temp = [];
+            var i = start;
+            var j = mid+1;
+            while(i<=mid && j<=end){
+                var prev_i = i;
+                var prev_j = j;
+                document.getElementById('id'+i).style.backgroundColor = "rgb(147, 15, 255)";
+                document.getElementById('id'+j).style.backgroundColor = "rgb(147, 15, 255)";
+                var m = await comp_m(i, j, temp);
+                if(prev_i==m-1){
+                    i = m;
+                    document.getElementById('id'+(i-1)).style.backgroundColor = "rgb(10, 157, 255)";
+                    document.getElementById('id'+j).style.backgroundColor = "rgb(10, 157, 255)";
+                }else if(prev_j==m-1){
+                    j = m;
+                    document.getElementById('id'+(i)).style.backgroundColor = "rgb(10, 157, 255)";
+                    document.getElementById('id'+(j-1)).style.backgroundColor = "rgb(10, 157, 255)";
+                }
+            }
+            while(i<=mid){
+                i = await insertRest(i, temp);
+                document.getElementById('id'+(i-1)).style.backgroundColor = "rgb(10, 157, 255)";
+            }
+            while(j<=end){
+                j = await insertRest(j, temp);
+                document.getElementById('id'+(j-1)).style.backgroundColor = "rgb(10, 157, 255)";
+            }
+            var z = start;
+            for(var k=0; k<temp.length; k++){
+                z = await swap_m(z, k, temp);
+            }
+            resolve();
+        },0);
+    });
+}
+async function mergeSort(start, end){
+    if (start<end){
+        var mid = Math.floor((start+end)/2);
+        // Change color of mid
+        document.getElementById('id'+mid).style.backgroundColor = "rgb(9, 255, 0)";
+        await mergeSort(start, mid);
+        await mergeSort(mid+1, end);
+        await merge(start, mid, end);
+    }
+}
+// MERGE SORT
+// HEAP SORT
+var heap_global_insertion;
+async function comp_h_i(temp){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            if(temp[Math.floor((heap_global_insertion+1)/2)-1]<temp[heap_global_insertion]){
+                console.log("ok");
+                var temp_v = temp[Math.floor((heap_global_insertion+1)/2)-1];
+                document.getElementById('id'+(Math.floor((heap_global_insertion+1)/2)-1)).style.height = temp[heap_global_insertion]+"vh";
+                temp[Math.floor((heap_global_insertion+1)/2)-1] = temp[heap_global_insertion];
+                temp[heap_global_insertion] = temp_v;
+                document.getElementById('id'+heap_global_insertion).style.height = temp_v+"vh";
+                heap_global_insertion = Math.floor((heap_global_insertion+1)/2)-1;
+            }
+            resolve(temp);
+        },20);
+    })
+} 
+async function ins_i(temp, i){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            temp.push(arr[i]);
+            heap_global_insertion=i;
+            while(heap_global_insertion>0){
+                temp = await comp_h_i(temp);
+                console.log(temp, heap_global_insertion);
+            }
+            resolve(temp);
+        },20);
+    })    
+}
+async function heapify(){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            var temp = [];
+            for(var i=0; i<arr.length; i++){
+                temp = await ins_i(temp, i);
+            }
+            resolve(temp);
+        },0);
+    });
+}
+async function comp_h_d_1(i, j){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            if(arr[i]>arr[j]){
+                resolve(i);
+            }else{
+                resolve(j);
+            }
+        },10);
+    });
+}
+async function comp_h_d_2(z, c_h){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            if(arr[c_h]>arr[z]){
+                var temp_v = arr[c_h];
+                document.getElementById('id'+c_h).style.height = arr[z]+"vh";
+                document.getElementById('id'+z).style.height = temp_v+"vh";
+                arr[c_h] = arr[z];
+                arr[z] = temp_v;
+                z = c_h;
+            }
+            resolve(z);
+        },0);
+    });
+}
+async function ins_d(j){// ----i------j---
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            var g = arr[0];
+            arr[0] = arr[j];
+            arr[j]  = g;
+            var z=0;
+            while(((z+1)*2)-1<j){
+                if(((z+1)*2)<j){
+                    var c_h = await comp_h_d_1(((z+1)*2)-1, ((z+1)*2));
+                }
+                z = await comp_h_d_2(z, c_h);
+            }
+            resolve();
+        },20);
+    });
+}
+async function h_sort(){
+    return new Promise((resolve, reject)=>{
+        setTimeout(async function(){
+            console.log("ok");
+            j=arr.length-1;
+            for(var i=0; i<arr.length; i++){
+                await ins_d(j);
+                j--;
+            }
+            resolve();
+        },0);
+    });
+}
+async function heapSort(){
+    arr = await heapify();
+    await h_sort();
+}
+// HEAP SORT
+// BOGO SORT
+function shuffle(){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            for (var i=0; i<arr.length; i++){
+                var x = (Math.floor(Math.random()*(arr.length-2))+1)
+                var temp = arr[i];
+                arr[i] = arr[x];
+                document.getElementById('id'+i).style.height = arr[x]+"vh";
+                document.getElementById('id'+x).style.height = temp+"vh";
+                arr[x] = temp;
+            }
+            resolve();
+        },20);
+    });
 
+}
+function notArranged(){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            for(var i=0; i<arr.length; i++){
+                if(arr[i]>arr[i+1]){
+                    resolve(false);
+                }
+            }
+            resolve(true);
+        },0);
+    })
+}
+async function bogoSort(starting){
+    while(await notArranged() == false){
+        await shuffle();
+        var p = new Date().getTime();
+        time_d.innerHTML = "<em>(Worst case time taken is infinite) Time elapsed in Quick Sorting an array of size "+ arr.length +" is "+(p-starting)/1000+" seconds. Reload the page to stop.</em>";
+    }
+}
+// BOGO SORT
 async function mySort(){
     if(sorted=="f"){
         if(sort_m=="s_s"){
             starting = new Date().getTime();
             await s_sort();
             stoping = new Date().getTime();
-            time_d.innerHTML = "<em>Time taken by Selection Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/60+" seconds</em>";
+            time_d.innerHTML = "<em>Time taken by Selection Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/1000+" seconds</em>";
         }
         else if (sort_m=="q_s"){
             sorted = "t";
@@ -179,14 +434,35 @@ async function mySort(){
             starting = new Date().getTime();
             await q_sort(0, arr.length-1);
             stoping = new Date().getTime();
-            time_d.innerHTML = "<em>Time taken by Quick Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/60+" seconds</em>";
+            time_d.innerHTML = "<em>Time taken by Quick Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/1000+" seconds</em>";
             sorting = "f";
         }
         else if (sort_m=="m_s"){
-            alert("Will be available soon");
+            sorted = "t";
+            sorting = "t";
+            starting = new Date().getTime();
+            await mergeSort(0, arr.length-1);
+            stoping = new Date().getTime();
+            time_d.innerHTML = "<em>Time taken by Quick Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/1000+" seconds</em>";
+            sorting = "f";
         }
         else if (sort_m=="h_s"){
-            alert("Will be available soon");
+            sorted = "t";
+            sorting = "t";
+            starting = new Date().getTime();
+            await heapSort(0, arr.length-1);
+            stoping = new Date().getTime();
+            time_d.innerHTML = "<em>Time taken by Quick Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/1000+" seconds</em>";
+            sorting = "f";
+        }
+        else if (sort_m=="b_s"){
+            sorted = "t";
+            sorting = "t";
+            starting = new Date().getTime();
+            await bogoSort(starting);
+            stoping = new Date().getTime();
+            time_d.innerHTML = "<em>Time taken by Quick Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/1000+" seconds</em>";
+            sorting = "f";
         }
         else{
             // sort_m="s_s";
@@ -202,3 +478,4 @@ async function mySort(){
         }
     }
 }
+

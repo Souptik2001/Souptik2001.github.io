@@ -21,12 +21,10 @@ body{
     border: 2px solid black;
     width: 20px;
     height: 80vh;
-    /* transform: translateX(); */
 }
 #s_tech{
     transition-duration: 500ms;
 }
 #n_c{
     transition-duration: 1s;
-    /* border: 2px solid rgb(255, 0, 0); */
 }
