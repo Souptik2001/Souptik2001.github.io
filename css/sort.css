@@ -28,3 +28,7 @@ body{
 #n_c{
     transition-duration: 1s;
 }
+#rmBtn{
+    color: red;
+    border-color: red;
+}

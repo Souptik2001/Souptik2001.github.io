@@ -1,6 +1,7 @@
 const bars = document.getElementById('bars');
 const n_c = document.getElementById('n_c');
 var time_d = document.getElementById('time_d');
+var stopBogo = "f";
 var starting;
 var stoping;
 var sorted = "f";
@@ -8,6 +9,11 @@ var sorting = "f";
 var sort_m = "";
 var arr=[];
 gColumns(40);
+function removestopBtn(){
+    var rmBtn = document.getElementById('rmBtn');
+    rmBtn.remove();
+    stopBogo = "t";
+}
 function reverseArr(){
     if (sorting=="f"){
         bars.innerHTML="";
@@ -286,7 +292,6 @@ async function comp_h_i(temp){
     return new Promise((resolve, reject)=>{
         setTimeout(async function(){
             if(temp[Math.floor((heap_global_insertion+1)/2)-1]<temp[heap_global_insertion]){
-                console.log("ok");
                 var temp_v = temp[Math.floor((heap_global_insertion+1)/2)-1];
                 document.getElementById('id'+(Math.floor((heap_global_insertion+1)/2)-1)).style.height = temp[heap_global_insertion]+"vh";
                 temp[Math.floor((heap_global_insertion+1)/2)-1] = temp[heap_global_insertion];
@@ -304,8 +309,17 @@ async function ins_i(temp, i){
             temp.push(arr[i]);
             heap_global_insertion=i;
             while(heap_global_insertion>0){
+                var prev = heap_global_insertion;
+                document.getElementById('id'+(Math.floor((heap_global_insertion+1)/2)-1)).style.backgroundColor = "rgb(174, 0, 255)";
+                document.getElementById('id'+(Math.floor((heap_global_insertion+1)/2))).style.backgroundColor = "rgb(174, 0, 255)";
                 temp = await comp_h_i(temp);
-                console.log(temp, heap_global_insertion);
+                if(Math.floor((heap_global_insertion+1)/2)-1>=0){
+                    document.getElementById('id'+(Math.floor((heap_global_insertion+1)/2)-1)).style.backgroundColor = "rgb(10, 157, 255)";
+                }
+                document.getElementById('id'+(Math.floor((heap_global_insertion+1)/2))).style.backgroundColor = "rgb(10, 157, 255)";
+                if (prev == heap_global_insertion){
+                    break;
+                }
             }
             resolve(temp);
         },20);
@@ -316,7 +330,9 @@ async function heapify(){
         setTimeout(async function(){
             var temp = [];
             for(var i=0; i<arr.length; i++){
+                document.getElementById('id'+i).style.backgroundColor = "rgb(255, 0, 0)";
                 temp = await ins_i(temp, i);
+                document.getElementById('id'+i).style.backgroundColor = "rgb(10, 157, 255)";
             }
             resolve(temp);
         },0);
@@ -330,7 +346,7 @@ async function comp_h_d_1(i, j){
             }else{
                 resolve(j);
             }
-        },10);
+        },20);
     });
 }
 async function comp_h_d_2(z, c_h){
@@ -345,21 +361,34 @@ async function comp_h_d_2(z, c_h){
                 z = c_h;
             }
             resolve(z);
-        },0);
+        },20);
     });
 }
-async function ins_d(j){// ----i------j---
+async function ins_d(j){
     return new Promise((resolve, reject)=>{
         setTimeout(async function(){
             var g = arr[0];
+            document.getElementById('id'+0).style.height = arr[j]+"vh";
+            document.getElementById('id'+j).style.height = g+"vh";
             arr[0] = arr[j];
             arr[j]  = g;
             var z=0;
+            var c_h = (((z+1)*2)-1);
             while(((z+1)*2)-1<j){
                 if(((z+1)*2)<j){
-                    var c_h = await comp_h_d_1(((z+1)*2)-1, ((z+1)*2));
+                    document.getElementById('id'+(((z+1)*2)-1)).style.backgroundColor = "rgb(147, 15, 255)";
+                    document.getElementById('id'+((z+1)*2)).style.backgroundColor = "rgb(147, 15, 255)";
+                    var c_h = await comp_h_d_1((((z+1)*2)-1), ((z+1)*2));
+                    document.getElementById('id'+(((z+1)*2)-1)).style.backgroundColor = "rgb(10, 157, 255)";
+                    document.getElementById('id'+((z+1)*2)).style.backgroundColor = "rgb(10, 157, 255)";
                 }
+                var prev = z;
+                document.getElementById('id'+c_h).style.backgroundColor = "rgb(0, 255, 21)";
                 z = await comp_h_d_2(z, c_h);
+                document.getElementById('id'+c_h).style.backgroundColor = "rgb(10, 157, 255)";
+                if(prev==z){
+                    break;
+                }
             }
             resolve();
         },20);
@@ -368,10 +397,11 @@ async function ins_d(j){// ----i------j---
 async function h_sort(){
     return new Promise((resolve, reject)=>{
         setTimeout(async function(){
-            console.log("ok");
             j=arr.length-1;
             for(var i=0; i<arr.length; i++){
+                document.getElementById('id'+j).style.backgroundColor = "rgb(230, 156, 19)"; 
                 await ins_d(j);
+                document.getElementById('id'+j).style.backgroundColor = "rgb(10, 157, 255)";
                 j--;
             }
             resolve();
@@ -413,10 +443,10 @@ function notArranged(){
     })
 }
 async function bogoSort(starting){
-    while(await notArranged() == false){
+    while(await notArranged() == false && stopBogo=="f"){
         await shuffle();
         var p = new Date().getTime();
-        time_d.innerHTML = "<em>(Worst case time taken is infinite) Time elapsed in Quick Sorting an array of size "+ arr.length +" is "+(p-starting)/1000+" seconds. Reload the page to stop.</em>";
+        time_d.innerHTML = "<em>(Worst case time taken is infinite) Time elapsed in Bogo Sorting an array of size "+ arr.length +" is "+(p-starting)/1000+" seconds.</em>";
     }
 }
 // BOGO SORT
@@ -456,13 +486,14 @@ async function mySort(){
             sorting = "f";
         }
         else if (sort_m=="b_s"){
+            document.getElementById('navbarSupportedContent').innerHTML += '<button class="btn btn-outline-success my-2 my-sm-0" onclick="removestopBtn()" id="rmBtn">Stop</button>';
             sorted = "t";
             sorting = "t";
             starting = new Date().getTime();
             await bogoSort(starting);
             stoping = new Date().getTime();
-            time_d.innerHTML = "<em>Time taken by Quick Sort to sort an array of size "+ arr.length +" is "+(stoping-starting)/1000+" seconds</em>";
             sorting = "f";
+            stopBogo = "f";
         }
         else{
             // sort_m="s_s";
