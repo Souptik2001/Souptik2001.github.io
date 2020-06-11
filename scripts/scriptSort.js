@@ -8,7 +8,7 @@ var sorted = "f";
 var sorting = "f";
 var sort_m = "";
 var arr=[];
-gColumns(40);
+gColumns(50);
 // function removestopBtn(){
 //     var rmBtn = document.getElementById('rmBtn');
 //     rmBtn.remove();
@@ -21,7 +21,7 @@ function reverseArr(){
         n_c.value = "";
         arr=[];
         if (columns == ""){
-            columns=40;
+            columns=50;
             for(var i = columns; i>=1; i--){
                 arr.push(i);
                 bars.innerHTML += "<div class=\"bar\" id=\"id"+(columns-i)+"\"></div>";
@@ -30,7 +30,7 @@ function reverseArr(){
             }
             sorted = "f";
         }
-        else if(columns > 50 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="50 > Value > 0";}
+        else if(columns > 80 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="80 > Value > 0";}
         else{
             for(var i = columns; i>=1; i--){
                 arr.push(i);
@@ -48,8 +48,8 @@ function c_c(){
     if (sorting=="f"){
         console.log(n_c.value);
         const columns = n_c.value;
-        if (columns == ""){gColumns(40); sorted = "f"; n_c.style.border = ""; n_c.placeholder="Number of colums to Sort (Default 40)";}
-        else if(columns > 50 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="50 > Value > 0";}
+        if (columns == ""){gColumns(50); sorted = "f"; n_c.style.border = ""; n_c.placeholder="Number of colums to Sort (Default 40)";}
+        else if(columns > 80 || columns < 2){console.log("ok"); n_c.value = ""; n_c.style.border=" 2px solid rgb(255, 0, 0)" ; n_c.placeholder="80 > Value > 0";}
         else{
             n_c.value = "";
             gColumns(columns);
@@ -454,6 +454,12 @@ async function bogoSort(starting){
 }
 // BOGO SORT
 async function mySort(){
+    if(sorted=="t" && sorting=="f"){
+        // document.getElementById('suffleBtn').style.border = "solid 2px red";
+        document.getElementById('suffleBtn').style.backgroundColor = "red";
+        document.getElementById('suffleBtn').style.color = "white";
+        setTimeout(()=>{document.getElementById('suffleBtn').style.backgroundColor = "white"; document.getElementById('suffleBtn').style.color = "rgb(32, 160, 0)";},500);
+    }
     if(sorted=="f"){
         if(sort_m=="s_s"){
             starting = new Date().getTime();

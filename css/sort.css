@@ -18,7 +18,7 @@ body{
 }
 .bar{
     background-color: rgb(10, 157, 255);
-    border: 2px solid black;
+    border: 0.5px solid black;
     width: 20px;
     height: 80vh;
 }
@@ -31,4 +31,7 @@ body{
 #rmBtn{
     color: red;
     border-color: red;
+}
+#suffleBtn{
+    transition-duration: 200ms;
 }
