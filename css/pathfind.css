@@ -1,0 +1,39 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#field {
+    height: 80vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 5vh;
+    margin-bottom: 2.3vh;
+    display: flex;
+    /* justify-content: space-around; */
+    flex-direction: column;
+    align-items: center;
+    /* grid-template-columns: repeat(auto-fit, minmax(40px, 40px)); */
+}
+
+.row {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.block {
+    border: solid 0.5px rgb(255, 123, 0);
+    height: 4vh;
+    width: 4vh;
+    text-align: center;
+    font-weight: 800;
+    transition-duration: 2s;
+}
