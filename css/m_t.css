@@ -24,7 +24,6 @@
 
 @media(max-width:900px){
     .firstSec{
-        z-index: -1;
         /* border: rgb(255, 255, 255) solid 2px; */
     }
     #m_b_i{
@@ -74,6 +73,7 @@ body {
     background-color: rgba(0, 0, 0, 0.808);
 }
 .firstSec{
+    z-index: -1;
     /* overflow: scroll;
     overflow-x:hidden; */
     position: absolute;
