@@ -3,6 +3,25 @@
     padding: 0;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 body {
     margin: 0;
     padding: 0;
@@ -16,7 +35,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.808);
+    /* background-color: rgba(0, 0, 0, 0.808); */
 }
 
 .intro {
@@ -62,5 +81,40 @@ body {
     margin-bottom: 50px;
     padding-left: 5vw;
     padding-right: 5vw;
-    background-color: rgba(0, 0, 0, 0.432);
+    /* background-color: rgba(0, 0, 0, 0.432); */
+}
+
+.bgaboutimg{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.bgimgoverlay{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.790);
+    z-index: -1;
+}
+
+#mobilebgvid{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
 }

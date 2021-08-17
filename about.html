@@ -13,10 +13,19 @@
     <title>@Souptik</title>
 </head>
 
-<body>
+<body onmousemove="showCoords(event)">
     <!-- <img src="./img/main.jpg" class="t_i" alt="testImage"> -->
-
-    <nav class="navbar navbar-expand-sm navbar-dark navbar-fixed-top myStyle">
+    <video id="mobilebgvid" autoplay loop>
+        <source src="./img/mobilebg.mp4" type="video/mp4">
+      </video>
+    <div id="bgimgcontainer">
+        <img class="bgaboutimg" src="./img/a7.png" alt="pic">
+        <img class="bgaboutimg" src="./img/a1.JPG" alt="pic">
+        <img class="bgaboutimg" src="./img/a2.JPG" alt="pic">
+        <img class="bgaboutimg" src="./img/a3.JPG" alt="pic">
+    </div>
+    <div class="bgimgoverlay"></div>
+    <nav class="navbar navbar-expand-sm navbar-dark navbar-fixed-top myStyle" id="navbarcustom">
         <a class="navbar-brand" href="https://souptik2001.github.io/">✍🏻</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -46,20 +55,19 @@
         </div>
         <div class="m_b" id="m_b_i">
             <div class="desc" id="desc_i">
-                <p>I am an undergraduate pursuing B.Tech at <a href="https://kiit.ac.in/" target="_blank" style="color: rgb(122, 231, 122);">Kalinga Institue of Industrial Technology</a>, India. I am currently studying in second year and don't have much experience to share. Yet the little only is depicted through this blog. I like backend web programming and love learning about scalable websites and managing huge traffics. Also previously I solved the
+                <p>I am an undergraduate pursuing B.Tech at <a href="https://kiit.ac.in/" target="_blank" style="color: rgb(122, 231, 122);">Kalinga Institue of Industrial Technology</a>, India. I am currently studying in third year and don't have much experience to share. Yet the little only is depicted through this blog. I like backend web programming and love learning about networking. I also enjoy creating games and participating in GameJams, here you can check some of my <a href="https://souptik2001.itch.io/" target="_blank" style="color: rgb(231, 182, 182);">games</a>. Previously I solved the
                     <a href="https://foobar.withgoogle.com/" target="_blank" style="color: white;"><span style="color: rgb(255, 115, 0);">Goog</span><span style="color: rgb(255, 230, 0);">le Foob</span><span style="color: rgb(30, 255, 0);">ar chal</span><span style="color: rgb(54, 65, 218);">lenge</span>
                     </a> 🕵🏼 upto the last question..unfortunatly couldn't solve the last challange😥. </p>
-                <p>During free times trying solving complex algorithmic problems and learning more stuffs to get in some more activities.. 😵 Anyone interested is most welcome to engage with me with projects or any other cools stuffs, souptikdatta2001@gmail.com
+                <p>During free times trying solving algorithmic problems and learning more stuffs to get in some more activities.. Anyone interested is most welcome to engage with me with projects or any other cools stuffs, souptikdatta2001@gmail.com
                     🤗💚
                 </p>
-                <p>In lazy times scrolling through <a href="https://www.linkedin.com/in/souptik-datta-a10072183/" taget="_blank" style="color: orangered;">Linkedin</a>,
+                <p>In leisure times scrolling through <a href="https://www.linkedin.com/in/souptik-datta-a10072183/" taget="_blank" style="color: orangered;">Linkedin</a>,
                     <a href="https://twitter.com/datta_souptik" target="_blank" style="color: rgb(231, 182, 182);">Twitter</a>,
                     <a href="https://www.facebook.com/souptik.datta.750/" target="_blank" style="color: rgb(90, 147, 221);"><strike>Facebook</strike></a>,
-                    <a href="https://www.instagram.com/souptik_datta/" target="_blank" style="color: rgb(3, 185, 3);"><strike>Instagram</strike></a> and also sketching (practice gone…talent gone….restoration in progress). <strong><a href="https://github.com/Souptik2001" target="_blank" style="color: rgb(221, 199, 0);">👉🏼Git😺hub👈🏼</a></strong>
-                    <em>That’s it ! This page will grow
-                    along with experience till then take care and stay safe.</em></p>
+                    <a href="https://www.instagram.com/souptik_datta/" target="_blank" style="color: rgb(3, 185, 3);"><strike>Instagram</strike></a> and also sketching. <strong><a href="https://github.com/Souptik2001" target="_blank" style="color: rgb(221, 199, 0);">👉🏼Git😺hub👈🏼</a></strong>
+                    <em>That’s it ! This page will grow along with experience till then take care and stay safe.</em></p>
             </div>
-            <div><img src="./img/mine.jpg" alt="profile_pic" style="width: 70%; border-radius: 50%;" class="mine"></div>
+            <!-- <div><img src="./img/mine.jpg" alt="profile_pic" style="width: 70%; border-radius: 50%;" class="mine"></div> -->
         </div>
         <div style="color: white; display: flex; justify-content: space-around; letter-spacing: 5px; padding-top: 20px;">
             <h3 style="text-align: center;">Kolkata 🚆 Bhubaneswar</h3>
@@ -70,6 +78,9 @@
         </div>
 
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js" integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
