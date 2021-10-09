@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Source Code Pro', monospace;
+
+        }
+        section{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            background-image: linear-gradient(rgb(56, 56, 56), rgb(0, 0, 0));
+        }
+        h2{
+            background: -webkit-linear-gradient(rgb(173, 243, 255), rgb(117, 117, 117));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        
+
+        @keyframes rotateIt {
+            0%   {transform: rotate(0deg);
+
+/* Safari */
+-webkit-transform: rotate(0deg);
+
+/* Firefox */
+-moz-transform: rotate(0deg);
+
+/* IE */
+-ms-transform: rotate(0deg);
+
+/* Opera */
+-o-transform: rotate(0deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);}
+            100% {transform: rotate(360deg);
+
+/* Safari */
+-webkit-transform: rotate(360deg);
+
+/* Firefox */
+-moz-transform: rotate(360deg);
+
+/* IE */
+-ms-transform: rotate(360deg);
+
+/* Opera */
+-o-transform: rotate(360deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);}
+        }
+
+        img{
+            margin-top: 1%;
+            height: 8%;
+            animation-name: rotateIt;
+            animation-duration: 2s;
+            animation-delay: 0ms;
+            animation-iteration-count: infinite;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Passing LaTex to online compiler</h2>
+        <img src="./img/gear.png" alt="" srcset="">
+    </section>
+    <script>
+        var repoAddress = "https://github.com/Souptik2001/resume&target=resume.tex";
+        setTimeout(()=>{window.location.replace("https://texlive2020.latexonline.cc/compile?git="+repoAddress+"&command=xelatex");}, 4000);
+    </script>
+</body>
+</html>
