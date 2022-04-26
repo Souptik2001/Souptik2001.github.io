@@ -46,10 +46,17 @@ body {
 }
 
 .outro {
+    opacity: 0.1;
     margin-top: 50px;
     text-align: center;
     /* padding-left: 20px; */
     /* border-left: 8px solid rgba(255, 255, 255, 0.514); */
+    transition: opacity;
+    transition-duration: 0.5s;
+}
+
+.outro:hover {
+    opacity: 1;
 }
 
 .myName {
@@ -64,6 +71,16 @@ body {
     padding-right: 50px;
     display: flex;
     justify-content: space-between;
+}
+
+#m_b_i {
+    opacity: 0.1;
+    transition: opacity;
+    transition-duration: 0.5s;
+}
+
+#m_b_i:hover{
+    opacity: 1;
 }
 
 .desc {
@@ -117,4 +134,14 @@ body {
     bottom: 0;
     right: 0;
     z-index: -1;
+}
+
+#travel_locations {
+    opacity: 0.1;
+    transition: opacity;
+    transition-duration: 0.5s;
+}
+
+#travel_locations:hover {
+    opacity: 1;
 }
