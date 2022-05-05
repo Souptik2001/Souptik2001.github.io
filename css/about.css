@@ -32,7 +32,7 @@ body {
 }
 
 .myStyle {
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     /* background-color: rgba(0, 0, 0, 0.808); */
@@ -63,6 +63,8 @@ body {
     margin-bottom: 40px;
     padding-left: 15px;
     border-left: 8px solid rgba(58, 238, 3, 0.514);
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .m_b {
@@ -86,19 +88,30 @@ body {
 .desc {
     color: white;
     font-size: 18px;
-    padding-right: 80px;
 }
 
 .firstSec {
+    overflow-wrap: break-word;
+
     margin-left: 10vw;
     margin-right: 10vw;
-    /* margin-left: 2vw;
-    margin-right: 2vw; */
     margin-top: 100px;
     margin-bottom: 50px;
     padding-left: 5vw;
     padding-right: 5vw;
-    /* background-color: rgba(0, 0, 0, 0.432); */
+}
+
+@media (max-width: 600px) {
+
+    .firstSec {
+        margin-left: 0vw;
+        margin-right: 0vw;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
 }
 
 .bgaboutimg{
