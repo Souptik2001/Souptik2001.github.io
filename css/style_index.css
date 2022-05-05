@@ -62,14 +62,14 @@ body {
 .blog {
     margin-top: 80px;
     padding: 40px;
-    transition-duration: 1s;
     cursor: pointer;
+    transition: background-color, border-radius;
+    transition-duration: 1s;
 }
 
 .blog:hover {
     background-color: rgba(0, 223, 252, 0.219);
-    transition-duration: 1s;
-    border-radius: 10px;
+    border-radius: 100px;
 }
 
 .b_head {
