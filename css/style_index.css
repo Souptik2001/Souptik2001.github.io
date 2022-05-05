@@ -34,7 +34,7 @@ body {
 }
 
 .myStyle {
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.808);
@@ -55,8 +55,8 @@ body {
 
 .blogs {
     /* padding-top: 40px; */
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 .blog {
@@ -69,7 +69,7 @@ body {
 
 .blog:hover {
     background-color: rgba(0, 223, 252, 0.219);
-    border-radius: 100px;
+    border-radius: 80px;
 }
 
 .b_head {
@@ -89,12 +89,35 @@ body {
 }
 
 .firstSec {
+
+    overflow-wrap: break-word;
+
     margin-left: 10vw;
     margin-right: 10vw;
-    /* margin-left: 2vw;
-    margin-right: 2vw; */
-    margin-top: 150px;
+    margin-top: 100px;
     margin-bottom: 50px;
     padding-left: 5vw;
     padding-right: 5vw;
+}
+
+@media (max-width: 550px) {
+
+    .firstSec {
+        margin-left: 0vw;
+        margin-right: 0vw;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        padding-left: 0vw;
+        padding-right: 0vw;
+    }
+
+    .blog {
+        padding: 20px;
+    }
+
+    .blog:hover {
+        background-color: rgba(0, 223, 252, 0.219);
+        border-radius: 30px;
+    }
+
 }

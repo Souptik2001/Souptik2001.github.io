@@ -16,109 +16,111 @@
 <body>
     <!-- <img src="./img/main.jpg" class="t_i" alt="testImage"> -->
 
-    <nav class="navbar navbar-expand-sm navbar-dark navbar-fixed-top myStyle">
-        <a class="navbar-brand" href="/">✍🏻</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+    <div>
+        <nav class="navbar navbar-expand-sm navbar-dark navbar-fixed-top myStyle">
+            <a class="navbar-brand" href="/">✍🏻</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">📖Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/m_t.html">📚My Tastes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about.html">👋🏻About</a>
-                </li>
-            </ul>
-            <a href="/notes.html"><button class="btn btn-outline-success my-2 my-sm-0">✏️Your Space !</button></a>
-        </div>
-    </nav>
-    <div class="firstSec" id="firstSec_i">
-        <div class="intro">
-            <h1 style="color: white; letter-spacing: 8px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 800;"><span id="i_text"><em><span style="color: rgba(212, 182, 84, 0.699);" id="cursor">|</span></em><span>H</span><span>e</span><span>l</span><span>l</span><span>o</span><span>.</span><span>.</span><span>👱🏼</span></span><em><span style="color: rgba(212, 182, 84, 0.699);" id="cursor">|</span></em></h1>
-        </div>
-        <div class="blogs" id="blogs_i">
-            <div class="blog">
-                <h2 class="b_head">Computer Setup💻🚀</h2>
-                <div class="b_body">
-                    <p>My computer setup automation and dotfiles. For now these scripts are specific to arch linux. <em>Some more work needed. Will be public soon.</em>⚙</p>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">📖Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/m_t.html">📚My Tastes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about.html">👋🏻About</a>
+                    </li>
+                </ul>
+                <a href="/notes.html"><button class="btn btn-outline-success my-2 my-sm-0">✏️Your Space !</button></a>
             </div>
-            <div class="blog">
-                <h2 class="b_head">Lando Setup🐋</h2>
-                <div class="b_body">
-                    <p>These days I am trying to shift all my local development setup to docker. I really like virtual environment based development for certain reasons, which can be discussed in a separate topic. But here I want to share about <a href="https://lando.dev/" target="_blank" style="color: rgb(227, 86, 255);">Lando</a> which is a really great bootstrapping tool for docker based setups. So, as currently I am working as a WordPress engineer, so for setting up multiple WordPress sites with a great level of flexibility, I created <a href="https://github.com/Souptik2001/wordpress.setup" target="_blank" style="color: rgb(232, 117, 255);">this setup</a> with Lando along with a script to automate some steps to make it super easy to quickly spin up a new full-fledged WordPress site. You can read more details about it in the Github repo itself.</p>
-                </div>
+        </nav>
+        <div class="firstSec" id="firstSec_i">
+            <div class="intro">
+                <h1 style="color: white; letter-spacing: 8px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 800;"><span id="i_text"><em><span style="color: rgba(212, 182, 84, 0.699);" id="cursor">|</span></em><span>H</span><span>e</span><span>l</span><span>l</span><span>o</span><span>.</span><span>.</span><span>👱🏼</span></span><em><span style="color: rgba(212, 182, 84, 0.699);" id="cursor">|</span></em></h1>
             </div>
-            <div class="blog">
-                <h2 class="b_head">A lightweight, easy to use, customizable Highscore Server.💾🎮</h2>
-                <div class="b_body">
-                    <p>No login, no personal data required! Creating a leaderboard is as simple as just clicking a button. As it is made using sqlite which is local file based database, so it is somewhat faster than using an external database server. <strong>Some challanges that I faced while working with sqlite and how I tackled them -</strong> <em>1) Sqlite does not have support for auto time column update with new timestamps on an UPDATE query. So I have to write triggers to update time after each update. 2) Sqlite does not have OUTER JOIN or RIGHT JOIN. So, to perform an outer join I have to perform two Left Joins, once A with B and then B with A and then do a Union. But ultimately this was a fun learning experience. </em><a href="https://github.com/Souptik2001/Highscore-Server#readme" target="_blank" style="color: wheat;"><strong>Read more</strong>.</a> <a href="https://scoremadeeasy.souptikdatta.repl.co/" target="_blank" style="color: rgb(238, 179, 69);"><strong>Try it now</strong>.</a></p>
+            <div class="blogs" id="blogs_i">
+                <div class="blog">
+                    <h2 class="b_head">Computer Setup💻🚀</h2>
+                    <div class="b_body">
+                        <p>My computer setup automation and dotfiles. For now these scripts are specific to arch linux. <em>Some more work needed. Will be public soon.</em>⚙</p>
+                    </div>
                 </div>
+                <div class="blog">
+                    <h2 class="b_head">Lando Setup🐋</h2>
+                    <div class="b_body">
+                        <p>These days I am trying to shift all my local development setup to docker. I really like virtual environment based development for certain reasons, which can be discussed in a separate topic. But here I want to share about <a href="https://lando.dev/" target="_blank" style="color: rgb(227, 86, 255);">Lando</a> which is a really great bootstrapping tool for docker based setups. So, as currently I am working as a WordPress engineer, so for setting up multiple WordPress sites with a great level of flexibility, I created <a href="https://github.com/Souptik2001/wordpress.setup" target="_blank" style="color: rgb(232, 117, 255);">this setup</a> with Lando along with a script to automate some steps to make it super easy to quickly spin up a new full-fledged WordPress site. You can read more details about it in the Github repo itself.</p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">A lightweight, easy to use, customizable Highscore Server.💾🎮</h2>
+                    <div class="b_body">
+                        <p>No login, no personal data required! Creating a leaderboard is as simple as just clicking a button. As it is made using sqlite which is local file based database, so it is somewhat faster than using an external database server. <strong>Some challanges that I faced while working with sqlite and how I tackled them -</strong> <em>1) Sqlite does not have support for auto time column update with new timestamps on an UPDATE query. So I have to write triggers to update time after each update. 2) Sqlite does not have OUTER JOIN or RIGHT JOIN. So, to perform an outer join I have to perform two Left Joins, once A with B and then B with A and then do a Union. But ultimately this was a fun learning experience. </em><a href="https://github.com/Souptik2001/Highscore-Server#readme" target="_blank" style="color: wheat;"><strong>Read more</strong>.</a> <a href="https://scoremadeeasy.souptikdatta.repl.co/" target="_blank" style="color: rgb(238, 179, 69);"><strong>Try it now</strong>.</a></p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">Games🎮🕹</h2>
+                    <div class="b_body">
+                        <p>Some games that I have created. <a href="https://souptik2001.itch.io/" target="_blank" style="color: wheat;"><strong>Play them</strong>.</a></p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">Shaders📜</h2>
+                    <div class="b_body">
+                        <!-- <p>I have recently started working on shaders and I am really enjoying writing them. I fell that shader isn't only a programming concept its a imagination which can be stretched to any limits. So here are some shaders that I am working on : <a href="https://github.com/Souptik2001/Portal" target="_blank" style="color: wheat;"><strong>Portal Shader</strong></a>, <a href="https://github.com/Souptik2001/Water-Shader" target="_blank" style="color: rgb(0, 234, 255);"><strong>Water Shader</strong></a>.</p> -->
+                        <p>I have recently started working on shaders and I am really enjoying writing them. I fell that shader isn't only a programming concept, rather its a imagination which can be streched to any limits. So here are some shaders that I am working on : <a href="https://github.com/Souptik2001/Portal" target="_blank" style="color: wheat;"><strong>Portal Shader</strong></a>, <a href="https://github.com/Souptik2001/Water-Shader" target="_blank" style="color: rgb(0, 234, 255);"><strong>Water Shader</strong></a>.</p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">🤓😎Sorting Algorithms Visualization</h2>
+                    <div class="b_body">
+                        <p>See the visualization of different sorting algorithms and also compare the time complexities by real time time comparison...🧐<a href="/sort.html" style="color: wheat;"><strong>Test it.</strong></a> <a href="https://github.com/Souptik2001/Sorting-Visualization" target="_blank" style="color: wheat;"><strong>Learn to implement it.</strong></a></p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">🕐💯Asynchronous Javascript</h2>
+                    <div class="b_body">
+                        <p>Wondering where is time.sleep in javascript? What are callbacks, promises and async/await? Get to know everything in this one article : <a href="/js_async.html" style="color: wheat;"><strong>Read it. </strong></a></p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">🧹🧺Incentivized Tech Bin</h2>
+                    <div class="b_body">
+                        <p>An automated system involving IOT to encourage people to throw waste in dustbins and also many more. <a href="https://github.com/Souptik2001/Tech-Bin/blob/master/README.md" target="_blank" style="color: wheat;"><strong>Read more about it.</strong></a></p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">🤖🗺Build a visualization of Dijkstra's Algorithm</h2>
+                    <div class="b_body">
+                        <p>Dijkstra's algorithm is a shortest path finding algorithm🗺. Implement it using javascript and build a visualization and play around with it..😎<a href="/dijkstra.html" target="_blank" style="color: wheat;"><em>Test it before starting😉</em></a>
+                            <a href="/dijkstra_t.html" style="color: wheat;"><strong>Start right now !</strong></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">🤩🤑Free To use Blog Page</h2>
+                    <div class="b_body">
+                        <p>A ready to use dynamic blog page created through Flask which you can use to create your own blog page in minutes..🥳<a href="/2-mins-Blog.html" style="color: wheat;"><strong>Start your Blog now !</strong></a></p>
+                    </div>
+                </div>
+                <div class="blog">
+                    <h2 class="b_head">😏🧠Unbeatable Tic-Tac-Toe</h2>
+                    <div class="b_body">
+                        <p>A Tic-Tac-Toe game which uses min-max algorithm to prove itself invincible💪 <a href="https://github.com/Souptik2001/Smart-TicTacToe" target="_blank" style="color: wheat;"><strong>Read more about it.</strong></a></p>
+                    </div>
+                </div>
+                <!-- <div class="blog">
+                    <h2 class="b_head">⁉️Learn Javascript ?</h2>
+                    <div class="b_body">
+                        <p>Strictly for totally beginners. A quick intro to javascript: <a href="/js_imp.html" style="color: wheat;"><strong>Here</strong></a></p>
+                    </div>
+                </div> -->
             </div>
-            <div class="blog">
-                <h2 class="b_head">Games🎮🕹</h2>
-                <div class="b_body">
-                    <p>Some games that I have created. <a href="https://souptik2001.itch.io/" target="_blank" style="color: wheat;"><strong>Play them</strong>.</a></p>
-                </div>
-            </div>
-            <div class="blog">
-                <h2 class="b_head">Shaders📜</h2>
-                <div class="b_body">
-                    <!-- <p>I have recently started working on shaders and I am really enjoying writing them. I fell that shader isn't only a programming concept its a imagination which can be stretched to any limits. So here are some shaders that I am working on : <a href="https://github.com/Souptik2001/Portal" target="_blank" style="color: wheat;"><strong>Portal Shader</strong></a>, <a href="https://github.com/Souptik2001/Water-Shader" target="_blank" style="color: rgb(0, 234, 255);"><strong>Water Shader</strong></a>.</p> -->
-                    <p>I have recently started working on shaders and I am really enjoying writing them. I fell that shader isn't only a programming concept, rather its a imagination which can be streched to any limits. So here are some shaders that I am working on : <a href="https://github.com/Souptik2001/Portal" target="_blank" style="color: wheat;"><strong>Portal Shader</strong></a>, <a href="https://github.com/Souptik2001/Water-Shader" target="_blank" style="color: rgb(0, 234, 255);"><strong>Water Shader</strong></a>.</p>
-                </div>
-            </div>
-            <div class="blog">
-                <h2 class="b_head">🤓😎Sorting Algorithms Visualization</h2>
-                <div class="b_body">
-                    <p>See the visualization of different sorting algorithms and also compare the time complexities by real time time comparison...🧐<a href="/sort.html" style="color: wheat;"><strong>Test it.</strong></a> <a href="https://github.com/Souptik2001/Sorting-Visualization" target="_blank" style="color: wheat;"><strong>Learn to implement it.</strong></a></p>
-                </div>
-            </div>
-            <div class="blog">
-                <h2 class="b_head">🕐💯Asynchronous Javascript</h2>
-                <div class="b_body">
-                    <p>Wondering where is time.sleep in javascript? What are callbacks, promises and async/await? Get to know everything in this one article : <a href="/js_async.html" style="color: wheat;"><strong>Read it. </strong></a></p>
-                </div>
-            </div>
-            <div class="blog">
-                <h2 class="b_head">🧹🧺Incentivized Tech Bin</h2>
-                <div class="b_body">
-                    <p>An automated system involving IOT to encourage people to throw waste in dustbins and also many more. <a href="https://github.com/Souptik2001/Tech-Bin/blob/master/README.md" target="_blank" style="color: wheat;"><strong>Read more about it.</strong></a></p>
-                </div>
-            </div>
-            <div class="blog">
-                <h2 class="b_head">🤖🗺Build a visualization of Dijkstra's Algorithm</h2>
-                <div class="b_body">
-                    <p>Dijkstra's algorithm is a shortest path finding algorithm🗺. Implement it using javascript and build a visualization and play around with it..😎<a href="/dijkstra.html" target="_blank" style="color: wheat;"><em>Test it before starting😉</em></a>
-                        <a href="/dijkstra_t.html" style="color: wheat;"><strong>Start right now !</strong></a>
-                    </p>
-                </div>
-            </div>
-            <div class="blog">
-                <h2 class="b_head">🤩🤑Free To use Blog Page</h2>
-                <div class="b_body">
-                    <p>A ready to use dynamic blog page created through Flask which you can use to create your own blog page in minutes..🥳<a href="/2-mins-Blog.html" style="color: wheat;"><strong>Start your Blog now !</strong></a></p>
-                </div>
-            </div>
-            <div class="blog">
-                <h2 class="b_head">😏🧠Unbeatable Tic-Tac-Toe</h2>
-                <div class="b_body">
-                    <p>A Tic-Tac-Toe game which uses min-max algorithm to prove itself invincible💪 <a href="https://github.com/Souptik2001/Smart-TicTacToe" target="_blank" style="color: wheat;"><strong>Read more about it.</strong></a></p>
-                </div>
-            </div>
-            <!-- <div class="blog">
-                <h2 class="b_head">⁉️Learn Javascript ?</h2>
-                <div class="b_body">
-                    <p>Strictly for totally beginners. A quick intro to javascript: <a href="/js_imp.html" style="color: wheat;"><strong>Here</strong></a></p>
-                </div>
-            </div> -->
-        </div>
 
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
