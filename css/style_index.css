@@ -6,17 +6,17 @@
 ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
-  
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #888888;
   }
-  
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
@@ -31,13 +31,6 @@ body {
     background-position-x: center;
     background-size: cover;
     background-attachment: fixed;
-}
-
-.myStyle {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.808);
 }
 
 .intro {
