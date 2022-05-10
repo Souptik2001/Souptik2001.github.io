@@ -56,13 +56,16 @@ body {
     margin-top: 80px;
     padding: 40px;
     cursor: pointer;
-    transition: background-color, border-radius;
+    transition: background-color, border-radius, backdrop-filter, -webkit-backdrop-filter;
     transition-duration: 1s;
 }
 
 .blog:hover {
     background-color: rgba(0, 223, 252, 0.219);
     border-radius: 80px;
+
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
 }
 
 .b_head {
