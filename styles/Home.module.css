@@ -1,129 +1,87 @@
-.container {
-  padding: 0 2rem;
-}
 
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
+.intro {
   text-align: center;
+  margin-bottom: 50px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* padding-left: 20px; */
+  /* border-left: 8px solid rgba(255, 255, 255, 0.514); */
 }
 
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
+.blogs {
+  /* padding-top: 40px; */
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+.blog {
+  margin-top: 80px;
+  padding: 40px;
+  cursor: pointer;
+  transition: background-color, border-radius, backdrop-filter, -webkit-backdrop-filter;
+  transition-duration: 1s;
 }
 
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+.blog:hover {
+  background-color: rgba(0, 223, 252, 0.219);
+  border-radius: 80px;
+
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
+.b_head {
   text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  letter-spacing: 5px;
+  word-spacing: 10px;
+  font-weight: 500;
+  color: white;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.b_body {
+  text-align: left;
+  letter-spacing: 5px;
+  word-spacing: 10px;
+  padding-left: 30px;
+  border-left: 8px solid rgba(255, 255, 255, 0.514);
+  margin-top: 30px;
+  color: white;
 }
 
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+.firstSec {
+
+  overflow-wrap: break-word;
+
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
+@media (max-width: 550px) {
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+  .firstSec {
+      margin-left: 0vw;
+      margin-right: 0vw;
+      margin-top: 100px;
+      margin-bottom: 50px;
+      padding-left: 0vw;
+      padding-right: 0vw;
   }
-}
 
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
+  .blog {
+      padding: 20px;
   }
-  .code {
-    background: #111;
+
+  .blog:hover {
+      background-color: rgba(0, 223, 252, 0.219);
+      border-radius: 30px;
   }
-  .logo img {
-    filter: invert(1);
-  }
+
 }
