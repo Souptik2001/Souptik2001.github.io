@@ -1,0 +1,21 @@
+# Uploads directory
+/uploads
+
+# IDE or OS
+.idea/
+.DS_Store
+__MACOSX/
+# Log files
+*.log
+
+# Build artifact
+.grunt
+
+# local
+plugins/post-smtp/
+plugins/wp-crontrol/
+
+# Node modeuls.
+/node_modules/
+node_modules
+debug.log
