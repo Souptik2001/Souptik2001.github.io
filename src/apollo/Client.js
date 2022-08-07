@@ -4,7 +4,7 @@ const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   cache: cache,
-  uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+  uri: process.env.GRAPHQL_ENDPOINT,
 
   name: 'wppc-api-client',
   version: '1.3',
