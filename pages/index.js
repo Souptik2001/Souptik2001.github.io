@@ -1,18 +1,14 @@
+import { gql } from '@apollo/client';
 import { Box, Heading } from '@chakra-ui/layout';
 import { style } from '@motionone/dom';
+import client from '../src/apollo/Client';
 import styles from '../styles/Home.module.css';
 import Blogcard from './components/Home/Blogcard';
 import Layout from './components/Layout';
 
-export default function Home() {
+export default function Home({allPosts}) {
 
-  const blogs = [
-    {
-      title: 'Current Status📝',
-      excerpt: 'Software Engineer at rtCamp',
-      content: ''
-    }
-  ]
+  const blogs = allPosts.data.posts.edges;
 
   return (
     <Layout>
@@ -26,7 +22,7 @@ export default function Home() {
                 blogs.map((item, index) => {
                   // The index will not change dynamically. So, safe to use index.
                   return (
-                    <Blogcard key={`key-${index}`} data={item} styles={styles} />
+                    <Blogcard key={`key-${index}`} data={item.node} styles={styles} />
                   );
 
                 })
@@ -36,4 +32,32 @@ export default function Home() {
       </Box>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+
+  const allPosts = await client.query({
+    query: gql`
+      query fetchPosts {
+        posts {
+          edges {
+            node {
+              id
+              date
+              excerpt
+              slug
+              title
+            }
+          }
+        }
+      }
+    `
+  });
+
+  return {
+    props: {
+      allPosts
+    }
+  };
+
 }

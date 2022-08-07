@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
     "@chakra-ui/react": "^2.2.6",
     "@emotion/cache": "latest",
     "@emotion/react": "^11.10.0",
@@ -20,7 +21,8 @@
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "sanitize-html": "^2.7.1"
   },
   "devDependencies": {
     "eslint": "8.21.0",

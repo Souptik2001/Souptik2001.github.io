@@ -1,7 +1,7 @@
 import { Box, Flex, Link, Stack, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import Button from './Button/Button';
-
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,12 +9,12 @@ const NavBar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <NavBarContainer background="black" textAlign="center"{...props}>
-      <LogoAndToggleIconContainer width={["100%", null, "50%", "50%"]} zIndex="10">
-        <Box>✍</Box>
+    <NavBarContainer background="black" textAlign="center" zIndex="20" {...props}>
+      <LogoAndToggleIconContainer zIndex="10">
+        <Link to="/"><Box cursor="pointer">✍</Box></Link>
         <MenuToggle width={["25%", null, "auto"]} toggle={toggle} isOpen={isOpen} />
       </LogoAndToggleIconContainer>
-      <MenuLinks isOpen={isOpen} width={["100%", null, "50%", "50%"]} zIndex="10" />
+      <MenuLinks isOpen={isOpen} zIndex="10" />
     </NavBarContainer>
   );
 };
@@ -51,7 +51,15 @@ const MenuToggle = ({ toggle, isOpen, ...rest }) => {
 
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
-    <Link href={to} textDecoration="none"  {...rest}>
+    <Link
+    fontWeight="600"
+    href={to}
+    style={{textDecoration: "none"}}
+    color="rgba(255, 255, 255, 0.5)"
+    _hover={{
+      color: "rgba(255, 255, 255, 0.8)"
+    }}
+    {...rest}>
       <Text display="block">
         {children}
       </Text>
@@ -60,6 +68,15 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
 };
 
 const MenuLinks = ({ isOpen, ...props }) => {
+
+  const router = useRouter();
+
+  let routesArray = router.route.split('/');
+
+  let currentRoute = '';
+
+  if(routesArray.length > 1) currentRoute = routesArray[1];
+
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -73,16 +90,16 @@ const MenuLinks = ({ isOpen, ...props }) => {
         direction={["column", "column", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/" color="white">Home</MenuItem>
-        <MenuItem to="/interests" color="white">Interests</MenuItem>
-        <MenuItem to="/about" color="white">About</MenuItem>
+        <MenuItem to="/" color={(currentRoute === '') ? "white" : "rgba(255, 255, 255, 0.5)"}>📖Home</MenuItem>
+        <MenuItem to="/interests" color={(currentRoute === 'interests') ? "white" : "rgba(255, 255, 255, 0.5)"}>📚Interests</MenuItem>
+        <MenuItem to="/about" color={(currentRoute === 'about') ? "white" : "rgba(255, 255, 255, 0.5)"}>👋About</MenuItem>
         <Button
           lineHeight='24px'
           transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
           borderRadius='5px'
           fontSize='16px'
           padding="8px"
-          fontWeight='500'
+          fontWeight='600'
           bg='rgba(0,0,0,0)'
           border='1.5px solid #28a745'
           color='#28a745'
@@ -112,11 +129,10 @@ const NavBarContainer = ({ children, ...props }) => {
   return (
     <Flex
       as="nav"
-      align="center"
-      justify="space-between"
+      alignItems="center"
+      justifyContent="space-between"
       flexDirection="row"
       wrap="wrap"
-    	color="neutral.1"
       {...props}
     >
       {children}
@@ -131,7 +147,6 @@ const LogoAndToggleIconContainer = ({ children, ...props }) => {
       align="center"
       justify="space-between"
       flexDirection="row"
-    	color="neutral.1"
       width={["100%", null, "auto", "auto"]}
       {...props}
     >

@@ -1,4 +1,5 @@
 import { Box, Heading } from "@chakra-ui/layout";
+import StripTags from "../../../src/escaping/StripTags";
 
 export default function Blogcard({ data, styles, ...rest }) {
 
@@ -8,11 +9,11 @@ export default function Blogcard({ data, styles, ...rest }) {
 
 		<Box className={styles.blog} {...rest}>
 			<Heading fontWeight="300" className={styles.b_head}>
-				{title}
+				{StripTags(title)}
 			</Heading>
 			<Box className={styles.b_body}>
 				{/* There wil also be an option to insert content if excerpt is not present. */}
-				{excerpt}
+				{StripTags(excerpt)}
 			</Box>
 		</Box>
 
