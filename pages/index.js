@@ -3,10 +3,10 @@ import { Box, Heading } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/react';
 import { style } from '@motionone/dom';
 import { useState } from 'react';
+import Blogcard from '../components/Home/Blogcard';
+import Layout from '../components/Layout';
 import client from '../src/apollo/Client';
 import styles from '../styles/Home.module.css';
-import Blogcard from './components/Home/Blogcard';
-import Layout from './components/Layout';
 
 export default function Home({posts}) {
 
@@ -95,7 +95,7 @@ export async function getServerSideProps() {
   const posts = await client.query({
     query: gql`
       query fetchPosts {
-        posts(first: 1) {
+        posts(first: 5) {
           edges {
             node {
               id

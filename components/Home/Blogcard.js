@@ -1,5 +1,5 @@
 import { Box, Heading, Link } from "@chakra-ui/layout";
-import StripTags from "../../../src/escaping/StripTags";
+import StripTags from "../../src/escaping/StripTags";
 
 export default function Blogcard({ data, styles, ...rest }) {
 
