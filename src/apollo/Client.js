@@ -6,7 +6,7 @@ const client = new ApolloClient({
   cache: cache,
   uri: process.env.GRAPHQL_ENDPOINT,
 
-  name: 'wppc-api-client',
+  name: 'frontend-client',
   version: '1.3',
   queryDeduplication: false,
   skipSSLValidation: true,

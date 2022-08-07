@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import { Box, Heading } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/react';
 import { style } from '@motionone/dom';
+import Head from 'next/head';
 import { useState } from 'react';
 import Blogcard from '../components/Home/Blogcard';
 import Layout from '../components/Layout';
@@ -38,7 +39,10 @@ export default function Home({posts}) {
 
   return (
     <Layout>
-      <Box height="100vh" className={styles.firstSec} id={styles.firstSec_i}>
+      <Head>
+        <title>@Souptik</title>
+      </Head>
+      <Box className={styles.firstSec} id={styles.firstSec_i}>
         <Box className={styles.intro}>
             <Heading color="white" letterSpacing="8px" fontFamily="Heboo, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif" fontWeight="800">
               <span id={styles.i_text}><em><span color='rgba(212, 182, 84, 0.699)' id={style.cursor}>|</span></em><span>H</span><span>e</span><span>l</span><span>l</span><span>o</span><span>.</span><span>.</span><span>👱🏼</span></span><em><span color="rgba(212, 182, 84, 0.699)" id={styles.cursor}>|</span></em>

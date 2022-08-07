@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import Footer from "./Footer";
 import NavBar from "./Navbar";
 
 const Layout = ({
@@ -11,7 +10,7 @@ const Layout = ({
 		<Box
 		className="content"
 		position="relative"
-		height="100%"
+		height="100vh"
 		maxHeight="100vh"
 		overflowX="hidden"
 		overflowY="scroll"
@@ -21,9 +20,8 @@ const Layout = ({
 		backgroundSize="cover"
 		backgroundAttachment="fixed"
 		>
-			<NavBar position="sticky" top="0" px={["15px", null, null, "92px"]} py={10} marginBottom={["46px", null, "70px"]} borderBottom="1px solid rgba(255, 255, 255, 0.2)" background="rgba(0, 0, 0, 0.05)" backdropFilter="blur(6px)" />
+			<NavBar position="sticky" top="0" px={["15px", null, null, "92px"]} py={10} marginBottom={["46px", null, "70px"]} borderBottom="1px solid rgba(255, 255, 255, 0.2)" background="rgba(0, 0, 0, 0.6)" backdropFilter="blur(6px)" />
 			{ children }
-			<Footer px={["15px", null, null, "128px"]} py={["32px", null, null, "64px"]}  />
 		</Box>
 
 	);

@@ -1,0 +1,26 @@
+.b_head {
+	text-align: center;
+	letter-spacing: 5px;
+	word-spacing: 10px;
+	font-weight: 500;
+	color: white;
+  }
+
+.b_info {
+font-size: 13px;
+text-align: center;
+letter-spacing: 5px;
+word-spacing: 10px;
+margin-top: 15px;
+color: rgba(255, 255, 255, 0.801);
+}
+
+.b_body {
+text-align: center;
+letter-spacing: 5px;
+word-spacing: 10px;
+padding-left: 30px;
+border-left: 8px solid rgba(255, 255, 255, 0.514);
+margin-top: 30px;
+color: white;
+}

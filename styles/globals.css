@@ -3,7 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Heebo', sans-serif, -apple-system, system-ui;
-  background: radial-gradient(rgba(0, 0, 0, 0.76), rgba(5, 5, 5, 0.829)), url('/main_b.webp');
+  background: radial-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)), url('/main_b.webp');
   background-repeat: no-repeat;
   background-position-x: center;
   background-size: cover;
@@ -20,6 +20,16 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.container a {
+  color: #71e3ff;
+  transition: color;
+  transition-duration: 1s;
+}
+
+.container a:hover {
+  color: #b6fdff;
 }
 
 * {

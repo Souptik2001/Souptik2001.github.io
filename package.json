@@ -18,10 +18,15 @@
     "@fontsource/heebo": "^4.5.12",
     "focus-visible": "^5.2.0",
     "framer-motion": "^7.0.0",
+    "he": "^1.2.0",
+    "human-format": "^1.0.0",
+    "javascript-time-ago": "^2.5.7",
+    "lodash": "^4.17.21",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "^4.4.0",
     "sanitize-html": "^2.7.1"
   },
   "devDependencies": {
