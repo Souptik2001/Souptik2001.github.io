@@ -2,34 +2,31 @@ import { gql } from '@apollo/client';
 import { Box, Heading, Image } from '@chakra-ui/react';
 import { isEmpty } from 'lodash';
 import Head from "next/head";
-import ParseBlock from '../../components/GutenbergParser/ParseBlock';
-import Layout from "../../components/Layout";
-import client from "../../src/apollo/Client";
-import StripTags from '../../src/escaping/StripTags';
-import { doesSlugMatchesCustomPage } from '../../src/helper-functions';
-import styles from '../../styles/Blog.module.css';
+import ParseBlock from '../components/GutenbergParser/ParseBlock';
+import Layout from "../components/Layout";
+import client from "../src/apollo/Client";
+import StripTags from '../src/escaping/StripTags';
+import { doesSlugMatchesCustomPage } from '../src/helper-functions';
+import styles from '../styles/Blog.module.css';
 
 export default function Blog({frontend, slug}) {
 
 	return(
 		<Layout>
 			<Head>
-		  		<title>{`@Souptik | ${frontend?.data?.post?.title}`}</title>
+		  		<title>{`@Souptik | ${frontend?.data?.page?.title}`}</title>
 			</Head>
 			<Box px="10%" className="container">
-				<Heading fontWeight="300" className={styles.b_head}>
-					{StripTags(frontend?.data?.post?.title)}
+				<Heading fontWeight="600" className={styles.b_head}>
+					{StripTags(frontend?.data?.page?.title)}
 				</Heading>
-				<Box className={styles.b_info}>
-					Posted by {frontend?.data?.post?.author?.node?.name} on {frontend?.data?.post?.date}
-				</Box>
 				<Box  marginTop="40px" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
-					<Image borderRadius="10px" width={["100%", null, null, "50%"]} srcSet={frontend?.data?.post?.featuredImage?.node?.srcSet} alt={frontend?.data?.post?.featuredImage?.node?.altText} />
+					<Image borderRadius="10px" width={["100%", null, null, "50%"]} srcSet={frontend?.data?.page?.featuredImage?.node?.srcSet} alt={frontend?.data?.page?.featuredImage?.node?.altText} />
 				</Box>
 				<Box marginTop="70px">
 					{frontend
 					&&
-					<ParseBlock blocks={JSON.parse(frontend?.data?.post?.blocksJSON)} depth={1} />
+					<ParseBlock blocks={JSON.parse(frontend?.data?.page?.blocksJSON)} depth={1} />
 					}
 				</Box>
 			</Box>
@@ -45,8 +42,8 @@ export async function getStaticProps({params}){
 	try{
 		let frontendData = await client.query({
 			query: gql`
-				query fetchPostData {
-					post(id: "${slug}", idType: SLUG) {
+				query fetchPageData {
+					page(id: "${slug}", idType: URI) {
 						blocksJSON
 						date
 						title
@@ -68,7 +65,7 @@ export async function getStaticProps({params}){
 			`
 		});
 
-		if(frontendData?.data?.post?.blocksJSON === undefined) {
+		if(frontendData?.data?.page?.blocksJSON === undefined) {
 
 			return {
 				props:{},
@@ -94,10 +91,10 @@ export async function getStaticProps({params}){
 
 export async function getStaticPaths(){
 
-	const blogs = await client.query({
+	const pages = await client.query({
 		query: gql`
-		  query fetchPosts {
-			posts {
+		  query fetchPages {
+			pages {
 			  edges {
 				node {
 				  slug
@@ -110,9 +107,9 @@ export async function getStaticPaths(){
 
     const pathsData = [];
 
-    blogs?.data?.posts?.edges?.map((blog) => {
-        if (!isEmpty(blog?.node?.slug) && !doesSlugMatchesCustomPage(blog?.node?.slug)) {
-            pathsData.push({ params: { slug: blog?.node?.slug } });
+    pages?.data?.pages?.edges?.map((page) => {
+        if (!isEmpty(page?.node?.slug) && !doesSlugMatchesCustomPage(page?.node?.slug)) {
+            pathsData.push({ params: { slug: page?.node?.slug } });
         }
     });
 

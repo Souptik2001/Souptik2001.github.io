@@ -197,7 +197,7 @@ export const P_STYLE = {
 		lineHeight: "34px"
 	},
 	color:{
-		text: "black",
+		text: "white",
 		background: "black"
 	},
 	border:{
