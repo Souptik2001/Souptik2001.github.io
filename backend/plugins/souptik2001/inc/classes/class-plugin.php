@@ -8,6 +8,7 @@
 namespace Souptik2001\Features\Inc;
 
 use \Souptik2001\Features\Inc\Traits\Singleton;
+use \Souptik2001\Features\Inc\Settings\Build_Hook;
 /**
  * Class Plugin
  */
@@ -21,6 +22,29 @@ class Plugin {
 	protected function __construct() {
 
 		$this->hooks();
+		Build_Hook::get_instance();
+		$this->register_build_frontend_admin_bar_button();
+
+	}
+
+	/**
+	 * Creates build hook button in admin bar.
+	 */
+	public function register_build_frontend_admin_bar_button() {
+
+		add_action(
+			'admin_bar_menu',
+			function ( $wp_admin_bar ) {
+				$args = array(
+					'id'    => 'build-frontend',
+					'title' => __( 'Build Frontend', 'souptik2001' ),
+					'href'  => wp_nonce_url( admin_url( 'admin.php?page=souptik2001&publish=1' ), 'revalidate_frontend_nonce' ),
+				);
+				$wp_admin_bar->add_node( $args );
+			},
+			1000
+		);
+
 	}
 
 	/**
