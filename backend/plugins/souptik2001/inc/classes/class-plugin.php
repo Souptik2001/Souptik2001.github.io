@@ -30,6 +30,75 @@ class Plugin {
 	 */
 	public function hooks() {
 
+		add_action( 'transition_post_status', [ $this, 'handle_post_status_change' ], 10, 3 );
+
+		add_action( 'trashed_post', [ $this, 'trigger_build_hook_deleted_post' ] );
+
+	}
+
+	/**
+	 * Triggers build hook.
+	 *
+	 * @param int $post_id Post ID.
+	 */
+	public function trigger_build_hook_deleted_post( $post_id ) {
+
+		$post = get_post( $post_id );
+
+		if ( ! isset( $post ) ) {
+			return;
+		}
+
+		$post_type = '/' . $post->post_type;
+
+		if ( 'page' === $post->post_type ) {
+			$post_type = '';
+		} elseif ( 'post' === $post->post_type ) {
+			$post_type = '/blog';
+		}
+
+		$post_name = $post->post_name;
+
+		$pattern = '/(.*)__trashed/m';
+
+		if ( preg_match_all( $pattern, $post_name, $matches ) && count( $matches ) > 1 && count( $matches[1] ) > 0 ) {
+
+			$post_name = $matches[1][0];
+
+		}
+
+		wp_remote_get(
+			'http://10.7.221.253:3000/api/revalidate?endpoint=' . $post_type . '/' . $post_name
+		);
+
+	}
+
+	/**
+	 * Fires build hook for that page when changing its status.
+	 *
+	 * @param string  $new_status New status.
+	 * @param string  $old_status Old Status.
+	 * @param WP_Post $post Post.
+	 */
+	public function handle_post_status_change( $new_status, $old_status, $post ) {
+
+		if ( $new_status === $old_status ) {
+			// Condition where status is not changing.
+			return;
+		}
+
+		$post_type = '/' . $post->post_type;
+
+		if ( 'page' === $post->post_type ) {
+			$post_type = '';
+		} elseif ( 'post' === $post->post_type ) {
+			$post_type = '/blog';
+		}
+
+		wp_remote_get(
+			'http://10.7.221.253:3000/api/revalidate?endpoint=' . $post_type . '/' . $post->post_name
+		);
+
 	}
 
 	/**
