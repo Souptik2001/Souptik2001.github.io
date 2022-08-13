@@ -24,7 +24,7 @@ export default function Blog({frontend, slug}) {
 				<Box  marginTop="40px" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
 					<Image borderRadius="10px" width={["100%", null, null, "50%"]} srcSet={frontend?.data?.post?.featuredImage?.node?.srcSet} alt={frontend?.data?.post?.featuredImage?.node?.altText} />
 				</Box>
-				<Box textAlign="center" marginTop="70px">
+				<Box marginTop="70px">
 					{frontend
 					&&
 					<ParseBlock blocks={JSON.parse(frontend?.data?.post?.blocksJSON)} depth={1} />
@@ -65,6 +65,15 @@ export async function getStaticProps({params}){
 				}
 			`
 		});
+
+		if(frontendData?.data?.post?.blocksJSON === undefined) {
+
+			return {
+				props:{},
+				notFound: true
+			};
+
+		}
 
 		return {
 			props: {
