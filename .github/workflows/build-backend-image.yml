@@ -17,7 +17,5 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push image to Github Container Repository
-        env:
-          IMAGE_ID: ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.run_id }}
         run:
-          docker push $IMAGE_ID
+          docker push ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.run_id }}
