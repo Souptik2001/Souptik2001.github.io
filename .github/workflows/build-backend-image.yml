@@ -1,0 +1,22 @@
+name: Backend Image build
+
+on: [push]
+
+jobs:
+  buildImage:
+    name: Build backend image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build backend container image
+        run: docker build . --file Dockerfile --tag wp-headless-backend
+
+      - name: Login to Github Container Registry
+        run: echo "${{ secrets.GITHUB_CONTAINER_DEPLOY_TOKEN }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push image to Github Container Repository
+        run:
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/wp-headless-backend:${{ github.run_id }}
+          docker push $IMAGE_ID
