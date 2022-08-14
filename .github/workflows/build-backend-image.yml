@@ -18,4 +18,4 @@ jobs:
 
       - name: Push image to Github Container Repository
         run:
-          docker push ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.run_id }}
+          docker push ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
