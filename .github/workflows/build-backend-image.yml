@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build backend container image
-        run: docker build ./backend/. --file Dockerfile --tag wp-headless-backend
+        run: docker build ./backend --file Dockerfile --tag wp-headless-backend
 
       - name: Login to Github Container Registry
         run: echo "${{ secrets.GITHUB_CONTAINER_DEPLOY_TOKEN }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
