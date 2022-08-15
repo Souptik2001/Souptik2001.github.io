@@ -9,7 +9,9 @@ RUN rm -rf wp-content/*
 
 RUN apt-get update -y
 
-RUN apt-get install postfix -y
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install postfix -y
+
+RUN service postfix start
 
 # Copy the files
 COPY . wp-content
