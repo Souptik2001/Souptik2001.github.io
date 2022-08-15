@@ -9,6 +9,14 @@ import StripTags from '../../src/escaping/StripTags';
 import { doesSlugMatchesCustomPage } from '../../src/helper-functions';
 import styles from '../../styles/Blog.module.css';
 
+const parseDate = (rawDate) => {
+
+	let rawDateArray = rawDate.split("T");
+
+	return rawDateArray.join(" @ ");
+
+}
+
 export default function Blog({frontend, slug}) {
 
 	return(
@@ -21,7 +29,7 @@ export default function Blog({frontend, slug}) {
 					{StripTags(frontend?.data?.post?.title)}
 				</Heading>
 				<Box className={styles.b_info}>
-					Posted by {frontend?.data?.post?.author?.node?.name} on {frontend?.data?.post?.date}
+					Posted by {frontend?.data?.post?.author?.node?.name} on {parseDate(frontend?.data?.post?.date)}
 				</Box>
 				<Box  marginTop="40px" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
 					<Image borderRadius="10px" width={["100%", null, null, "50%"]} srcSet={frontend?.data?.post?.featuredImage?.node?.srcSet} alt={frontend?.data?.post?.featuredImage?.node?.altText} />
