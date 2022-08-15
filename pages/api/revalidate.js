@@ -11,13 +11,22 @@ export default async function handler(req, res) {
 
 	if (req.query.endpoint !== undefined) {
 
-		await res.revalidate(req.query.endpoint);
+		try {
 
-		return res.json({ revalidated: true });
+			await res.revalidate(req.query.endpoint);
+
+			return res.json({ revalidated: true });
+
+		} catch (err) {
+
+			return res.status(500).send('Error revalidating');
+
+		}
 
 	}
 
 	try {
+
 		const blogs = await client.query({
 			query: gql`
 			query fetchPosts {
@@ -57,7 +66,10 @@ export default async function handler(req, res) {
 		});
 
 		return res.json({ revalidated: true })
+
 	} catch (err) {
+
 		return res.status(500).send('Error revalidating');
+
 	}
   }
