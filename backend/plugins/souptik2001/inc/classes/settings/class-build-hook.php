@@ -80,7 +80,7 @@ class Build_Hook extends Base {
 		?>
 		<input type="text"
 				id="<?php echo esc_attr( $args['label_for'] ); ?>"
-				name="revalidate_link" value="<?php echo esc_attr($revalidate_link); ?>">
+				name="revalidate_link" value="<?php echo esc_attr( $revalidate_link ); ?>">
 		</input>
 		<?php
 	}

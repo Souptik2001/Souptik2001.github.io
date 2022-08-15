@@ -91,8 +91,10 @@ class Plugin {
 
 		}
 
+		$revalidate_link = get_option( 'revalidate_link', '' );
+
 		wp_remote_get(
-			'http://10.7.221.253:3000/api/revalidate?endpoint=' . $post_type . '/' . $post_name
+			$revalidate_link . '&endpoint=' . $post_type . '/' . $post_name
 		);
 
 	}
@@ -119,8 +121,10 @@ class Plugin {
 			$post_type = '/blog';
 		}
 
+		$revalidate_link = get_option( 'revalidate_link', '' );
+
 		wp_remote_get(
-			'http://10.7.221.253:3000/api/revalidate?endpoint=' . $post_type . '/' . $post->post_name
+			$revalidate_link . '&endpoint=' . $post_type . '/' . $post->post_name
 		);
 
 	}
