@@ -28,7 +28,7 @@ When some page or blog is updated on the backend, *Incremental Static Regenerati
 
 - The backend deployment is pretty simple. It can be deployed on any publicly accessible server. In my case my backend is deployed on my brother's home-server.
 	- One good practice here is to redirect all the links to the frontend URL of the website, except the login path i.e `wp-admin`.
-	- In top of that, `WP Hide Login` plugin is installed to change the login screen path to something else, so that normal people can't just guess and visit the login page.
+	- In top of that, `WPS Hide Login` plugin is installed to change the login screen path to something else, so that normal people can't just guess and visit the login page.
 	- Change the permalink format to anything with a slug.
 	- After that in the `Souptik2001` plugin's settings page you have to write the frontend revalidate URL and also the revalidate secret.
 - The frontend is written in Next.js and can be deployed on any server also. But I preferred to deploy it on Vercel, because come-on they only say **Deploy Next.js in seconds**.
