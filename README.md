@@ -1,34 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### In case this repository is public some day,
 
-## Getting Started
+#### Hello everyone this is my [personal website's](souptik.dev) codebase.
 
-First, run the development server:
+----
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+**One line description :**
+This is a decoupled WordPress website, I mainly use for blogging and also as my personal portfolio.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**History :**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+This website was initially a static website hosted on Github Pages only. The design was almost same as the but the main difficulty was when writing a blog. Not only I have to write the blog in HTML but also had to push the code and deploy it every single time I had to create a blog. And if there was something to edit, then again the same process.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+But I can't blame myself too much for this because initially I created this website long ago intending it to be a more portfolio based website where in the home page I would display my projects just like the blogs are now.
+But then I thought to write blogs and didn't bother to update the whole website's codebase to be fit as a blogging website.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+But now it is time time to finally migrate the website to a proper CMS(Content Management System), which would let me to focus on writing more rather than pushing and deploying code.
 
-## Learn More
+So, let's close the current website and build something better. Or on a second note, I should preserve my first ever portfolio/blog website. You know about subdomains?
 
-To learn more about Next.js, take a look at the following resources:
+**Back to present🪄🪄**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The backend directory of the website contains the code for backend WordPress website. WordPress is responsible for storing and managing all the blogs and pages, in the backend.
+The frontend is written in Next.js which fetches the data from the WordPress backend using GraphQL and then build maximum of the static pages and serves some of the dynamic pages on the fly.
+When some page or blog is updated on the backend, *Incremental Static Regeneration* is used to rebuild the old page and then populate with the new contents.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Deployment 💾**
 
-## Deploy on Vercel
+- The backend deployment is pretty simple. It can be deployed on any publicly accessible server. In my case my backend is deployed on my brother's home-server.
+	- One good practice here is to redirect all the links to the frontend URL of the website, except the login path i.e `wp-admin`.
+	- In top of that, `WP Hide Login` plugin is installed to change the login screen path to something else, so that normal people can't just guess and visit the login page.
+	- Change the permalink format to anything with a slug.
+	- After that in the `Souptik2001` plugin's settings page you have to write the frontend revalidate URL and also the revalidate secret.
+- The frontend is written in Next.js and can be deployed on any server also. But I preferred to deploy it on Vercel, because come-on they only say **Deploy Next.js in seconds**.
+Set the environment variables mentioned in `sample.env` and that's it. Here we are done.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Thanks for reading.✨✨
