@@ -10,4 +10,6 @@ RUN rm -rf wp-content/*
 # Copy the files
 COPY . wp-content
 
+VOLUME wp-content/uploads
+
 EXPOSE 80
