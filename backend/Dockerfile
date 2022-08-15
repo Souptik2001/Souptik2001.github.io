@@ -7,9 +7,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 RUN rm -rf wp-content/*
 
-RUN apt-get update
+RUN apt-get update -y
 
-RUN apt-get install postfix
+RUN apt-get install postfix -y
 
 # Copy the files
 COPY . wp-content
