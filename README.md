@@ -1,6 +1,6 @@
 ### In case this repository is public some day,
 
-#### Hello everyone this is my [personal website's](souptik.dev) codebase.
+#### Hello everyone this is my [personal website's](https://souptik.dev) codebase.
 
 ----
 
