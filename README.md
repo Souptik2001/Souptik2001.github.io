@@ -24,6 +24,17 @@ The backend directory of the website contains the code for backend WordPress web
 The frontend is written in Next.js which fetches the data from the WordPress backend using GraphQL and then build maximum of the static pages and serves some of the dynamic pages on the fly.
 When some page or blog is updated on the backend, *Incremental Static Regeneration* is used to rebuild the old page and then populate with the new contents.
 
+**Backend**
+
+Here is the list of plugins being used in the backend and there roles-
+- WP GraphQL ( Used for communicating between frontend and backend ).
+- WP GraphqlQL Gutenberg ( Used for getting block data of posts, i.e to get the entire content of the post to display it in the frontend ).
+- WPS Hide Login ( Used for changing the main login route i.e `wp-login.php` to something other to hide the login screen ).
+- Connecting SMPT server to WordPress. To send mails through that SMTP server. Currently I am using `Sendinblue` which provides a free tire of 300 emails/day.
+  - WP Mail SMTP
+  - WPForms Lite
+- MailPoet ( To schedule emails, e.g when new blog is published, etc. ).
+
 **Deployment 💾**
 
 - The backend deployment is pretty simple. It can be deployed on any publicly accessible server. In my case my backend is deployed on my brother's home-server.
