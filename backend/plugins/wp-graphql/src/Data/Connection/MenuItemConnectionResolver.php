@@ -33,23 +33,27 @@ class MenuItemConnectionResolver extends PostObjectConnectionResolver {
 	 * @return array
 	 */
 	public function get_query_args() {
+		/**
+		 * Prepare for later use
+		 */
+		$last = ! empty( $this->args['last'] ) ? $this->args['last'] : null;
 
 		$menu_locations = get_theme_mod( 'nav_menu_locations' );
 
 		$query_args            = parent::get_query_args();
 		$query_args['orderby'] = 'menu_order';
-		$query_args['order']   = 'ASC';
+		$query_args['order']   = isset( $last ) ? 'DESC' : 'ASC';
 
 		if ( isset( $this->args['where']['parentDatabaseId'] ) ) {
-			$query_args['meta_key']   = '_menu_item_menu_item_parent';
-			$query_args['meta_value'] = (int) $this->args['where']['parentDatabaseId'];
+			$query_args['meta_key']   = '_menu_item_menu_item_parent'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			$query_args['meta_value'] = (int) $this->args['where']['parentDatabaseId']; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 		}
 
 		if ( isset( $this->args['where']['parentId'] ) ) {
 			$id_parts = Relay::fromGlobalId( $this->args['where']['parentId'] );
 			if ( isset( $id_parts['id'] ) ) {
-				$query_args['meta_key']   = '_menu_item_menu_item_parent';
-				$query_args['meta_value'] = (int) $id_parts['id'];
+				$query_args['meta_key']   = '_menu_item_menu_item_parent'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				$query_args['meta_value'] = (int) $id_parts['id']; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 			}
 		}
 
@@ -77,14 +81,12 @@ class MenuItemConnectionResolver extends PostObjectConnectionResolver {
 			// we don't need this passed as a taxonomy parameter to wp_query
 			unset( $query_args['location'] );
 
-			$query_args['tax_query'] = [
-				[
-					'taxonomy'         => 'nav_menu',
-					'field'            => 'term_id',
-					'terms'            => $locations,
-					'include_children' => false,
-					'operator'         => 'IN',
-				],
+			$query_args['tax_query'][] = [
+				'taxonomy'         => 'nav_menu',
+				'field'            => 'term_id',
+				'terms'            => $locations,
+				'include_children' => false,
+				'operator'         => 'IN',
 			];
 		}
 
