@@ -6,7 +6,7 @@ export const STYLE = {
 		lineHeight: "1"
 	},
 	color:{
-		text: "black",
+		text: "white",
 		background: "black"
 	},
 	border:{
@@ -56,7 +56,7 @@ export const H_STYLE = {
 			lineHeight: "105.6px"
 		},
 		color:{
-			text: "black",
+			text: "white",
 			background: "black"
 		},
 		border:{
@@ -79,7 +79,7 @@ export const H_STYLE = {
 			lineHeight: "62.4px"
 		},
 		color:{
-			text: "black",
+			text: "white",
 			background: "black"
 		},
 		border:{
@@ -102,7 +102,7 @@ export const H_STYLE = {
 			lineHeight: "41.6px"
 		},
 		color:{
-			text: "black",
+			text: "white",
 			background: "black"
 		},
 		border:{
@@ -125,7 +125,7 @@ export const H_STYLE = {
 			lineHeight: "31.2px"
 		},
 		color:{
-			text: "black",
+			text: "white",
 			background: "black"
 		},
 		border:{
@@ -148,7 +148,7 @@ export const H_STYLE = {
 			lineHeight: "23.4px"
 		},
 		color:{
-			text: "black",
+			text: "white",
 			background: "black"
 		},
 		border:{
@@ -171,7 +171,7 @@ export const H_STYLE = {
 			lineHeight: "20.8px"
 		},
 		color:{
-			text: "black",
+			text: "white",
 			background: "black"
 		},
 		border:{
