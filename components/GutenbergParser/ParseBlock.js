@@ -189,6 +189,41 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 					</Button>
 				);
 				break;
+			case "core/embed":
+				if(block?.attributes?.providerNameSlug === 'youtube'){
+					let youtubeRegex = new RegExp( "youtube\\.com\\/watch\\?v=(.*)", "gm" );
+					let matches = youtubeRegex.exec( block?.attributes?.url );
+					if( matches === null || matches.length < 2 ) {
+						console.log( "YOUTUBE EMBED ERROR" );
+						break;
+					}
+					elements.push(
+						<Flex width="100%" justifyContent="center" alignItems="center">
+							<Box width={["100%", null, null, null, "50%"]}>
+								<iframe style={{aspectRatio: '16/9'}} width={"100%"} src={`https://www.youtube.com/embed/${matches[1]}`} title="Let’s Naacho! | RRR | Netflix Philippines" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+							</Box>
+						</Flex>
+					);
+					break;
+				}
+				if(block?.attributes?.providerNameSlug === 'spotify'){
+					let spotifyRegex = new RegExp( "open\\.spotify\\.com\\/playlist\\/(.*)\\?si=(.*)", "gm" );
+					let matches = spotifyRegex.exec( block?.attributes?.url );
+					if( matches === null || matches.length < 2 ) {
+						console.log( "SPOTIFY EMBED ERROR" );
+						break;
+					}
+					elements.push(
+						<Flex width="100%" justifyContent="center" alignItems="center">
+							<Box width={["80%", "60%", "40%", null, "25%"]}>
+								<iframe style={{borderRadius: "12px", aspectRatio: '5/7'}} src={`https://open.spotify.com/embed/playlist/${matches[1]}?utm_source=generator`} width="100%" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+							</Box>
+						</Flex>
+					);
+					break;
+				}
+				elements.push( <Box key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}><Text as="kbd">Could not identify type of {block.name} block type!</Text></Box> );
+				break;
 			default:
 				elements.push( <Box key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}><Text as="kbd">Could not identify block of type {block.name}!</Text></Box> );
 				break;
