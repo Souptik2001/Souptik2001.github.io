@@ -27,6 +27,8 @@ export default async function handler(req, res) {
 
 	try {
 
+		await res.revalidate(`/`);
+
 		const blogs = await client.query({
 			query: gql`
 			query fetchPosts {
