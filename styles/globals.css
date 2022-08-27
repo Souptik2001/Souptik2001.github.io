@@ -24,8 +24,7 @@ a {
 
 .container a {
   color: #71e3ff;
-  transition: color;
-  transition-duration: 1s;
+  transition: color 1s, text-shadow 0.5s;
 }
 
 .container a:hover {

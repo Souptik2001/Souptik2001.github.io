@@ -1,4 +1,4 @@
-import { Box, Heading, Link } from "@chakra-ui/layout";
+import { Box, Heading, Link, Text } from "@chakra-ui/layout";
 import StripTags from "../../src/escaping/StripTags";
 
 const parseDate = (rawDate) => {
@@ -13,6 +13,20 @@ export default function Blogcard({ data, styles, ...rest }) {
 
 	const { title, excerpt, slug, date, author } = data;
 
+	let authorName = author?.node?.name;
+
+	if( author?.node?.firstName !== undefined && author?.node?.firstName !== null ) {
+
+		authorName = author?.node?.firstName;
+
+		if( author?.node?.lastName !== undefined && author?.node?.lastName !== null ) {
+
+			authorName += " " + author?.node?.lastName;
+
+		}
+
+	}
+
 	return (
 
 		<Link style={{textDecoration: 'none'}} href={`/blog/${slug}`}>
@@ -21,7 +35,7 @@ export default function Blogcard({ data, styles, ...rest }) {
 					{StripTags(title)}
 				</Heading>
 				<Box className={styles.b_info}>
-					Posted by {author.node.name} on {parseDate(date)}
+					Posted by <Text as="span" fontWeight="800">{authorName}</Text> on {parseDate(date)}
 				</Box>
 				<Box className={styles.b_body}>
 					{/* There wil also be an option to insert content if excerpt is not present. */}

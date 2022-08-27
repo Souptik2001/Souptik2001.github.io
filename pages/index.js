@@ -110,6 +110,8 @@ export async function getStaticProps() {
               author {
                 node {
                   name
+                  firstName
+                  lastName
                 }
               }
             }
