@@ -50,7 +50,7 @@ abstract class Base {
 	 */
 	public function options_page() {
 
-		if( empty(static::SETTINGS_SLUG) ) {
+		if( empty( static::SETTINGS_SLUG ) ) {
 			return;
 		}
 
