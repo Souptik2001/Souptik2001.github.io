@@ -123,6 +123,50 @@ export default async function handler(req, res) {
 
 		}
 
+		let users = await client.query({
+			query: gql`
+			  query fetchUsers {
+				users(first: 10) {
+				  edges {
+					node {
+					  slug
+					}
+				  }
+				}
+			  }
+			`
+		  });
+
+		while( users?.data?.users?.edges !== undefined ) {
+
+			users?.data?.users?.edges?.map(async (user) => {
+				if (!isEmpty(user?.node?.slug)) {
+					await res.revalidate(`/user/${user?.node?.slug}`);
+				}
+			});
+
+			if ( users?.data?.users?.pageInfo?.hasNextPage === false ) { break; }
+
+			users = await client.query({
+				query: gql`
+				query fetchUsers {
+					users(first: 10, after: "${users?.data?.users?.pageInfo?.endCursor}") {
+						edges {
+							node {
+								slug
+							}
+						}
+						pageInfo {
+							endCursor
+							hasNextPage
+						}
+					}
+				}
+				`
+			});
+
+		}
+
 		return res.json({ revalidated: true })
 
 	} catch (err) {

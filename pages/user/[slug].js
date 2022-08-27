@@ -5,7 +5,6 @@ import Head from "next/head";
 import Layout from "../../components/Layout";
 import client from "../../src/apollo/Client";
 import StripTags from '../../src/escaping/StripTags';
-import { doesSlugMatchesCustomPage } from '../../src/helper-functions';
 import styles from '../../styles/Blog.module.css';
 
 const parseDate = (rawDate) => {
@@ -141,7 +140,7 @@ export async function getStaticPaths(){
 	while( users?.data?.users?.edges !== undefined ) {
 
 		users?.data?.users?.edges?.map((user) => {
-			if (!isEmpty(user?.node?.slug) && !doesSlugMatchesCustomPage(user?.node?.slug)) {
+			if (!isEmpty(user?.node?.slug)) {
 				pathsData.push({ params: { slug: user?.node?.slug } });
 			}
 		});
