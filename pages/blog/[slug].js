@@ -102,10 +102,10 @@ export async function getStaticProps({params}){
 
 export async function getStaticPaths(){
 
-	const blogs = await client.query({
+	let blogs = await client.query({
 		query: gql`
 		  query fetchPosts {
-			posts {
+			posts(first: 10) {
 			  edges {
 				node {
 				  slug
@@ -118,11 +118,35 @@ export async function getStaticPaths(){
 
     const pathsData = [];
 
-    blogs?.data?.posts?.edges?.map((blog) => {
-        if (!isEmpty(blog?.node?.slug) && !doesSlugMatchesCustomPage(blog?.node?.slug)) {
-            pathsData.push({ params: { slug: blog?.node?.slug } });
-        }
-    });
+	while( blogs?.data?.posts?.edges !== undefined ) {
+
+		blogs?.data?.posts?.edges?.map((blog) => {
+			if (!isEmpty(blog?.node?.slug) && !doesSlugMatchesCustomPage(blog?.node?.slug)) {
+				pathsData.push({ params: { slug: blog?.node?.slug } });
+			}
+		});
+
+		if ( blogs?.data?.posts?.pageInfo?.hasNextPage === false ) { break; }
+
+		blogs = await client.query({
+			query: gql`
+			query fetchPosts {
+				posts(first: 10, after: "${blogs?.data?.posts?.pageInfo?.endCursor}") {
+					edges {
+						node {
+							slug
+						}
+					}
+					pageInfo {
+						endCursor
+						hasNextPage
+					}
+				}
+			}
+			`
+		});
+
+	}
 
     return {
         paths: pathsData,

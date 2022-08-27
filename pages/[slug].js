@@ -91,10 +91,10 @@ export async function getStaticProps({params}){
 
 export async function getStaticPaths(){
 
-	const pages = await client.query({
+	let pages = await client.query({
 		query: gql`
 		  query fetchPages {
-			pages {
+			pages(first: 10) {
 			  edges {
 				node {
 				  slug
@@ -106,6 +106,36 @@ export async function getStaticPaths(){
 	  });
 
     const pathsData = [];
+
+	while( pages?.data?.pages?.edges !== undefined ) {
+
+		pages?.data?.pages?.edges?.map((page) => {
+			if (!isEmpty(page?.node?.slug) && !doesSlugMatchesCustomPage(page?.node?.slug)) {
+				pathsData.push({ params: { slug: page?.node?.slug } });
+			}
+		});
+
+		if ( pages?.data?.pages?.pageInfo?.hasNextPage === false ) { break; }
+
+		pages = await client.query({
+			query: gql`
+			query fetchPages {
+				pages(first: 10, after: "${pages?.data?.pages?.pageInfo?.endCursor}") {
+					edges {
+						node {
+							slug
+						}
+					}
+					pageInfo {
+						endCursor
+						hasNextPage
+					}
+				}
+			}
+			`
+		});
+
+	}
 
     pages?.data?.pages?.edges?.map((page) => {
         if (!isEmpty(page?.node?.slug) && !doesSlugMatchesCustomPage(page?.node?.slug)) {

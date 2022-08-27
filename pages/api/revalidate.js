@@ -29,43 +29,99 @@ export default async function handler(req, res) {
 
 		await res.revalidate(`/`);
 
-		const blogs = await client.query({
+		let blogs = await client.query({
 			query: gql`
 			query fetchPosts {
-				posts {
+				posts(first: 10) {
 					edges {
 						node {
-						slug
+							slug
 						}
+					}
+					pageInfo {
+						endCursor
+						hasNextPage
 					}
 				}
 			}
 			`
 		});
 
-		blogs?.data?.posts?.edges?.map(async (blog) => {
-			await res.revalidate(`/blog/${blog?.node?.slug}`);
-		});
+		while( blogs?.data?.posts?.edges !== undefined ) {
 
-		const pages = await client.query({
+			blogs?.data?.posts?.edges?.map(async (blog) => {
+				await res.revalidate(`/blog/${blog?.node?.slug}`);
+			});
+
+			if ( blogs?.data?.posts?.pageInfo?.hasNextPage === false ) { break; }
+
+			blogs = await client.query({
+				query: gql`
+				query fetchPosts {
+					posts(first: 10, after: "${blogs?.data?.posts?.pageInfo?.endCursor}") {
+						edges {
+							node {
+								slug
+							}
+						}
+						pageInfo {
+							endCursor
+							hasNextPage
+						}
+					}
+				}
+				`
+			});
+
+		}
+
+		let pages = await client.query({
 			query: gql`
 			query fetchPages {
-				pages {
+				pages(first: 10) {
 					edges {
 						node {
-						slug
+							slug
 						}
+					}
+					pageInfo {
+						endCursor
+						hasNextPage
 					}
 				}
 			}
 			`
 		});
 
-		pages?.data?.pages?.edges?.map(async (page) => {
-			if (!isEmpty(page?.node?.slug) && !doesSlugMatchesCustomPage(page?.node?.slug)) {
-				await res.revalidate(`/${page?.node?.slug}`);
-			}
-		});
+		while( pages?.data?.pages?.edges !== undefined ) {
+
+			pages?.data?.pages?.edges?.map(async (page) => {
+				if (!isEmpty(page?.node?.slug) && !doesSlugMatchesCustomPage(page?.node?.slug)) {
+					await res.revalidate(`/${page?.node?.slug}`);
+				}
+			});
+
+			if ( pages?.data?.pages?.pageInfo?.hasNextPage === false ) { break; }
+
+			pages = await client.query({
+				query: gql`
+				query fetchPages {
+					pages(first: 10, after: "${pages?.data?.pages?.pageInfo?.endCursor}") {
+						edges {
+							node {
+								slug
+							}
+						}
+						pageInfo {
+							endCursor
+							hasNextPage
+						}
+					}
+				}
+				`
+			});
+
+		}
 
 		return res.json({ revalidated: true })
 
