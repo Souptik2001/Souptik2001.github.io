@@ -9,6 +9,7 @@ namespace Souptik2001\Features\Inc;
 
 use \Souptik2001\Features\Inc\Traits\Singleton;
 use \Souptik2001\Features\Inc\Settings\Build_Hook;
+use \Souptik2001\Features\Inc\Graphql_Fields\Extra_User_Fields;
 /**
  * Class Plugin
  */
@@ -23,6 +24,7 @@ class Plugin {
 
 		$this->hooks();
 		Build_Hook::get_instance();
+		Extra_User_Fields::get_instance();
 		$this->register_build_frontend_admin_bar_button();
 
 	}

@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { Box, Heading, Image } from '@chakra-ui/react';
+import { Box, Heading, Image, Link } from '@chakra-ui/react';
 import { isEmpty } from 'lodash';
 import Head from "next/head";
 import ParseBlock from '../../components/GutenbergParser/ParseBlock';
@@ -19,6 +19,25 @@ const parseDate = (rawDate) => {
 
 export default function Blog({frontend, slug}) {
 
+	const authorNameHoverCSS = {
+		textDecoration: "none",
+		textShadow: "0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 50px white, 0 0 60px white, 0 0 70px white",
+	}
+
+	let authorName = frontend?.data?.post?.author?.node?.name;
+
+	if( frontend?.data?.post?.author?.node?.firstName !== undefined && frontend?.data?.post?.author?.node?.firstName !== null ) {
+
+		authorName = frontend?.data?.post?.author?.node?.firstName;
+
+		if( frontend?.data?.post?.author?.node?.lastName !== undefined && frontend?.data?.post?.author?.node?.lastName !== null ) {
+
+			authorName += " " + frontend?.data?.post?.author?.node?.lastName;
+
+		}
+
+	}
+
 	return(
 		<Layout>
 			<Head>
@@ -29,12 +48,12 @@ export default function Blog({frontend, slug}) {
 					{StripTags(frontend?.data?.post?.title)}
 				</Heading>
 				<Box className={styles.b_info}>
-					Posted by {frontend?.data?.post?.author?.node?.name} on {parseDate(frontend?.data?.post?.date)}
+					Posted by <Link fontWeight="600" __css={{ transition: "1s" }} _hover={authorNameHoverCSS} href={`/user/${frontend?.data?.post?.author?.node?.slug}`}>{authorName}</Link> on {parseDate(frontend?.data?.post?.date)}
 				</Box>
 				<Box  marginTop="40px" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
 					<Image borderRadius="10px" width={["100%", null, null, "50%"]} srcSet={frontend?.data?.post?.featuredImage?.node?.srcSet} alt={frontend?.data?.post?.featuredImage?.node?.altText} />
 				</Box>
-				<Box marginTop="70px">
+				<Box px={["0%", null, "1%", "10%", "16%"]} marginTop="70px">
 					{frontend
 					&&
 					<ParseBlock blocks={JSON.parse(frontend?.data?.post?.blocksJSON)} depth={1} />
@@ -60,7 +79,10 @@ export async function getStaticProps({params}){
 						title
 						author {
 							node {
-							name
+								name
+								slug
+								firstName
+								lastName
 							}
 						}
 						featuredImage {
