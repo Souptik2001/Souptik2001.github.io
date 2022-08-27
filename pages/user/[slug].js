@@ -5,7 +5,6 @@ import Head from "next/head";
 import Layout from "../../components/Layout";
 import client from "../../src/apollo/Client";
 import StripTags from '../../src/escaping/StripTags';
-import { doesSlugMatchesCustomPage } from '../../src/helper-functions';
 import styles from '../../styles/Blog.module.css';
 
 const parseDate = (rawDate) => {
@@ -54,7 +53,7 @@ export default function Blog({user, slug}) {
 					<Box textAlign="center" className={styles.b_info} width="fit-content" borderRadius="20px" px="10px" py="5px" fontWeight="600" bg="rgba(0, 209, 0, 0.5)">{user?.role?.name}</Box>
 				</Flex>
 				<Box marginTop="30px" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
-					<Image boxShadow="0px 0px 36px 0px white" borderRadius="50" src={user?.avatar?.url} alt="User profile picture" />
+					<Image __css={{aspectRatio: '1/1'}} height="96px" boxShadow="0px 0px 36px 0px white" borderRadius="50" src={user?.avatar?.url} alt="User profile picture" />
 				</Box>
 				<Flex marginTop="40px" flexDirection="row" justifyContent="center" alignItems="center">
 					<Box letterSpacing="2.5px" lineHeight="30px" __css={{wordSpacing: "10px"}} textAlign="center" width={["100%", null, null, "50%"]} color="white">
@@ -141,7 +140,7 @@ export async function getStaticPaths(){
 	while( users?.data?.users?.edges !== undefined ) {
 
 		users?.data?.users?.edges?.map((user) => {
-			if (!isEmpty(user?.node?.slug) && !doesSlugMatchesCustomPage(user?.node?.slug)) {
+			if (!isEmpty(user?.node?.slug)) {
 				pathsData.push({ params: { slug: user?.node?.slug } });
 			}
 		});
