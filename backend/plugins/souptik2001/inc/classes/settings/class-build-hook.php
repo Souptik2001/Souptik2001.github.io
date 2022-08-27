@@ -112,7 +112,15 @@ class Build_Hook extends Base {
 
 					} else {
 
-						add_settings_error( 'souptik2001_frontend_publish', 'souptik2001_messages', __( 'Frontend rebuild complete.', 'souptik2001' ), 'updated' );
+						if( json_decode( $response['body'], true )['completed'] === true ) {
+
+							add_settings_error( 'souptik2001_frontend_publish', 'souptik2001_messages', __( 'Frontend rebuild complete.', 'souptik2001' ), 'updated' );
+
+						} else {
+
+							add_settings_error( 'souptik2001_frontend_publish', 'souptik2001_messages', __( 'Frontend rebuild in progress.', 'souptik2001' ), 'updated' );
+
+						}
 
 					}
 

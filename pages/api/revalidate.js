@@ -27,151 +27,172 @@ export default async function handler(req, res) {
 
 	try {
 
-		await res.revalidate(`/`);
+		if(req.query.async !== undefined){
 
-		let blogs = await client.query({
-			query: gql`
-			query fetchPosts {
-				posts(first: 10) {
-					edges {
-						node {
-							slug
-						}
-					}
-					pageInfo {
-						endCursor
-						hasNextPage
-					}
-				}
-			}
-			`
+			revalidate_app(req, res);
+
+			return res.json({
+				completed: false,
+				revalidated: true
+			});
+
+		}
+
+		await revalidate_app(req, res);
+
+		return res.json({
+			completed: true,
+			revalidated: true
 		});
-
-		while( blogs?.data?.posts?.edges !== undefined ) {
-
-			blogs?.data?.posts?.edges?.map(async (blog) => {
-				await res.revalidate(`/blog/${blog?.node?.slug}`);
-			});
-
-			if ( blogs?.data?.posts?.pageInfo?.hasNextPage === false ) { break; }
-
-			blogs = await client.query({
-				query: gql`
-				query fetchPosts {
-					posts(first: 10, after: "${blogs?.data?.posts?.pageInfo?.endCursor}") {
-						edges {
-							node {
-								slug
-							}
-						}
-						pageInfo {
-							endCursor
-							hasNextPage
-						}
-					}
-				}
-				`
-			});
-
-		}
-
-		let pages = await client.query({
-			query: gql`
-			query fetchPages {
-				pages(first: 10) {
-					edges {
-						node {
-							slug
-						}
-					}
-					pageInfo {
-						endCursor
-						hasNextPage
-					}
-				}
-			}
-			`
-		});
-
-		while( pages?.data?.pages?.edges !== undefined ) {
-
-			pages?.data?.pages?.edges?.map(async (page) => {
-				if (!isEmpty(page?.node?.slug) && !doesSlugMatchesCustomPage(page?.node?.slug)) {
-					await res.revalidate(`/${page?.node?.slug}`);
-				}
-			});
-
-			if ( pages?.data?.pages?.pageInfo?.hasNextPage === false ) { break; }
-
-			pages = await client.query({
-				query: gql`
-				query fetchPages {
-					pages(first: 10, after: "${pages?.data?.pages?.pageInfo?.endCursor}") {
-						edges {
-							node {
-								slug
-							}
-						}
-						pageInfo {
-							endCursor
-							hasNextPage
-						}
-					}
-				}
-				`
-			});
-
-		}
-
-		let users = await client.query({
-			query: gql`
-			  query fetchUsers {
-				users(first: 10) {
-				  edges {
-					node {
-					  slug
-					}
-				  }
-				}
-			  }
-			`
-		  });
-
-		while( users?.data?.users?.edges !== undefined ) {
-
-			users?.data?.users?.edges?.map(async (user) => {
-				if (!isEmpty(user?.node?.slug)) {
-					await res.revalidate(`/user/${user?.node?.slug}`);
-				}
-			});
-
-			if ( users?.data?.users?.pageInfo?.hasNextPage === false ) { break; }
-
-			users = await client.query({
-				query: gql`
-				query fetchUsers {
-					users(first: 10, after: "${users?.data?.users?.pageInfo?.endCursor}") {
-						edges {
-							node {
-								slug
-							}
-						}
-						pageInfo {
-							endCursor
-							hasNextPage
-						}
-					}
-				}
-				`
-			});
-
-		}
-
-		return res.json({ revalidated: true })
 
 	} catch (err) {
 
 		return res.status(500).send('Error revalidating');
 
 	}
-  }
+
+}
+
+async function revalidate_app(req, res) {
+
+	await res.revalidate(`/`);
+
+	let blogs = await client.query({
+		query: gql`
+		query fetchPosts {
+			posts(first: 10) {
+				edges {
+					node {
+						slug
+					}
+				}
+				pageInfo {
+					endCursor
+					hasNextPage
+				}
+			}
+		}
+		`
+	});
+
+	while( blogs?.data?.posts?.edges !== undefined ) {
+
+		blogs?.data?.posts?.edges?.map(async (blog) => {
+			await res.revalidate(`/blog/${blog?.node?.slug}`);
+		});
+
+		if ( blogs?.data?.posts?.pageInfo?.hasNextPage === false ) { break; }
+
+		blogs = await client.query({
+			query: gql`
+			query fetchPosts {
+				posts(first: 10, after: "${blogs?.data?.posts?.pageInfo?.endCursor}") {
+					edges {
+						node {
+							slug
+						}
+					}
+					pageInfo {
+						endCursor
+						hasNextPage
+					}
+				}
+			}
+			`
+		});
+
+	}
+
+	let pages = await client.query({
+		query: gql`
+		query fetchPages {
+			pages(first: 10) {
+				edges {
+					node {
+						slug
+					}
+				}
+				pageInfo {
+					endCursor
+					hasNextPage
+				}
+			}
+		}
+		`
+	});
+
+	while( pages?.data?.pages?.edges !== undefined ) {
+
+		pages?.data?.pages?.edges?.map(async (page) => {
+			if (!isEmpty(page?.node?.slug) && !doesSlugMatchesCustomPage(page?.node?.slug)) {
+				await res.revalidate(`/${page?.node?.slug}`);
+			}
+		});
+
+		if ( pages?.data?.pages?.pageInfo?.hasNextPage === false ) { break; }
+
+		pages = await client.query({
+			query: gql`
+			query fetchPages {
+				pages(first: 10, after: "${pages?.data?.pages?.pageInfo?.endCursor}") {
+					edges {
+						node {
+							slug
+						}
+					}
+					pageInfo {
+						endCursor
+						hasNextPage
+					}
+				}
+			}
+			`
+		});
+
+	}
+
+	let users = await client.query({
+		query: gql`
+		  query fetchUsers {
+			users(first: 10) {
+			  edges {
+				node {
+				  slug
+				}
+			  }
+			}
+		  }
+		`
+	  });
+
+	while( users?.data?.users?.edges !== undefined ) {
+
+		users?.data?.users?.edges?.map(async (user) => {
+			if (!isEmpty(user?.node?.slug)) {
+				await res.revalidate(`/user/${user?.node?.slug}`);
+			}
+		});
+
+		if ( users?.data?.users?.pageInfo?.hasNextPage === false ) { break; }
+
+		users = await client.query({
+			query: gql`
+			query fetchUsers {
+				users(first: 10, after: "${users?.data?.users?.pageInfo?.endCursor}") {
+					edges {
+						node {
+							slug
+						}
+					}
+					pageInfo {
+						endCursor
+						hasNextPage
+					}
+				}
+			}
+			`
+		});
+
+	}
+
+}
