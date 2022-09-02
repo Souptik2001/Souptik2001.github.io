@@ -198,7 +198,7 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 						break;
 					}
 					elements.push(
-						<Flex width="100%" justifyContent="center" alignItems="center">
+						<Flex key={key} width="100%" justifyContent="center" alignItems="center">
 							<Box width={["100%", null, null, null, "50%"]}>
 								<iframe style={{aspectRatio: '16/9'}} width={"100%"} src={`https://www.youtube.com/embed/${matches[1]}`} title="Let’s Naacho! | RRR | Netflix Philippines" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 							</Box>
@@ -214,7 +214,7 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 						break;
 					}
 					elements.push(
-						<Flex width="100%" justifyContent="center" alignItems="center">
+						<Flex key={key} width="100%" justifyContent="center" alignItems="center">
 							<Box width={["80%", "60%", "40%", null, "25%"]}>
 								<iframe style={{borderRadius: "12px", aspectRatio: '5/7'}} src={`https://open.spotify.com/embed/playlist/${matches[1]}?utm_source=generator`} width="100%" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 							</Box>
