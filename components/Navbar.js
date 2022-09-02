@@ -71,11 +71,9 @@ const MenuLinks = ({ isOpen, ...props }) => {
 
   const router = useRouter();
 
-  let routesArray = router.route.split('/');
-
   let currentRoute = '';
 
-  if(routesArray.length > 1) currentRoute = routesArray[1];
+  if(router?.query?.slug !== undefined) currentRoute = router?.query?.slug;
 
   return (
     <Box
