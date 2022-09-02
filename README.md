@@ -23,6 +23,7 @@ So, let's close the current website and build something better. Or on a second n
 The backend directory of the website contains the code for backend WordPress website. WordPress is responsible for storing and managing all the blogs and pages, in the backend.
 The frontend is written in Next.js which fetches the data from the WordPress backend using GraphQL and then build maximum of the static pages and serves some of the dynamic pages on the fly.
 When some page or blog is updated on the backend, *Incremental Static Regeneration* is used to rebuild the old page and then populate with the new contents.
+**The on-demand regeneration URL should have increased timeout. But anything above than 10s requires a paid plan. Refer this - https://github.com/vercel/vercel/discussions/4502. So, only solution now is asynchronous regeneration.**
 
 **Backend**
 
