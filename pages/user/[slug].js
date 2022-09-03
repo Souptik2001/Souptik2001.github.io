@@ -1,21 +1,42 @@
 import { gql } from '@apollo/client';
-import { Box, Flex, Heading, Image } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Image } from '@chakra-ui/react';
 import { isEmpty } from 'lodash';
 import Head from "next/head";
+import { useState } from 'react';
 import Layout from "../../components/Layout";
+import Blogcard from '../../components/User/Blogcard';
 import client from "../../src/apollo/Client";
 import StripTags from '../../src/escaping/StripTags';
 import styles from '../../styles/Blog.module.css';
-
-const parseDate = (rawDate) => {
-
-	let rawDateArray = rawDate.split("T");
-
-	return rawDateArray.join(" @ ");
-
-}
+import userStyles from '../../styles/User.module.css';
 
 export default function Blog({user, slug}) {
+
+	const loadMore = async () => {
+
+		setIsLoading(true);
+
+		const morePostsJSON = await fetch(`/api/fetch-blogs?nextCursor=${nextCursor}&&authorName=${slug}`);
+		const morePostsResponse = await morePostsJSON.json();
+
+		// Handle error here.
+
+		const morePosts = morePostsResponse.blogs;
+
+		setBlogs((prevBlogs) => {
+			return prevBlogs.concat(morePosts.data.posts.edges);
+		});
+
+		setNextCursor(morePosts.data.posts.pageInfo.endCursor);
+		setHasMore(morePosts.data.posts.pageInfo.hasNextPage);
+		setIsLoading(false);
+
+	}
+
+	const [isLoading, setIsLoading] = useState(false);
+	const [hasMore, setHasMore] = useState(user?.posts?.pageInfo?.hasNextPage);
+	const [nextCursor, setNextCursor] = useState(user?.posts?.pageInfo?.endCursor);
+	const [blogs, setBlogs] = useState(user?.posts?.edges);
 
 	let authorName = user?.name;
 
@@ -60,6 +81,52 @@ export default function Blog({user, slug}) {
 						{StripTags( user?.description )}
 					</Box>
 				</Flex>
+
+				<Box marginTop="100px" marginBottom="50px">
+					<Heading fontWeight="400" marginBottom="50px" className={styles.b_head}>
+						Blogs
+					</Heading>
+					{
+						blogs?.map((item, index) => {
+							// The index will not change dynamically. So, safe to use index.
+							return (
+							<Blogcard key={`key-${index}`} data={item.node} styles={userStyles} />
+							);
+
+						})
+					}
+					<Flex width="100%" flexDirection="row" justifyContent="center" alignContent="center">
+						<Button
+							marginTop="50px"
+							lineHeight='24px'
+							transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+							borderRadius='5px'
+							fontSize='16px'
+							padding="15px"
+							fontWeight='600'
+							bg= "#28a745"
+							border='1.5px solid #28a745'
+							color='white'
+							_hover={{
+							bg: "#1f7032",
+							}}
+							_active={{
+							bg: "#1f7032",
+							transform: 'scale(0.98)',
+							}}
+							_focus={{
+							boxShadow:
+							'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+							}}
+							isDisabled={!hasMore}
+							isLoading={isLoading}
+							loadingText='Loading'
+							onClick={loadMore}
+						>
+							Load More
+						</Button>
+					</Flex>
+              </Box>
 			</Box>
 		</Layout>
 	);
@@ -90,6 +157,21 @@ export async function getStaticProps({params}){
 							slug
 						}
 						registered
+						posts(first: 2) {
+							edges {
+								node {
+									id
+									date
+									excerpt
+									slug
+									title
+							  	}
+							}
+							pageInfo {
+								endCursor
+								hasNextPage
+							}
+						}
 					}
 				}
 			`
