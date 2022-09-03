@@ -82,8 +82,13 @@ class Plugin {
 		if ( 'page' === $post->post_type ) {
 			$post_type = '';
 		} elseif ( 'post' === $post->post_type ) {
+			// Send revalidate request to home page.
 			wp_remote_get(
 				$revalidate_link . '&endpoint=/'
+			);
+			// Send revalidate request to post author page.
+			wp_remote_get(
+				$revalidate_link . '&endpoint=/user/' . get_the_author_meta( 'user_nicename', $post->post_author )
 			);
 			$post_type = '/blog';
 		}
@@ -125,8 +130,13 @@ class Plugin {
 		if ( 'page' === $post->post_type ) {
 			$post_type = '';
 		} elseif ( 'post' === $post->post_type ) {
+			// Send revalidate request to home page.
 			wp_remote_get(
 				$revalidate_link . '&endpoint=/'
+			);
+			// Send revalidate request to post author page.
+			wp_remote_get(
+				$revalidate_link . '&endpoint=/user/' . get_the_author_meta( 'user_nicename', $post->post_author )
 			);
 			$post_type = '/blog';
 		}
