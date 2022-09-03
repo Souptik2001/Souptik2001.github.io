@@ -64,6 +64,27 @@ class Plugin {
 
 		add_filter( 'graphql_object_visibility', [ $this, 'change_object_visibilities' ], 10, 5 );
 
+		add_action( 'profile_update', [ $this, 'trigger_build_hook_for_user' ], 10, 3 );
+
+	}
+
+	/**
+	 * Triggers build hook for single user page.
+	 *
+	 * @param int     $user_id User ID.
+	 * @param WP_User $old_user_data Old user data.
+	 * @param array   $userdata The raw array of data.
+	 */
+	public function trigger_build_hook_for_user( $user_id, $old_user_data, $userdata ) {
+
+		$user_slug = get_user_by( 'ID', $user_id )->user_nicename;
+
+		$revalidate_link = get_option( 'revalidate_link', '' );
+
+		wp_remote_get(
+			$revalidate_link . '&endpoint=/user/' . $user_slug
+		);
+
 	}
 
 	/**
