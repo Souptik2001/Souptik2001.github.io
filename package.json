@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -24,11 +25,13 @@
     "javascript-time-ago": "^2.5.7",
     "lodash": "^4.17.21",
     "next": "latest",
+    "next-sitemap": "^3.1.22",
     "npm": "^8.18.0",
     "prop-types": "latest",
     "react": "latest",
     "react-animate-height": "^3.0.4",
     "react-dom": "latest",
+    "react-gtm-module": "^2.0.11",
     "react-icons": "^4.4.0",
     "sanitize-html": "^2.7.1"
   },
