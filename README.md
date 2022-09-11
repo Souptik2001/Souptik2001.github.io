@@ -1,11 +1,13 @@
 ### In case this repository is public some day,
 
-#### Hello everyone this is my [personal website's](https://souptik.dev) codebase.
+#### Hello everyone 👋, this is my [personal website's](https://souptik.dev) brain and brawn.
 
-----
+---
 
 **One line description :**
 This is a decoupled WordPress website, I mainly use for blogging and also as my personal portfolio.
+
+![Decoupled WordPress Banner](./docs/RepoLogo.png)
 
 **History :**
 
