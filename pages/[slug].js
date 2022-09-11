@@ -12,7 +12,10 @@ import styles from '../styles/Blog.module.css';
 export default function Blog({frontend, slug}) {
 
 	return(
-		<Layout>
+		<Layout
+		data={frontend?.data}
+		yoastSeoData={frontend?.data?.page?.seo}
+		>
 			<Head>
 		  		<title>{`@Souptik | ${frontend?.data?.page?.title}`}</title>
 			</Head>
@@ -58,6 +61,44 @@ export async function getStaticProps({params}){
 							  sourceUrl
 							  srcSet
 							  uri
+							}
+						}
+						seo{
+							canonical
+							title
+							metaDesc
+							opengraphType
+							metaRobotsNoindex
+							metaRobotsNofollow
+							opengraphAuthor
+							opengraphDescription
+							opengraphTitle
+							opengraphDescription
+							opengraphImage {
+								altText
+								sourceUrl
+								srcSet
+							}
+							opengraphUrl
+							opengraphSiteName
+							opengraphPublishedTime
+							opengraphModifiedTime
+							twitterTitle
+							twitterDescription
+							twitterImage {
+								altText
+								sourceUrl
+								srcSet
+							}
+							breadcrumbs {
+								url
+								text
+							}
+							cornerstone
+							schema {
+								pageType
+								articleType
+								raw
 							}
 						}
 					}
