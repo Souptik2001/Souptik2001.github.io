@@ -95,39 +95,47 @@ export default function Home({posts}) {
 
 export async function getStaticProps() {
 
-  const posts = await client.query({
-    query: gql`
-      query fetchPosts {
-        posts(first: 5) {
-          edges {
-            node {
-              id
-              date
-              excerpt
-              slug
-              title
-              author {
-                node {
-                  name
-                  firstName
-                  lastName
+  try {
+
+    const posts = await client.query({
+      query: gql`
+        query fetchPosts {
+          posts(first: 5) {
+            edges {
+              node {
+                id
+                date
+                excerpt
+                slug
+                title
+                author {
+                  node {
+                    name
+                    firstName
+                    lastName
+                  }
                 }
               }
             }
-          }
-          pageInfo {
-            endCursor
-            hasNextPage
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
           }
         }
-      }
-    `
-  });
+      `
+    });
 
-  return {
-    props: {
-      posts
-    }
-  };
+    return {
+      props: {
+        posts,
+      }
+    };
+  } catch(error) {
+		return {
+			props:{},
+			notFound: true
+		};
+	}
 
 }

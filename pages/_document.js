@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <meta name="description" content="Quality tech blogs" />
+        <meta name="description" content="Read quality technology blogs" />
         <meta name="application-name" content="@Souptik" />
         <link rel="icon" href="/icon.webp" />
       </Head>
