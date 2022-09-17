@@ -59,9 +59,17 @@ export default function Blog({user, slug}) {
 	registered = ( registered.length > 0 ) ? registered[0] : '';
 
 	return(
-		<Layout>
+		<Layout
+		customPageTitle={`${authorName} | @Souptik`}
+		customPageDescription={`Know about our user - "${authorName}"`}
+		customSeoMeta={{
+			title: `${authorName} | @Souptik`,
+			description: `Know about our user "${authorName}"`,
+			siteName: "@Souptik"
+		}}
+		>
 			<Head>
-		  		<title>{`@Souptik | ${authorName}`}</title>
+		  		<title>{`${authorName} | @Souptik`}</title>
 			</Head>
 			<Box px="10%" className="container">
 				<Heading fontWeight="600" className={styles.b_head}>

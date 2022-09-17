@@ -8,7 +8,7 @@ import Layout from '../components/Layout';
 import client from '../src/apollo/Client';
 import styles from '../styles/Home.module.css';
 
-export default function Home({posts}) {
+export default function Home({posts, seoData}) {
 
   const loadMore = async () => {
 
@@ -37,7 +37,16 @@ export default function Home({posts}) {
   const [blogs, setBlogs] = useState(posts.data.posts.edges);
 
   return (
-    <Layout>
+    <Layout
+    customPageTitle={seoData?.openGraph?.frontPage?.title}
+    customPageDescription={seoData?.openGraph?.frontPage?.description}
+    customSeoMeta={{
+      title: seoData?.openGraph?.frontPage?.title,
+      description: seoData?.openGraph?.frontPage?.description,
+      siteName: "@Souptik",
+      imageURL: seoData?.openGraph?.frontPage?.image?.link
+    }}
+    >
       <Head>
         <title>@Souptik</title>
       </Head>
@@ -126,9 +135,29 @@ export async function getStaticProps() {
       `
     });
 
+    const seoData = await client.query({
+      query: gql`
+        query seoData {
+          seo {
+            openGraph {
+              frontPage {
+                description
+                title
+                image {
+                  altText
+                  link
+                }
+              }
+            }
+          }
+        }
+      `
+    })
+
     return {
       props: {
         posts,
+        seoData: seoData?.data?.seo,
       }
     };
   } catch(error) {
