@@ -204,7 +204,9 @@ class Functions {
   }
 
   public function getPermalink($post, $leavename = false) {
-    return get_permalink($post, $leavename);
+    $permalink = get_permalink($post, $leavename);
+    $permalink = apply_filters( 'mailpoet_get_permalink', $permalink, $post, $leavename );
+    return $permalink;
   }
 
   public function getPluginPageHook($pluginPage, $parentPage) {

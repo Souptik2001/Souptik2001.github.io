@@ -66,6 +66,44 @@ class Plugin {
 
 		add_action( 'profile_update', [ $this, 'trigger_build_hook_for_user' ], 10, 3 );
 
+		add_filter( 'mailpoet_get_permalink', [ $this, 'change_mailpoet_posts_link' ], 10, 3 );
+
+	}
+
+	/**
+	 * Changes posts link to frontend link for mailpoet.
+	 *
+	 * @param string      $permalink Permalink of the post.
+	 * @param int|WP_Post $post Post.
+	 * @param bool        $leavename Not include name.
+	 */
+	public function change_mailpoet_posts_link( $permalink, $post, $leavename ) {
+
+		if ( ! is_object( $post ) ) {
+
+			$post = get_post( $post );
+
+		}
+
+		$frontend_home_url = get_option( 'souptik2001_frontend_home_url', 'https://souptik.dev' );
+
+		if ( 'post' === $post->post_type ) {
+
+			$post_slug = $post->post_name;
+
+			$frontend_blog_path = get_option( 'souptik2001_frontend_blog_path', 'blog' );
+
+			return sprintf(
+				'%s/%s/%s',
+				$frontend_home_url,
+				$frontend_blog_path,
+				$post_slug
+			);
+
+		}
+
+		return $permalink;
+
 	}
 
 	/**
