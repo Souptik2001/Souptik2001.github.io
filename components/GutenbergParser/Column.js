@@ -29,6 +29,7 @@ export default function Column({children, ...props}) {
 
 	return(
 		<Box
+		width="100%"
 		borderLeft={columnNumber !== 0 ? borderMapping.horizontal.left : "none"}
 		borderLeftColor={["none", null, null, "#F0E7D7"]}
 		borderTop={columnNumber !== 0 ? borderMapping.horizontal.top : "none"}

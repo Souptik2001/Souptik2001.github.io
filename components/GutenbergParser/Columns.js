@@ -6,6 +6,7 @@ export default function Columns({children, ...props}) {
 
 	return(
 		<Flex
+		width="100%"
 		flexDirection={["column", null, null, "row"]}
 		justifyContent="space-between"
 		alignItems={verticalAlignment}

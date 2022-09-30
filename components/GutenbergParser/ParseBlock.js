@@ -81,7 +81,7 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				var style = {};
 				_.merge(style, GROUP_STYLE, (block.attributes.style) ?? {});
 				if(block.attributes.backgroundColor !== undefined) style.color.gradient = block.attributes.backgroundColor;
-				style.width = (block?.attributes?.align) ? "100%" : "auto";
+				style.width = "100%";
 				if(customAttributesRaw.width !== undefined) style.width = customAttributesRaw.width;
 				elements.push(
 					<Flex flexDirection="row" justifyContent="center" alignItems="stretch" key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} width="100%">
@@ -146,8 +146,11 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				);
 				break;
 			case "core/image":
+				var borderRadius = block?.attributes?.style?.border?.radius ?? "0px";
+				customAttributes.height = block?.attributes?.height ?? "auto";
+				customAttributes.width = block?.attributes?.width ?? "auto";
 				elements.push(
-					<Image key={key} src={block.attributes.url} alt={block.attributes.alt} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} width={customAttributes.width} />
+					<Image key={key} borderRadius={borderRadius} src={block.attributes.url} alt={block.attributes.alt} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} height={customAttributes.height} width={customAttributes.width} />
 				);
 				break;
 			case "core/buttons":
