@@ -6,6 +6,7 @@ import { parseClassNameString, parseStyles } from "../../src/helper-functions";
 import { flexAlignment, flexOrientation } from '../../src/value-mappings';
 import Button from "./Button/Button";
 import Buttons from "./Button/Buttons";
+import Code from "./Code/Code";
 import Column from "./Column";
 import Columns from "./Columns";
 import MediaText from "./MediaText";
@@ -226,6 +227,11 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 					break;
 				}
 				elements.push( <Box key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}><Text as="kbd">Could not identify type of {block.name} block type!</Text></Box> );
+				break;
+			case 'core/code':
+				elements.push(
+					<Code key={key} block={block} />
+				)
 				break;
 			default:
 				elements.push( <Box key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}><Text as="kbd">Could not identify block of type {block.name}!</Text></Box> );
