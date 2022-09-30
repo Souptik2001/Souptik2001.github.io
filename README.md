@@ -1,5 +1,3 @@
-### In case this repository is public some day,
-
 #### Hello everyone 👋, this is my [personal website's](https://souptik.dev) brain and brawn.
 
 ---
@@ -46,7 +44,7 @@ Here is the list of plugins being used in the backend and there roles-
   - WP Mail SMTP
   - WPForms Lite
 - MailPoet ( To schedule emails, e.g when new blog is published, etc. ).
-- **[This document]() contains custom modification made to some of the third-party plugins which were not provided by the plugin but were needed. So, special care is to be taken while updating the plugins. The same custom changes are to be carried over to the new version of the plugin till those features are not made available natively by the plugins.**
+- **[This document](https://github.com/Souptik2001/Souptik2001.github.io/blob/master/docs/README.md) contains custom modification made to some of the third-party plugins which were not provided by the plugin but were needed. So, special care is to be taken while updating the plugins. The same custom changes are to be carried over to the new version of the plugin till those features are not made available natively by the plugins.**
 
 #### Deployment 💾
 
