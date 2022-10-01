@@ -2,6 +2,8 @@ name: Backend Image build
 
 on:
   push:
+    paths:
+     - backend/**
     branches:
       - master
 
