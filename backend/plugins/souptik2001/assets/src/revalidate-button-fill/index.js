@@ -95,7 +95,7 @@ const Renderer = () => {
 			<PluginSidebarMoreMenuItem target="souptik2001-sidebar" icon={ slotFillIcon }>
 				Souptik2001
 			</PluginSidebarMoreMenuItem>
-			<PluginSidebar name="souptik2001-sidebar" icon={ slotFillIcon } title="My Sidebar">
+			<PluginSidebar name="souptik2001-sidebar" icon={ slotFillIcon } title="Souptik2001 settings">
 				<Button
 				variant='primary'
 				onClick={ revalidateFrontend }
