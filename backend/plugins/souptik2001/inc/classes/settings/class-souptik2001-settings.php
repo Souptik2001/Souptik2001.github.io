@@ -1,6 +1,6 @@
 <?php
 /**
- * Register Build Hook setting.
+ * Register all Souptik2001 settings setting.
  *
  * @package souptik2001
  */
@@ -8,9 +8,9 @@
 namespace Souptik2001\Features\Inc\Settings;
 
 /**
- * Class Build_Hook
+ * Class Souptik2001_Settings
  */
-class Build_Hook extends Base {
+class Souptik2001_Settings extends Base {
 
 	/**
 	 * Settings page slug.
@@ -18,6 +18,21 @@ class Build_Hook extends Base {
 	 * @var string
 	 */
 	const SETTINGS_SLUG = 'souptik2001';
+
+	/**
+	 * Settings page title.
+	 *
+	 * @var string
+	 */
+	const SETTINGS_PAGE_TITLE = 'Souptik2001';
+
+	/**
+	 * Settings menu title.
+	 *
+	 * @var string
+	 */
+	const SETTINGS_MENU_TITLE = 'Souptik Options';
+
 
 	/**
 	 * Custom option and settings
@@ -32,7 +47,17 @@ class Build_Hook extends Base {
 
 		register_setting(
 			static::SETTINGS_SLUG,
+			'whole_site_revalidate_url'
+		);
+
+		register_setting(
+			static::SETTINGS_SLUG,
 			'revalidate_link'
+		);
+
+		register_setting(
+			static::SETTINGS_SLUG,
+			'revalidate_secret'
 		);
 
 		add_settings_section(
@@ -43,6 +68,17 @@ class Build_Hook extends Base {
 		);
 
 		add_settings_field(
+			'whole_site_revalidate_url',
+			__( 'Whole site revalidate URL', 'souptik2001' ),
+			[ $this, 'whole_site_revalidate_url_field_callback' ],
+			static::SETTINGS_SLUG,
+			'revalidate_frontend_section',
+			array(
+				'label_for' => 'whole_site_revalidate_url'
+			)
+		);
+
+		add_settings_field(
 			'revalidate_frontend_url',
 			__( 'Revalidate URL', 'souptik2001' ),
 			[ $this, 'revalidate_url_field_callback' ],
@@ -50,6 +86,17 @@ class Build_Hook extends Base {
 			'revalidate_frontend_section',
 			array(
 				'label_for' => 'revalidate_frontend_url'
+			)
+		);
+
+		add_settings_field(
+			'revalidate_frontend_secret',
+			__( 'Revalidate Secret', 'souptik2001' ),
+			[ $this, 'revalidate_secret_field_callback' ],
+			static::SETTINGS_SLUG,
+			'revalidate_frontend_section',
+			array(
+				'label_for' => 'revalidate_secret'
 			)
 		);
 
@@ -70,11 +117,31 @@ class Build_Hook extends Base {
 	}
 
 	/**
+	 * Whole site Revalidate URL field callback function.
+	 *
+	 * @param array $args
+	 */
+	function whole_site_revalidate_url_field_callback( $args ) {
+
+		// Get the value of the setting we've registered with register_setting()
+		$revalidate_link = get_option( 'whole_site_revalidate_url' );
+		?>
+		<input type="text"
+				id="<?php echo esc_attr( $args['label_for'] ); ?>"
+				name="whole_site_revalidate_url" value="<?php echo esc_attr( $revalidate_link ); ?>">
+		</input>
+		<p><?php _e( 'This will be a URL to basically build the whole page again. For example if the site is hosted on Vercel it will be the vercel\'s link for redeploying the app.', 'souptik2001' ) ?></p>
+		<?php
+
+	}
+
+	/**
 	 * Revalidate URL field callback function.
 	 *
 	 * @param array $args
 	 */
 	function revalidate_url_field_callback( $args ) {
+
 		// Get the value of the setting we've registered with register_setting()
 		$revalidate_link = get_option( 'revalidate_link' );
 		?>
@@ -82,7 +149,23 @@ class Build_Hook extends Base {
 				id="<?php echo esc_attr( $args['label_for'] ); ?>"
 				name="revalidate_link" value="<?php echo esc_attr( $revalidate_link ); ?>">
 		</input>
+		<p><?php _e( 'The URL format should be <code>https://frontend.com/path/to/revalidate?query1=val&query2=val&secret=</code>.', 'souptik2001' ); ?></p>
 		<?php
+
+	}
+
+	function revalidate_secret_field_callback( $args ) {
+
+		// Get the value of the setting we've registered with register_setting()
+		$revalidate_secret = get_option( 'revalidate_secret' );
+		?>
+		<input type="text"
+				id="<?php echo esc_attr( $args['label_for'] ); ?>"
+				name="revalidate_secret" value="<?php echo esc_attr( $revalidate_secret ); ?>">
+		</input>
+		<p><?php _e( 'This secret will be appended to the above URL.', 'souptik2001' ) ?></p>
+		<?php
+
 	}
 
 	/**
@@ -98,10 +181,10 @@ class Build_Hook extends Base {
 
 			if ( isset( $_GET['publish'] ) && 1 == $_GET['publish'] ) {
 
-				$revalidate_link = get_option( 'revalidate_link' );
+				$whole_site_revalidate_url = get_option( 'whole_site_revalidate_url' );
 
 				$response = wp_remote_get(
-					$revalidate_link
+					$whole_site_revalidate_url
 				);
 
 				if( is_array( $response ) && ! is_wp_error( $response ) ) {

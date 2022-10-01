@@ -28,9 +28,9 @@ function souptik2001_features_plugin_loader() {
 
 	$plugin_object = \Souptik2001\Features\Inc\Plugin::get_instance();
 
-	register_activation_hook( __FILE__, [ $plugin_object, 'waldos_platform_activate' ] );
+	register_activation_hook( __FILE__, [ $plugin_object, 'souptik2001_activate' ] );
 
-	register_deactivation_hook( __FILE__, [ $plugin_object, 'waldos_platform_deactivate' ] );
+	register_deactivation_hook( __FILE__, [ $plugin_object, 'souptik2001_deactivate' ] );
 
 }
 
