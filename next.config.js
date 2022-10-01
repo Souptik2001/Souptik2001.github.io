@@ -21,6 +21,20 @@ const nextConfig = {
 		  },
 		]
 	},
+
+  async headers() {
+    return [
+      {
+        source: '/api/revalidate',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: process.env.NEXT_PUBLIC_BACKEND_URL,
+          }
+        ]
+      }
+    ]
+  },
 }
 
 module.exports = nextConfig

@@ -1,0 +1,29 @@
+{
+  "name": "souptik2001",
+  "version": "1.0.0",
+  "description": "Scripts manager",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build --webpack-src-dir=./assets/src/ --output-path=./assets/build/",
+    "check-engines": "wp-scripts check-engines",
+    "check-licenses": "wp-scripts check-licenses",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "lint:md:docs": "wp-scripts lint-md-docs",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start --webpack-src-dir=./assets/src/ --output-path=./assets/build/",
+    "test:e2e": "wp-scripts test-e2e",
+    "test:unit": "wp-scripts test-unit-js"
+  },
+  "author": "Souptik Datta",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^24.2.0"
+  },
+  "dependencies": {
+    "@wordpress/icons": "^9.9.0"
+  }
+}

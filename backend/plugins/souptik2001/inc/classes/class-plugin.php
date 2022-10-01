@@ -8,7 +8,7 @@
 namespace Souptik2001\Features\Inc;
 
 use \Souptik2001\Features\Inc\Traits\Singleton;
-use \Souptik2001\Features\Inc\Settings\Build_Hook;
+use \Souptik2001\Features\Inc\Settings\Souptik2001_Settings;
 use \Souptik2001\Features\Inc\Graphql_Fields\Extra_User_Fields;
 /**
  * Class Plugin
@@ -23,7 +23,7 @@ class Plugin {
 	protected function __construct() {
 
 		$this->hooks();
-		Build_Hook::get_instance();
+		Souptik2001_Settings::get_instance();
 		Extra_User_Fields::get_instance();
 		$this->register_build_frontend_admin_bar_button();
 
@@ -56,6 +56,8 @@ class Plugin {
 	 */
 	public function hooks() {
 
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
+
 		add_action( 'transition_post_status', [ $this, 'handle_post_status_change' ], 10, 3 );
 
 		add_action( 'trashed_post', [ $this, 'trigger_build_hook_deleted_post' ] );
@@ -67,6 +69,48 @@ class Plugin {
 		add_action( 'profile_update', [ $this, 'trigger_build_hook_for_user' ], 10, 3 );
 
 		add_filter( 'mailpoet_get_permalink', [ $this, 'change_mailpoet_posts_link' ], 10, 3 );
+
+	}
+
+	/**
+	 * Enqueues all block editor assets.
+	 *
+	 * @global $post.
+	 */
+	public function enqueue_block_editor_assets() {
+
+		global $post;
+
+		$index_assets = SOUPTIK2001_FEATURES_PATH . '/assets/build/index.asset.php';
+
+		if ( file_exists( $index_assets ) ) {
+
+			$assets = require_once $index_assets;
+
+			wp_enqueue_script(
+				'souptik2001-block-editor-assets',
+				SOUPTIK2001_FEATURES_URL . '/assets/build/index.js',
+				$assets['dependencies'],
+				$assets['version'],
+				true
+			);
+
+			wp_localize_script(
+				'souptik2001-block-editor-assets',
+				'post_data',
+				(array) $post,
+			);
+
+			wp_localize_script(
+				'souptik2001-block-editor-assets',
+				'site_revalidation_data',
+				[
+					'revalidate_url'      => get_option( 'revalidate_link', 'https://souptik.dev' ),
+					'revalidation_secret' => get_option( 'revalidate_secret', '' ),
+				]
+			);
+
+		}
 
 	}
 
@@ -248,7 +292,7 @@ class Plugin {
 	/**
 	 * Runs after activating the plugin.
 	 */
-	public function waldos_platform_activate() {
+	public function souptik2001_activate() {
 
 		flush_rewrite_rules();
 
@@ -257,7 +301,7 @@ class Plugin {
 	/**
 	 * Runs after deactivating the plugin.
 	 */
-	public function waldos_platform_deactivate() {
+	public function souptik2001_deactivate() {
 
 		flush_rewrite_rules();
 

@@ -50,13 +50,13 @@ abstract class Base {
 	 */
 	public function options_page() {
 
-		if( empty( static::SETTINGS_SLUG ) ) {
+		if( empty( static::SETTINGS_SLUG ) || empty( static::SETTINGS_PAGE_TITLE ) || empty( static::SETTINGS_MENU_TITLE ) ) {
 			return;
 		}
 
 		add_menu_page(
-			'Souptik2001',
-			__( 'Souptik Options' ),
+			static::SETTINGS_PAGE_TITLE,
+			static::SETTINGS_MENU_TITLE,
 			'manage_options',
 			static::SETTINGS_SLUG,
 			[ $this, 'options_page_html' ]
