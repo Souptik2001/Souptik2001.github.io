@@ -11,10 +11,10 @@ This is a decoupled WordPress website, I mainly use for blogging and also as my 
 
 | Topics |
 | --- |
-| [History](/README.md#history) |
-| [Back to present🪄🪄](/README.md#back-to-present🪄🪄) |
-| [Backend](/README.md#backend) |
-| [Deployment](/README.md#deployment) |
+| [History](#history) |
+| [Back to present🪄🪄](#back-to-present) |
+| [Backend](#backend) |
+| [Deployment](#deployment) |
 
 #### History :
 
@@ -46,7 +46,7 @@ Here is the list of plugins being used in the backend and there roles-
 - MailPoet ( To schedule emails, e.g when new blog is published, etc. ).
 - **[This document](https://github.com/Souptik2001/Souptik2001.github.io/blob/master/docs/README.md) contains custom modification made to some of the third-party plugins which were not provided by the plugin but were needed. So, special care is to be taken while updating the plugins. The same custom changes are to be carried over to the new version of the plugin till those features are not made available natively by the plugins.**
 
-#### Deployment 💾
+#### Deployment💾
 
 - The backend deployment is pretty simple. It can be deployed on any publicly accessible server. In my case my backend is deployed on my brother's home-server.
 	- One good practice here is to redirect all the links to the frontend URL of the website, except the login path i.e `wp-admin`.
