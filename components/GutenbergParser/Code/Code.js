@@ -1,10 +1,12 @@
-import { Box, Icon } from "@chakra-ui/react";
+import { Box, Icon, useToast } from "@chakra-ui/react";
 import he from 'he';
 import { useState } from "react";
 import { BiCopy } from 'react-icons/bi';
 import { BsCheckAll } from 'react-icons/bs';
 
 const Code = ({block, ...props}) => {
+
+	const toast = useToast();
 
 	const [displayCopyIcon, setDisplayCopyIcon] = useState(false);
 	const [copied, setCopied] = useState(false);
@@ -23,6 +25,14 @@ const Code = ({block, ...props}) => {
 		onClick={() => {
 			navigator.clipboard.writeText(he.decode(block.attributes.content));
 			setCopied(true);
+			toast({
+				title: 'Copied to clipboard.',
+				status: 'success',
+				duration: 1000,
+				isClosable: false,
+				variant: 'left-accent',
+				position: 'bottom-left',
+			})
 		}}
 		backdropFilter="blur(10px)"
 		transition="background-color 0.2s"
