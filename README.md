@@ -11,12 +11,12 @@ This is a decoupled WordPress website, I mainly use for blogging and also as my 
 
 | Topics |
 | --- |
-| [History](/README.md#history) |
-| [Back to present🪄🪄](/README.md#back-to-present🪄🪄) |
-| [Backend](/README.md#backend) |
-| [Deployment](/README.md#deployment) |
+| [History](#history) |
+| [Back to present🪄🪄](#back-to-present-) |
+| [Backend](#backend) |
+| [Deployment](#deployment-) |
 
-#### History :
+#### History
 
 This website was initially a static website hosted on Github Pages only. The design was almost same as the but the main difficulty was when writing a blog. Not only I have to write the blog in HTML but also had to push the code and deploy it every single time I had to create a blog. And if there was something to edit, then again the same process.
 
@@ -27,7 +27,7 @@ But now it is time time to finally migrate the website to a proper CMS(Content M
 
 So, let's close the current website and build something better. Or on a second note, I should preserve my first ever portfolio/blog website. You know about subdomains?
 
-#### Back to present🪄🪄
+#### Back to present 🪄🪄
 
 The backend directory of the website contains the code for backend WordPress website. WordPress is responsible for storing and managing all the blogs and pages, in the backend.
 The frontend is written in Next.js which fetches the data from the WordPress backend using GraphQL and then build maximum of the static pages and serves some of the dynamic pages on the fly.
