@@ -159,7 +159,7 @@ class Souptik2001_Settings extends Base {
 		// Get the value of the setting we've registered with register_setting()
 		$revalidate_secret = get_option( 'revalidate_secret' );
 		?>
-		<input type="text"
+		<input type="password"
 				id="<?php echo esc_attr( $args['label_for'] ); ?>"
 				name="revalidate_secret" value="<?php echo esc_attr( $revalidate_secret ); ?>">
 		</input>
