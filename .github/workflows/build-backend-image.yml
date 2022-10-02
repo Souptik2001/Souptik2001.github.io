@@ -15,7 +15,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: './backend/plugins/souptik2001/.nvmrc'
+          node-version-file: './backend/plugins/souptik2001/.nvmrc'
 
       - name: Build the souptik2001 plugin's assets
         run: cd backend/plugins/souptik2001 && npm ci && npm run build && rm -rf node_modules
