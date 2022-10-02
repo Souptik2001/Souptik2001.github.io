@@ -32,16 +32,6 @@ RUN apt-get update -y && apt-get upgrade -y
 # Copy the files
 COPY . wp-content
 
-# Install node
-
-SHELL ["/bin/bash", "--login", "-i", "-c"]
-
-RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-
-RUN source /root/.bashrc && cd wp-content/plugins/souptik2001 && nvm install && nvm use && npm install && npm run build && rm -r node_modules
-
-SHELL ["/bin/bash", "--login", "-c"]
-
 VOLUME wp-content/uploads
 
 EXPOSE 80

@@ -2,8 +2,6 @@ name: Backend Image build
 
 on:
   push:
-    paths:
-     - backend/**
     branches:
       - master
 
@@ -14,6 +12,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Build the souptik2001 plugin's assets
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '16.7.0'
+        run: cd backend/plugins/souptik2001 && npm install && npm run build
 
       - name: Build backend container image
         run: docker build ./backend --tag ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE_NAME }}
