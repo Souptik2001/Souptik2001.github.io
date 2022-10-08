@@ -47,11 +47,6 @@ class Souptik2001_Settings extends Base {
 
 		register_setting(
 			static::SETTINGS_SLUG,
-			'whole_site_revalidate_url'
-		);
-
-		register_setting(
-			static::SETTINGS_SLUG,
 			'revalidate_link'
 		);
 
@@ -70,17 +65,6 @@ class Souptik2001_Settings extends Base {
 			__( 'Revalidate Frontend', 'souptik2001' ),
 			[ $this, 'revalidate_section_callback' ],
 			static::SETTINGS_SLUG
-		);
-
-		add_settings_field(
-			'whole_site_revalidate_url',
-			__( 'Whole site revalidate URL', 'souptik2001' ),
-			[ $this, 'whole_site_revalidate_url_field_callback' ],
-			static::SETTINGS_SLUG,
-			'revalidate_frontend_section',
-			array(
-				'label_for' => 'whole_site_revalidate_url'
-			)
 		);
 
 		add_settings_field(
@@ -145,25 +129,6 @@ class Souptik2001_Settings extends Base {
 	}
 
 	/**
-	 * Whole site Revalidate URL field callback function.
-	 *
-	 * @param array $args
-	 */
-	function whole_site_revalidate_url_field_callback( $args ) {
-
-		// Get the value of the setting we've registered with register_setting()
-		$revalidate_link = get_option( 'whole_site_revalidate_url' );
-		?>
-		<input type="text"
-				id="<?php echo esc_attr( $args['label_for'] ); ?>"
-				name="whole_site_revalidate_url" value="<?php echo esc_attr( $revalidate_link ); ?>">
-		</input>
-		<p><?php _e( 'This will be a URL to basically build the whole page again. For example if the site is hosted on Vercel it will be the vercel\'s link for redeploying the app.', 'souptik2001' ) ?></p>
-		<?php
-
-	}
-
-	/**
 	 * Revalidate URL field callback function.
 	 *
 	 * @param array $args
@@ -209,7 +174,7 @@ class Souptik2001_Settings extends Base {
 
 			if ( isset( $_GET['publish'] ) && 1 == $_GET['publish'] ) {
 
-				$whole_site_revalidate_url = get_option( 'whole_site_revalidate_url' );
+				$whole_site_revalidate_url = get_option( 'whole_site_revalidate_url', '' );
 
 				$response = wp_remote_get(
 					$whole_site_revalidate_url
