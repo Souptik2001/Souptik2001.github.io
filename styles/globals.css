@@ -68,3 +68,11 @@ code:not(.no-code-style) {
   padding: 0px 5px;
   font-size: 16px;
 }
+
+::-moz-selection {
+  background: #2eff2748;
+}
+
+::selection {
+  background: #2eff2748;
+}
