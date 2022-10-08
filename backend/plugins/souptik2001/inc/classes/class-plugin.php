@@ -70,6 +70,66 @@ class Plugin {
 
 		add_filter( 'mailpoet_get_permalink', [ $this, 'change_mailpoet_posts_link' ], 10, 3 );
 
+		add_filter( 'template_redirect', [ $this, 'redirect_if_non_logged_in' ] );
+
+		add_filter( 'allowed_redirect_hosts', [ $this, 'allowed_redirect_hosts' ] );
+
+	}
+
+	/**
+	 * Redirects to frontend site if user not logged in.
+	 */
+	public function redirect_if_non_logged_in() {
+		global $wp;
+
+		if ( is_user_logged_in() ) {
+			return;
+		}
+
+		$login_url = get_option( 'whl_page', 'wp-admin' );
+
+		$allowed_urls = [
+			$login_url,
+		];
+
+		if ( 'wp-admin' === $login_url ) {
+
+			$allowed_urls[] = 'wp-login.php';
+
+		}
+
+		if ( in_array( $wp->request, $allowed_urls, true ) ) {
+			return;
+		}
+
+		$frontend_url = get_option( 'frontend_url', 'https://souptik.dev' );
+
+		if ( \wp_safe_redirect( $frontend_url, 302, __( 'Backend defender', 'souptik2001' ) ) ) {
+			exit();
+		}
+	}
+
+	/**
+	 * Whitelists allowed redirect URLS.
+	 *
+	 * @param array $hosts Default allowed hosts.
+	 *
+	 * @return array
+	 */
+	public function allowed_redirect_hosts( $hosts ) {
+
+		$protocol_remover = '/(.*):\/\//i';
+
+		$frontend_url = get_option( 'frontend_url', 'https://souptik.dev' );
+
+		$frontend_url = preg_replace( $protocol_remover, '', $frontend_url );
+
+		$whitelisted_hosts = [
+			$frontend_url,
+		];
+
+		return array_merge( $hosts, $whitelisted_hosts );
+
 	}
 
 	/**

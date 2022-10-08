@@ -60,6 +60,11 @@ class Souptik2001_Settings extends Base {
 			'revalidate_secret'
 		);
 
+		register_setting(
+			static::SETTINGS_SLUG,
+			'frontend_url'
+		);
+
 		add_settings_section(
 			'revalidate_frontend_section',
 			__( 'Revalidate Frontend', 'souptik2001' ),
@@ -100,6 +105,29 @@ class Souptik2001_Settings extends Base {
 			)
 		);
 
+		add_settings_field(
+			'frontend_url',
+			__( 'Frontend URL', 'souptik2001' ),
+			[ $this, 'frontend_url_callback' ],
+			static::SETTINGS_SLUG,
+			'revalidate_frontend_section',
+			array(
+				'label_for' => 'frontend_url'
+			)
+		);
+
+	}
+
+	public function frontend_url_callback( $args ) {
+
+		$frontend_url = get_option( 'frontend_url' );
+
+		?>
+			<input type="text"
+			id="<?php echo esc_attr( $args['label_for'] ); ?>"
+			name="frontend_url" value="<?php echo esc_attr( $frontend_url ); ?>">
+			</input>
+		<?php
 	}
 
 	/**
