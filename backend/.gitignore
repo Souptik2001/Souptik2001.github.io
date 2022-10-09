@@ -22,3 +22,8 @@ debug.log
 db.php
 
 vendor
+
+plugins
+
+!plugins/souptik2001
+!plugins/wp-graphql-gutenberg
