@@ -17,10 +17,11 @@ jobs:
         with:
           node-version-file: './backend/plugins/souptik2001/.nvmrc'
 
-      - name: Install WordPress plugins
-        uses: php-actions/composer@v6
+      - uses: php-actions/composer@v6
         with:
           command: echo "Nothing to run here."
+
+      - name: Install WordPress plugins
         run: cd backend && composer install
 
       - name: Build the souptik2001 plugin's assets
