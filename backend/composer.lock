@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "186c2381c8a3723940c325fe6cc5ad16",
+    "content-hash": "606b9c1577db4d7fed7dabd17b0614cb",
     "packages": [
         {
             "name": "composer/installers",
@@ -220,16 +220,16 @@
         },
         {
             "name": "pristas-peter/wp-graphql-gutenberg",
-            "version": "v0.3.12",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pristas-peter/wp-graphql-gutenberg.git",
-                "reference": "93ea1aaf7e24ca09e79d7a34dcabea9797a1f3ea"
+                "reference": "9e26993403045b6c3f2b6fd5536b42121a245397"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pristas-peter/wp-graphql-gutenberg/zipball/93ea1aaf7e24ca09e79d7a34dcabea9797a1f3ea",
-                "reference": "93ea1aaf7e24ca09e79d7a34dcabea9797a1f3ea",
+                "url": "https://api.github.com/repos/pristas-peter/wp-graphql-gutenberg/zipball/9e26993403045b6c3f2b6fd5536b42121a245397",
+                "reference": "9e26993403045b6c3f2b6fd5536b42121a245397",
                 "shasum": ""
             },
             "require": {
@@ -242,6 +242,7 @@
                 "squizlabs/php_codesniffer": "3.5.4",
                 "wp-coding-standards/wpcs": "2.1.1"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
@@ -251,13 +252,23 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "phpcs-i": [
+                    "@php ./vendor/bin/phpcs -i"
+                ],
+                "check-cs": [
+                    "@php ./vendor/bin/phpcs"
+                ],
+                "fix-cs": [
+                    "@php ./vendor/bin/phpcbf"
+                ]
+            },
             "description": "Query gutenberg blocks with wp-graphql",
             "support": {
-                "issues": "https://github.com/pristas-peter/wp-graphql-gutenberg/issues",
-                "source": "https://github.com/pristas-peter/wp-graphql-gutenberg/tree/v0.3.12"
+                "source": "https://github.com/pristas-peter/wp-graphql-gutenberg/tree/develop",
+                "issues": "https://github.com/pristas-peter/wp-graphql-gutenberg/issues"
             },
-            "time": "2022-05-18T17:14:57+00:00"
+            "time": "2022-06-01T05:56:16+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -619,7 +630,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "pristas-peter/wp-graphql-gutenberg": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
