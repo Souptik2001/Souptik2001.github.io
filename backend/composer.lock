@@ -491,15 +491,15 @@
         },
         {
             "name": "wpackagist-plugin/add-wpgraphql-seo",
-            "version": "4.18.1",
+            "version": "4.19.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/add-wpgraphql-seo/",
-                "reference": "tags/4.18.1"
+                "reference": "tags/4.19.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/add-wpgraphql-seo.4.18.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/add-wpgraphql-seo.4.19.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -509,15 +509,15 @@
         },
         {
             "name": "wpackagist-plugin/mailpoet",
-            "version": "3.100.1",
+            "version": "3.101.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mailpoet/",
-                "reference": "tags/3.100.1"
+                "reference": "tags/3.101.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mailpoet.3.100.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/mailpoet.3.101.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -563,15 +563,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.7.2",
+            "version": "19.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.7.2"
+                "reference": "tags/19.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.7.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.8.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -581,15 +581,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
-            "version": "1.11.3",
+            "version": "1.12.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-graphql/",
-                "reference": "tags/1.11.3"
+                "reference": "tags/1.12.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.11.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.12.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
