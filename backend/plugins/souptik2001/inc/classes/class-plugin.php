@@ -68,7 +68,7 @@ class Plugin {
 
 		add_action( 'profile_update', [ $this, 'trigger_build_hook_for_user' ], 10, 3 );
 
-		add_filter( 'mailpoet_get_permalink', [ $this, 'change_mailpoet_posts_link' ], 10, 3 );
+		add_filter( 'post_link', [ $this, 'change_permalinks' ], 10, 3 );
 
 		add_filter( 'template_redirect', [ $this, 'redirect_if_non_logged_in' ] );
 
@@ -181,7 +181,7 @@ class Plugin {
 	 * @param int|WP_Post $post Post.
 	 * @param bool        $leavename Not include name.
 	 */
-	public function change_mailpoet_posts_link( $permalink, $post, $leavename ) {
+	public function change_permalinks( $permalink, $post, $leavename ) {
 
 		if ( ! is_object( $post ) ) {
 
