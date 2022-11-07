@@ -520,15 +520,15 @@
         },
         {
             "name": "wpackagist-plugin/mailpoet",
-            "version": "3.101.0",
+            "version": "3.102.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mailpoet/",
-                "reference": "tags/3.101.0"
+                "reference": "tags/3.102.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mailpoet.3.101.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/mailpoet.3.102.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -574,15 +574,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.8",
+            "version": "19.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.8"
+                "reference": "tags/19.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.8.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.9.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -592,15 +592,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
-            "version": "1.12.0",
+            "version": "1.12.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-graphql/",
-                "reference": "tags/1.12.0"
+                "reference": "tags/1.12.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.12.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.12.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
