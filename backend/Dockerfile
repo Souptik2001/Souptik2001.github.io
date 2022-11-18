@@ -32,6 +32,8 @@ RUN apt-get update -y && apt-get upgrade -y
 # Copy the files
 COPY . wp-content
 
+COPY .htaccess .
+
 VOLUME wp-content/uploads
 
 EXPOSE 80
