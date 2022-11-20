@@ -1,4 +1,5 @@
-import { Box, Flex, Link, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Link as ChakraLink, Stack, Text } from "@chakra-ui/react";
+import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Button from './Button/Button';
@@ -52,8 +53,10 @@ const MenuToggle = ({ toggle, isOpen, ...rest }) => {
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
     <Link
-    fontWeight="600"
     href={to}
+    >
+    <ChakraLink
+    fontWeight="600"
     style={{textDecoration: "none"}}
     color="rgba(255, 255, 255, 0.5)"
     _hover={{
@@ -63,6 +66,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
       <Text display="block">
         {children}
       </Text>
+    </ChakraLink>
     </Link>
   );
 };
