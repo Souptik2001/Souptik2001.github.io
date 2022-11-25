@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import he from 'he';
 import _ from "lodash";
 import { ATTRIBUTE_NAMES, BUTTON_STYLE, FLEX_LAYOUT, GROUP_STYLE, H_STYLE, P_STYLE } from "../../src/default-values";
@@ -11,7 +11,6 @@ import Column from "./Column";
 import Columns from "./Columns";
 import MediaText from "./MediaText";
 import Paragraph from "./Paragraph/Paragraph";
-import ParseList from "./ParseList/ParseList";
 
 const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 
@@ -141,7 +140,17 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				var style = parseStyles(block.attributes, P_STYLE);
 				elements.push(
 					<Paragraph key={key} fontSize={style.typography.fontSize} fontWeight={style.typography.fontWeight} lineHeight={style.typography.lineHeight} color={style.color.text} textAlign={block.attributes.align} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} width={customAttributes.width}>
-						<ParseList htmlString={block.attributes.values} />
+						<UnorderedList>
+							<ParseBlock blocks={block.innerBlocks} depth={depth+1} searchComponent={searchComponent} />
+						</UnorderedList>
+					</Paragraph>
+				);
+				break;
+			case "core/list-item":
+				var style = parseStyles(block.attributes, P_STYLE);
+				elements.push(
+					<Paragraph key={key} fontSize={style.typography.fontSize} fontWeight={style.typography.fontWeight} lineHeight={style.typography.lineHeight} color={style.color.text} textAlign={block.attributes.align} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} width={customAttributes.width}>
+						<ListItem><span dangerouslySetInnerHTML={{ __html: he.decode(block.attributes.content) }} /></ListItem>
 						<ParseBlock blocks={block.innerBlocks} depth={depth+1} searchComponent={searchComponent} />
 					</Paragraph>
 				);
