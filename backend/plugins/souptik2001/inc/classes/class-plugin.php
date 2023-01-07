@@ -74,6 +74,29 @@ class Plugin {
 
 		add_filter( 'allowed_redirect_hosts', [ $this, 'allowed_redirect_hosts' ] );
 
+		add_filter( 'mailpoet_manage_subscription_page_form_fields', [ $this, 'manage_subscription_page_form_fields' ], 10);
+
+	}
+
+	/**
+	 * Manages subscription page form fields.
+	 *
+	 * @param array $form List of fields.
+	 */
+	public function manage_subscription_page_form_fields( $form ) {
+
+		$form = [];
+
+		$form[] = [
+			'id'     => 'not_available_info',
+			'type'   => 'html',
+			'params' => [
+				'text'     => __( '<em><strong>Subscription management form is currently unavailable. For resubscribing please visit <a href="https://souptik.dev">souptik.dev</a>.</strong></em>', 'souptik2001' ),
+				'disabled' => true,
+			],
+		];
+
+		return $form;
 	}
 
 	/**
@@ -81,6 +104,10 @@ class Plugin {
 	 */
 	public function redirect_if_non_logged_in() {
 		global $wp;
+
+		if ( ! empty( $_GET['mailpoet_page'] ) && isset( $_GET['mailpoet_router'] ) && get_query_var( 'post_type', '' ) === 'mailpoet_page' ) { // phpcs:ignore
+			return;
+		}
 
 		if ( is_user_logged_in() ) {
 			return;
@@ -182,6 +209,10 @@ class Plugin {
 	 * @param bool        $leavename Not include name.
 	 */
 	public function change_permalinks( $permalink, $post, $leavename ) {
+
+		if ( is_admin() ) {
+			return $permalink;
+		}
 
 		if ( ! is_object( $post ) ) {
 
