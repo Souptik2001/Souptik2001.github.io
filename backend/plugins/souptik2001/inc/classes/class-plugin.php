@@ -82,6 +82,10 @@ class Plugin {
 	public function redirect_if_non_logged_in() {
 		global $wp;
 
+		if ( ! empty( $_GET['mailpoet_page'] ) && isset( $_GET['mailpoet_router'] ) && get_query_var( 'post_type', '' ) === 'mailpoet_page' ) { // phpcs:ignore
+			return;
+		}
+
 		if ( is_user_logged_in() ) {
 			return;
 		}
@@ -182,6 +186,10 @@ class Plugin {
 	 * @param bool        $leavename Not include name.
 	 */
 	public function change_permalinks( $permalink, $post, $leavename ) {
+
+		if ( is_admin() ) {
+			return $permalink;
+		}
 
 		if ( ! is_object( $post ) ) {
 
