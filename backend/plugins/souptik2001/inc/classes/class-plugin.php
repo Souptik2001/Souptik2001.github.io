@@ -210,10 +210,6 @@ class Plugin {
 	 */
 	public function change_permalinks( $permalink, $post, $leavename ) {
 
-		if ( is_admin() ) {
-			return $permalink;
-		}
-
 		if ( ! is_object( $post ) ) {
 
 			$post = get_post( $post );
