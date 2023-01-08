@@ -85,7 +85,7 @@ class Graphql_Mutations {
 
 						return [
 							'success'       => false,
-							'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience we are trying to fix it.', 'souptik2001' ),
+							'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience. We are trying to fix it.', 'souptik2001' ),
 							'debug_message' => __( 'MailPoet API class not found.', 'souptik2001' ),
 						];
 
@@ -115,7 +115,7 @@ class Graphql_Mutations {
 
 						return [
 							'success'       => false,
-							'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience we are trying to fix it.', 'souptik2001' ),
+							'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience. We are trying to fix it.', 'souptik2001' ),
 							'debug_message' => __( 'Wordpress Users list ID not found. Please check the lists section.', 'souptik2001' ),
 						];
 
@@ -142,7 +142,7 @@ class Graphql_Mutations {
 
 							return [
 								'success'       => false,
-								'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience we are trying to fix it.', 'souptik2001' ),
+								'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience. We are trying to fix it.', 'souptik2001' ),
 								'debug_message' => $error_message,
 							];
 
@@ -154,7 +154,7 @@ class Graphql_Mutations {
 					if ( null === $subscriber_user || ! isset( $subscriber_user['id'] ) ) {
 						return [
 							'success'       => false,
-							'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience we are trying to fix it.', 'souptik2001' ),
+							'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience. We are trying to fix it.', 'souptik2001' ),
 							'debug_message' => __( 'Subscriber user not found in database.', 'souptik2001' ),
 						];
 					}
@@ -188,7 +188,7 @@ class Graphql_Mutations {
 
 						return [
 							'success'       => false,
-							'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience we are trying to fix it.', 'souptik2001' ),
+							'message'       => __( 'Some internal server error occurred. Sorry for the inconvenience. We are trying to fix it.', 'souptik2001' ),
 							'debug_message' => $error_message,
 						];
 					}
