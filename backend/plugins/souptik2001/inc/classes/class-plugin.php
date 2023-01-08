@@ -10,6 +10,7 @@ namespace Souptik2001\Features\Inc;
 use \Souptik2001\Features\Inc\Traits\Singleton;
 use \Souptik2001\Features\Inc\Settings\Souptik2001_Settings;
 use \Souptik2001\Features\Inc\Graphql_Fields\Extra_User_Fields;
+use \Souptik2001\Features\Inc\Graphql_Fields\Graphql_Mutations;
 /**
  * Class Plugin
  */
@@ -25,6 +26,7 @@ class Plugin {
 		$this->hooks();
 		Souptik2001_Settings::get_instance();
 		Extra_User_Fields::get_instance();
+		Graphql_Mutations::get_instance();
 		$this->register_build_frontend_admin_bar_button();
 
 	}
@@ -74,7 +76,7 @@ class Plugin {
 
 		add_filter( 'allowed_redirect_hosts', [ $this, 'allowed_redirect_hosts' ] );
 
-		add_filter( 'mailpoet_manage_subscription_page_form_fields', [ $this, 'manage_subscription_page_form_fields' ], 10);
+		add_filter( 'mailpoet_manage_subscription_page_form_fields', [ $this, 'manage_subscription_page_form_fields' ], 10 );
 
 	}
 
@@ -91,7 +93,7 @@ class Plugin {
 			'id'     => 'not_available_info',
 			'type'   => 'html',
 			'params' => [
-				'text'     => __( '<em><strong>Subscription management form is currently unavailable. For resubscribing please visit <a href="https://souptik.dev">souptik.dev</a>.</strong></em>', 'souptik2001' ),
+				'text'     => __( '<em><strong>Subscription management form is currently unavailable. For resubscribing please visit <a href="https://souptik.dev">souptik.dev</a>.</strong></em>', 'souptik2001' ), // phpcs:ignore
 				'disabled' => true,
 			],
 		];
