@@ -50,7 +50,11 @@ class Graphql_Mutations {
 				'inputFields'         => [
 					'email' => [
 						'type'        => 'String',
-						'description' => __( 'Email to subscribe.', 'souptik2001' ),
+						'description' => __( 'Email of the subscriber.', 'souptik2001' ),
+					],
+					'name'  => [
+						'type'        => 'String',
+						'description' => __( 'Name of the subscriber.', 'souptik2001' ),
 					],
 				],
 				'outputFields'        => [
@@ -69,11 +73,11 @@ class Graphql_Mutations {
 				],
 				'mutateAndGetPayload' => function( $input, $context, $info ) {
 
-					if ( ! isset( $input['email'] ) ) {
+					if ( empty( $input['email'] ) || empty( $input['name'] )  ) {
 						return [
 							'success'       => false,
-							'message'       => __( 'Subscriber email missing.', 'souptik2001' ),
-							'debug_message' => __( 'Required input field email not supplied.', 'souptik2001' ),
+							'message'       => __( 'Subscriber email or name missing.', 'souptik2001' ),
+							'debug_message' => __( 'Required input fields email or name not supplied.', 'souptik2001' ),
 						];
 					}
 
@@ -124,6 +128,7 @@ class Graphql_Mutations {
 						$subscriber_user = $mailpoet_api->addSubscriber(
 							[
 								'email' => $input['email'],
+								'first_name' => $input['name']
 							],
 							[]
 						);
@@ -156,7 +161,7 @@ class Graphql_Mutations {
 
 					foreach ( $subscriber_user['subscriptions'] as $subscription ) {
 
-						if ( $desired_list_id === $subscription['segment_id'] && 'subscribed' === $subscription['status'] ) {
+						if ( $desired_list_id === $subscription['segment_id'] && 'subscribed' === $subscription['status'] && 'subscribed' === $subscriber_user['status'] ) {
 
 							return [
 								'success'       => false,
