@@ -59,6 +59,11 @@ const Footer = (props) => {
 				color="white"
 				ref={nameInput}
 				disabled={loading}
+				_hover={{
+					bg: "#0097233f"
+				}}
+				borderColor="#ffffff8c"
+				focusBorderColor="#ffffff8c"
 				/>
 				<Input
 				placeholder="Email"
@@ -67,6 +72,11 @@ const Footer = (props) => {
 				color="white"
 				ref={emailInput}
 				disabled={loading}
+				_hover={{
+					bg: "#0097233f"
+				}}
+				borderColor="#ffffff8c"
+				focusBorderColor="#ffffff8c"
 				/>
 			</Flex>
 			<Button
@@ -78,21 +88,19 @@ const Footer = (props) => {
 			fontSize='16px'
 			padding="8px"
 			fontWeight='600'
-			bg='rgba(0,0,0,0)'
+			bg= "#28a745"
 			border='1.5px solid #28a745'
-			color='#28a745'
+			color='white'
 			_hover={{
-				bg: "#28a745",
-				color: "white"
+			  bg: "#1f7032",
 			}}
 			_active={{
-				bg: "#28a745",
-				color: "white",
-				transform: 'scale(0.98)',
+			  bg: "#1f7032",
+			  transform: 'scale(0.98)',
 			}}
 			_focus={{
-				boxShadow:
-				'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+			  boxShadow:
+			  '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
 			}}
 			disabled={loading}
 			onClick={subscribe}
