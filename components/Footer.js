@@ -108,7 +108,7 @@ const Footer = (props) => {
 				Subscribe
 			</Button>
 			<Flex mb="40px" textAlign="center" width="100%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">
-				<Box textAlign="center" width={["100%", null, null, null, "100%"]} fontWeight="600" fontSize="12px" lineHeight="32px" color={subscribedStatus?.error === true ? "red" : "white"} letterSpacing="3px">
+				<Box textAlign="center" width={["100%", null, null, null, "100%"]} fontWeight="600" fontSize="12px" lineHeight="32px" color="white" letterSpacing="3px">
 					{ subscribedStatus !== undefined && subscribedStatus.error === true && '❌' }
 					{ subscribedStatus !== undefined && subscribedStatus.error === false && '✅' }
 					{ subscribedStatus !== undefined && subscribedStatus.message !== undefined && subscribedStatus.message }
