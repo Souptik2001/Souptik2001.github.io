@@ -16,17 +16,7 @@ const Layout = ({
 	return (
 
 		<Box
-		className="content"
-		position="relative"
-		height="100vh"
-		maxHeight="100vh"
-		overflowX="hidden"
-		overflowY="scroll"
-		background="radial-gradient(rgba(0, 0, 0, 0.85), rgba(5, 5, 5, 1)), url('/main_b.webp')"
-		backgroundRepeat="no-repeat"
-		backgroundPosition="center"
-		backgroundSize="cover"
-		backgroundAttachment="fixed"
+		className="content-main"
 		>
 			<Seo
                 seo={yoastSeoData ?? {}}

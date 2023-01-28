@@ -5,17 +5,11 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Heebo', sans-serif, -apple-system, system-ui;
-  background: radial-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)), url('/main_b.webp');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-size: cover;
-  background-attachment: fixed;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
-.content{
+.content-main{
   scroll-behavior: smooth;
 }
 

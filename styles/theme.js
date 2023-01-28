@@ -14,6 +14,14 @@ export const theme = extendTheme({
 			3: "#FFFFFF",
 		},
 	},
+	styles: {
+		global: (props) => ({
+			body: {
+				background: ["linear-gradient(-45deg, #000000, #000000, #000000, #000000, #008cff)", null, null, "linear-gradient(-45deg, #000000, #000000, #000000, #000000, #008cff, #00eeff)"],
+				animation: "gradient 15s ease infinite",
+			}
+		 })
+	},
 	fonts: {
 		heading: 'Heebo, sans-serif',
 		body: 'Heebo, sans-serif',
