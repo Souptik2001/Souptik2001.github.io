@@ -11,7 +11,7 @@ const NavBar = (props) => {
   return (
     <NavBarContainer background="black" textAlign="center" zIndex="20" {...props}>
       <LogoAndToggleIconContainer zIndex="10">
-        <Link style={{textDecoration: "none"}} href="/"><Box cursor="pointer">✍</Box></Link>
+        <Link style={{textDecoration: "none"}} href="/"><Box fontSize="30px" cursor="pointer">✍</Box></Link>
         <MenuToggle width={["25%", null, "auto"]} toggle={toggle} isOpen={isOpen} />
       </LogoAndToggleIconContainer>
       <MenuLinks isOpen={isOpen} zIndex="10" />
