@@ -2,7 +2,6 @@ import { Box, Flex, Link as ChakraLink, Stack, Text } from "@chakra-ui/react";
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Button from './Button/Button';
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,33 +94,6 @@ const MenuLinks = ({ isOpen, ...props }) => {
         <MenuItem to="/" color={(currentRoute === '') ? "white" : "rgba(255, 255, 255, 0.5)"}>📖Home</MenuItem>
         <MenuItem to="/interests" color={(currentRoute === 'interests') ? "white" : "rgba(255, 255, 255, 0.5)"}>📚Interests</MenuItem>
         <MenuItem to="/about" color={(currentRoute === 'about') ? "white" : "rgba(255, 255, 255, 0.5)"}>👋About</MenuItem>
-        <Button
-          lineHeight='24px'
-          transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-          borderRadius='5px'
-          fontSize='16px'
-          padding="8px"
-          fontWeight='600'
-          bg='rgba(0,0,0,0)'
-          border='1.5px solid #28a745'
-          color='#28a745'
-          _hover={{
-            bg: "#28a745",
-            color: "white"
-          }}
-          _active={{
-            bg: "#28a745",
-            color: "white",
-            transform: 'scale(0.98)',
-          }}
-          _focus={{
-            boxShadow:
-            '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
-          }}
-          link="/notes"
-        >
-				  ✏️ Your Space !
-			  </Button>
       </Stack>
     </Box>
   );
