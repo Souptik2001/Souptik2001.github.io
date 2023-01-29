@@ -34,7 +34,7 @@
     "react-animate-height": "^3.0.4",
     "react-dom": "latest",
     "react-gtm-module": "^2.0.11",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.7.1",
     "sanitize-html": "^2.7.1"
   },
   "devDependencies": {

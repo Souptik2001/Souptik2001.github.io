@@ -48,7 +48,7 @@ const Footer = (props) => {
 			></Box>
 			<Flex mb="20px" textAlign="center" width="100%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">
 				<Box textAlign="center" width={["100%", null, null, null, "100%"]} fontWeight="300" fontSize="16px" lineHeight="32px" color="white" letterSpacing="3px">
-					<em>Seems interesting? We can send you a notification on a new blog&apos;s release</em>👇
+					<em>Should we send you a notification when new blogs are published?</em>👇
 				</Box>
 			</Flex>
 			<Flex mb="20px" gap="40px" textAlign="center" width="50%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">
