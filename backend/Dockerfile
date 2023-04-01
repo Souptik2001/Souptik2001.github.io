@@ -7,7 +7,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 RUN rm -rf wp-content/*
 
-RUN apt-get update -y && apt-get upgrade -y && apt install -y apt-utils
+RUN apt update -y && apt upgrade -y && apt install -y apt-utils
 
 # Install composer
 
@@ -21,13 +21,13 @@ RUN apt-get update -y && apt-get upgrade -y && apt install -y apt-utils
 RUN docker-php-ext-install pdo pdo_mysql
 
 # This is a Debian system, so...
-RUN apt-get -y install apt-transport-https lsb-release ca-certificates curl wget gnupg
+RUN apt -y install apt-transport-https lsb-release ca-certificates curl wget gnupg
 
-RUN curl -sSLo /usr/share/keyrings/deb.sury.org-apache2.gpg https://packages.sury.org/apache2/apt.gpg
+# RUN curl -sSLo /usr/share/keyrings/deb.sury.org-apache2.gpg https://packages.sury.org/apache2/apt.gpg
 
-RUN sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-apache2.gpg] https://packages.sury.org/apache2/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/apache2.list'
+# RUN sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-apache2.gpg] https://packages.sury.org/apache2/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/apache2.list'
 
-RUN apt-get update -y && apt-get upgrade -y
+RUN apt update -y && apt upgrade -y
 
 # Copy the files
 COPY . wp-content
