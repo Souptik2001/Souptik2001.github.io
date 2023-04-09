@@ -60,16 +60,16 @@ export default function Blog({user, slug}) {
 
 	return(
 		<Layout
-		customPageTitle={`${authorName} | @Souptik`}
+		customPageTitle={`${authorName} | Souptik's Blog`}
 		customPageDescription={`Know about our user - "${authorName}"`}
 		customSeoMeta={{
-			title: `${authorName} | @Souptik`,
+			title: `${authorName} | Souptik's Blog`,
 			description: `Know about our user "${authorName}"`,
-			siteName: "@Souptik"
+			siteName: "Souptik's Blog"
 		}}
 		>
 			<Head>
-		  		<title>{`${authorName} | @Souptik`}</title>
+		  		<title>{`${authorName} | Souptik's Blog`}</title>
 			</Head>
 			<Box px="10%" className="container">
 				<Heading fontWeight="600" className={styles.b_head}>

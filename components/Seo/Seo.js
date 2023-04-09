@@ -48,16 +48,16 @@ const Seo = ({
 
 	return (
 		<NextSeo
-			title={(title) ? he.decode(title) : '@Souptik'}
+			title={(title) ? he.decode(title) : 'Souptik\'s Blog'}
 			description={(description) ? he.decode(description) : 'Read quality technology blogs.'}
 			canonical=''
 			openGraph={{
                 type: seo?.opengraphType || 'website',
                 locale: seo?.opengraphLocale || 'en_US',
-				title: (ogTitle) ? he.decode(ogTitle) : '@Souptik',
+				title: (ogTitle) ? he.decode(ogTitle) : 'Souptik\'s Blog',
 				description: (ogDesc) ? he.decode(ogDesc) : 'Read quality technology blogs.',
 				url: (ogURL) ? ogURL : '',
-				site_name: (ogSiteName) ? he.decode(ogSiteName) : '@Souptik',
+				site_name: (ogSiteName) ? he.decode(ogSiteName) : 'Souptik\'s Blog',
 				images: ogImage,
 				article: {
 					publishedTime: customPublishedTime || (seo?.opengraphPublishedTime ?? ''),
@@ -67,7 +67,7 @@ const Seo = ({
 			}}
 			twitter={{
                 handle: '@datta_souptik',
-                site: '@Souptik',
+                site: 'Souptik\'s Blog',
                 cardType: 'summary_large_image'
             }}
 	  />

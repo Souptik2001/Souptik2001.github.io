@@ -17,7 +17,7 @@ export default function Blog({frontend, slug}) {
 		yoastSeoData={frontend?.data?.page?.seo}
 		>
 			<Head>
-		  		<title>{`${frontend?.data?.page?.title} | @Souptik`}</title>
+		  		<title>{`${frontend?.data?.page?.title} | Souptik's Blog`}</title>
 			</Head>
 			<Box px="10%" className="container">
 				<Heading fontWeight="600" className={styles.b_head}>

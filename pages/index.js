@@ -43,12 +43,12 @@ export default function Home({posts, seoData}) {
     customSeoMeta={{
       title: seoData?.openGraph?.frontPage?.title,
       description: seoData?.openGraph?.frontPage?.description,
-      siteName: "@Souptik",
+      siteName: "Souptik's Blog",
       imageURL: seoData?.openGraph?.frontPage?.image?.link
     }}
     >
       <Head>
-        <title>@Souptik</title>
+        <title>Souptik's Blog</title>
       </Head>
       <Box className={styles.firstSec} id={styles.firstSec_i}>
         <Box className={styles.intro}>

@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { Box, Heading, Image, Link as ChakraLink } from '@chakra-ui/react';
+import { Box, Link as ChakraLink, Heading, Image } from '@chakra-ui/react';
 import { isEmpty } from 'lodash';
 import Head from "next/head";
 import Link from 'next/link';
@@ -45,7 +45,7 @@ export default function Blog({frontend, slug}) {
 		yoastSeoData={frontend?.data?.post?.seo}
 		>
 			<Head>
-		  		<title>{`${frontend?.data?.post?.title} | @Souptik`}</title>
+		  		<title>{`${frontend?.data?.post?.title} | Souptik's Blog`}</title>
 			</Head>
 			<Box px="10%" className="container">
 				<Heading fontWeight="300" className={styles.b_head}>
