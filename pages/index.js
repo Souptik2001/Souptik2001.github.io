@@ -48,7 +48,7 @@ export default function Home({posts, seoData}) {
     }}
     >
       <Head>
-        <title>Souptik&rsquos Blog</title>
+        <title>{"Souptik's Blog"}</title>
       </Head>
       <Box className={styles.firstSec} id={styles.firstSec_i}>
         <Box className={styles.intro}>
