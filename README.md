@@ -15,6 +15,7 @@ This is a decoupled WordPress website, I mainly use for blogging and also as my 
 | [Back to present🪄🪄](#back-to-present-) |
 | [Backend](#backend) |
 | [Deployment](#deployment-) |
+| [Local development](#local-development) |
 
 #### History
 
@@ -55,5 +56,16 @@ Here is the list of plugins being used in the backend and there roles-
 	- After that in the `Souptik2001` plugin's settings page you have to write the frontend revalidate URL and also the revalidate secret.
 - The frontend is written in Next.js and can be deployed on any server also. But I preferred to deploy it on Vercel, because come-on they only say **Deploy Next.js in seconds**.
 Set the environment variables mentioned in `sample.env` and that's it. Here we are done.
+
+### Local Development
+
+#### First spin-up the backend:
+
+#### Now let's get the front-end started:
+
+- Run `nvm use`. If you don't have the node version installed run `nvm install`.
+- Run `npm install`.
+- Copy the `sample.env` to `.env` and fill in the values.
+- Run `npm run dev`.
 
 Thanks for reading.✨✨
