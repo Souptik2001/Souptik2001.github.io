@@ -47,7 +47,7 @@ const Code = ({block, ...props}) => {
 		position="relative"
 		{...props}
 		>
-			<code className="no-code-style">{he.decode(block.attributes.content)}</code>
+			<code style={{ whiteSpace: 'pre-line' }} className="no-code-style">{he.decode(block.attributes.content)}</code>
 			<Box
 			display="flex"
 			justifyContent="center"
