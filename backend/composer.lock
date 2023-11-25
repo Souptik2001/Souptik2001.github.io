@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "606b9c1577db4d7fed7dabd17b0614cb",
+    "content-hash": "1e767b9c30255972c0bccf2de30345b8",
     "packages": [
         {
             "name": "composer/installers",
@@ -555,6 +555,24 @@
             "homepage": "https://wordpress.org/plugins/query-monitor/"
         },
         {
+            "name": "wpackagist-plugin/solr-power",
+            "version": "2.5.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/solr-power/",
+                "reference": "tags/2.5.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/solr-power.2.5.2.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/solr-power/"
+        },
+        {
             "name": "wpackagist-plugin/stream",
             "version": "3.9.1",
             "source": {
@@ -637,5 +655,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.6.0"
 }
