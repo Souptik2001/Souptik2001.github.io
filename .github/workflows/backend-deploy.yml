@@ -5,6 +5,9 @@ concurrency: backend
 on:
   release:
     types: [ published ]
+  push:
+    branches:
+      - master
 
 env:
   COMPOSER_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
