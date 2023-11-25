@@ -1,0 +1,39 @@
+name: Backend Deploy
+
+concurrency: backend
+
+on:
+  release:
+    types: [ published ]
+
+env:
+  COMPOSER_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: backend
+
+    steps:
+      - name: Checkout to repository.
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: './backend/plugins/souptik2001/.nvmrc'
+
+      - name: Install WordPress plugins
+        run: |
+          composer install --working-dir=backend
+
+      - name: Build the souptik2001 plugin's assets
+        run: cd backend/plugins/souptik2001 && npm ci && npm run build && rm -rf node_modules
+
+      - name: Deploy to Pantheon
+        env:
+          PANTHEON_SSH_PRIVATE_KEY: ${{ secrets.PANTHEON_SSH_PRIVATE_KEY }}
+          PANTHEON_GIT_REPOSITORY: ${{ secrets.PANTHEON_GIT_REPOSITORY }}
+          PANTHEON_GIT_BRANCH: master
+          RELEASE_VERSION: ${{ github.ref_name }}
+        run: bash .bin/deploy.sh

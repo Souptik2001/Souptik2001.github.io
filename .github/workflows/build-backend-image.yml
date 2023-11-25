@@ -1,4 +1,4 @@
-name: Backend Image build
+name: Backend Image build - This is not used used in deployment, but just building it.
 
 on:
   push:
@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout to repository.
+        uses: actions/checkout@v2
 
       - uses: actions/setup-node@v3
         with:
