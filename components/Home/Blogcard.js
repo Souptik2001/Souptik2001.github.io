@@ -30,7 +30,7 @@ export default function Blogcard({ data, styles, ...rest }) {
 
 	return (
 
-		<Link href={`/blog/${slug}`}>
+		<Link href={`/blog/${slug}`} legacyBehavior>
 			<ChakraLink style={{textDecoration: 'none'}}>
 				<Box className={styles.blog} {...rest}>
 					<Heading fontWeight="300" className={styles.b_head}>

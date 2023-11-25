@@ -53,6 +53,8 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
     <Link
     href={to}
+    passHref
+    legacyBehavior
     >
     <ChakraLink
     fontWeight="600"

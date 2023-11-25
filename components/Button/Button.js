@@ -6,7 +6,7 @@ const Button = ({children, isExternal=false, ...props}) => {
 	const { link="#", ...rest } = props;
 
 	return(
-		<Link href={link}>
+		<Link href={link} legacyBehavior>
 			<ChakraLink style={{ textDecoration: 'none' }} isExternal={isExternal}>
 				<Box
 				as='button'

@@ -17,7 +17,7 @@ export default function Blogcard({ data, styles, ...rest }) {
 	return (
 
 		<Flex width="100%" flexDirection="column" justifyContent="center" alignItems="center">
-			<Link href={`/blog/${slug}`}>
+			<Link href={`/blog/${slug}`} legacyBehavior>
 				<ChakraLink width={["100%", null, null, "50%"]} style={{textDecoration: 'none'}}>
 					<Box className={styles.blog} {...rest}>
 						<Heading fontWeight="300" fontSize="20px" className={styles.b_head}>

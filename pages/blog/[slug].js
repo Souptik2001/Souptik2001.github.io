@@ -52,7 +52,7 @@ export default function Blog({frontend, slug}) {
 					{StripTags(frontend?.data?.post?.title)}
 				</Heading>
 				<Box className={styles.b_info}>
-					Posted by <Link href={`/user/${frontend?.data?.post?.author?.node?.slug}`}><ChakraLink fontWeight="600" __css={{ transition: "1s" }} _hover={authorNameHoverCSS}>{authorName}</ChakraLink></Link> on {parseDate(frontend?.data?.post?.date)}
+					Posted by <Link href={`/user/${frontend?.data?.post?.author?.node?.slug}`} legacyBehavior><ChakraLink fontWeight="600" __css={{ transition: "1s" }} _hover={authorNameHoverCSS}>{authorName}</ChakraLink></Link> on {parseDate(frontend?.data?.post?.date)}
 				</Box>
 				<Box  marginTop="40px" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
 					<Image borderRadius="10px" width={["100%", null, null, "50%"]} srcSet={frontend?.data?.post?.featuredImage?.node?.srcSet} alt={frontend?.data?.post?.featuredImage?.node?.altText} />
