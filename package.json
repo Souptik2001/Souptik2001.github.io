@@ -17,6 +17,7 @@
     "@emotion/server": "latest",
     "@emotion/styled": "^11.11.0",
     "@fontsource/heebo": "^5.0.3",
+    "@travelopia/web-components": "^0.5.5",
     "focus-visible": "^5.2.0",
     "framer-motion": "^10.12.16",
     "he": "^1.2.0",

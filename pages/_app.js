@@ -7,6 +7,7 @@ import NProgress from 'nprogress'
 import { useEffect } from 'react'
 import TagManager from 'react-gtm-module'
 import '../styles/globals.css'
+import '../styles/Slider.css'
 import { theme } from '../styles/theme'
 
 const GlobalStyles = css`

@@ -11,6 +11,7 @@ import Column from "./Column";
 import Columns from "./Columns";
 import MediaText from "./MediaText";
 import Paragraph from "./Paragraph/Paragraph";
+import Slider from "./Slider/Slider";
 
 const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 
@@ -156,12 +157,19 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				);
 				break;
 			case "core/image":
-				var borderRadius = block?.attributes?.style?.border?.radius ?? "0px";
+				var borderRadius = block?.attributes?.style?.border?.radius ?? "10px";
 				customAttributes.height = block?.attributes?.height ?? "auto";
 				customAttributes.width = block?.attributes?.width ?? "auto";
 				elements.push(
-					<Image key={key} borderRadius={borderRadius} src={block.attributes.url} alt={block.attributes.alt} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} height={customAttributes.height} width={customAttributes.width} />
+					<Flex key={key} alignItems='center' justifyContent='center' mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}>
+						<Image borderRadius={borderRadius} src={block.attributes.url} alt={block.attributes.alt} height={customAttributes.height} width={customAttributes.width} />
+					</Flex>
 				);
+				break;
+			case "core/gallery":
+				elements.push(
+					<Slider key={key} blocks={block.innerBlocks} depth={depth+1} />
+				)
 				break;
 			case "core/buttons":
 				let layout = {};
