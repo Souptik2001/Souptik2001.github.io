@@ -252,7 +252,7 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				break;
 			case 'core/html':
 				elements.push(
-					<span dangerouslySetInnerHTML={{ __html: he.decode(block.attributes.content) }} />
+					<span dangerouslySetInnerHTML={{ __html: block.attributes.content }} />
 				)
 				break;
 			default:
