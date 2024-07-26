@@ -250,6 +250,11 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 					<Code key={key} block={block} />
 				)
 				break;
+			case 'core/html':
+				elements.push(
+					<span dangerouslySetInnerHTML={{ __html: he.decode(block.attributes.content) }} />
+				)
+				break;
 			default:
 				elements.push( <Box key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}><Text as="kbd">Could not identify block of type {block.name}!</Text></Box> );
 				break;
