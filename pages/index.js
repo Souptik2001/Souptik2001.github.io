@@ -1,37 +1,46 @@
 import { gql } from '@apollo/client';
 import { Box, Heading } from '@chakra-ui/layout';
-import { Button } from '@chakra-ui/react';
+import { Button, Container, Spinner, VStack, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useState } from 'react';
 import Blogcard from '../components/Home/Blogcard';
+import Search from '../components/Home/Search';
 import Layout from '../components/Layout';
 import client from '../src/apollo/Client';
 import styles from '../styles/Home.module.css';
 
 export default function Home({posts, seoData}) {
+  const loadMore = () => {
+    updateBlogs(searchTerm, nextCursor);
+  }
 
-  const loadMore = async () => {
-
+  const updateBlogs = async ( search, cursor, overwrite = false ) => {
     setIsLoading(true);
 
-    const morePostsJSON = await fetch(`/api/fetch-blogs?nextCursor=${nextCursor}`);
-    const morePostsResponse = await morePostsJSON.json();
+    const blogsDataJSON = await fetch(`/api/fetch-blogs?nextCursor=${cursor}&search=${search}`);
+    const blogsDataResponse = await blogsDataJSON.json();
 
     // Handle error here.
 
-    const morePosts = morePostsResponse.blogs;
+    const blogsData = blogsDataResponse.blogs;
 
-    setBlogs((prevBlogs) => {
-      return prevBlogs.concat(morePosts.data.posts.edges);
-    });
+    if (overwrite) {
+      setBlogs(blogsData.data.posts.edges);
+    } else {
+      setBlogs((prevBlogs) => {
+        return prevBlogs.concat(blogsData.data.posts.edges);
+      });
+    }
 
-    setNextCursor(morePosts.data.posts.pageInfo.endCursor);
-    setHasMore(morePosts.data.posts.pageInfo.hasNextPage);
+    setNextCursor(blogsData.data.posts.pageInfo.endCursor);
+    setHasMore(blogsData.data.posts.pageInfo.hasNextPage);
     setIsLoading(false);
-
+    setIsSearching(false);
   }
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const [hasMore, setHasMore] = useState(posts.data.posts.pageInfo.hasNextPage);
   const [nextCursor, setNextCursor] = useState(posts.data.posts.pageInfo.endCursor);
   const [blogs, setBlogs] = useState(posts.data.posts.edges);
@@ -55,46 +64,78 @@ export default function Home({posts, seoData}) {
             <Heading color="white" letterSpacing="8px" fontFamily="Heboo, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif" fontWeight="800">
               Welcome👋
             </Heading>
+            <Container
+              marginTop="20px"
+              width={["100%", null, null, null, "50%"]}
+            >
+              <Search
+                setSearchTerm={setSearchTerm}
+                setNextCursor={setNextCursor}
+                updateBlogs={updateBlogs}
+                setIsSearching={setIsSearching}
+              />
+            </Container>
             <Box className={styles.blogs} id={styles.blogs}>
-              <Box marginBottom="50px">
-                {
-                  blogs.map((item, index) => {
-                    // The index will not change dynamically. So, safe to use index.
-                    return (
-                      <Blogcard key={`key-${index}`} data={item.node} styles={styles} />
-                    );
+              {
+                isSearching &&
+                <Box color="white" fontSize="20px" textAlign="center" marginTop="50px" marginBottom="50px">
+                  <VStack>
+                      <Spinner color="white" borderWidth="4px" />
+                      <Text>🕵️‍♂️ Searching for blogs...</Text>
+                  </VStack>
+                </Box>
+              }
+              {
+                ! isSearching &&
+                <>
+                  <Box marginTop="50px" marginBottom="50px">
+                    {
+                      blogs.length > 0 &&
+                      blogs.map((item, index) => {
+                        // The index will not change dynamically. So, safe to use index.
+                        return (
+                          <Blogcard key={`key-${index}`} data={item.node} styles={styles} />
+                        );
 
-                  })
-                }
-              </Box>
-              <Button
-                lineHeight='24px'
-                transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-                borderRadius='5px'
-                fontSize='16px'
-                padding="15px"
-                fontWeight='600'
-                bg= "#28a745"
-                border='1.5px solid #28a745'
-                color='white'
-                _hover={{
-                  bg: "#1f7032",
-                }}
-                _active={{
-                  bg: "#1f7032",
-                  transform: 'scale(0.98)',
-                }}
-                _focus={{
-                  boxShadow:
-                  '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
-                }}
-                isDisabled={!hasMore}
-                isLoading={isLoading}
-                loadingText='Loading'
-                onClick={loadMore}
-              >
-                Load More
-              </Button>
+                      })
+                    }
+                    {
+                      blogs.length === 0 &&
+                      <Box color="white" fontSize="20px" textAlign="center">
+                        😢 No blogs found. Maybe the author needs some help.
+                      </Box>
+                    }
+                  </Box>
+                  <Button
+                    lineHeight='24px'
+                    transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                    borderRadius='5px'
+                    fontSize='16px'
+                    padding="15px"
+                    fontWeight='600'
+                    bg= "#28a745"
+                    border='1.5px solid #28a745'
+                    color='white'
+                    _hover={{
+                      bg: "#1f7032",
+                    }}
+                    _active={{
+                      bg: "#1f7032",
+                      transform: 'scale(0.98)',
+                    }}
+                    _focus={{
+                      boxShadow:
+                      '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+                    }}
+                    isDisabled={!hasMore}
+                    isLoading={isLoading}
+                    loadingText='Loading'
+                    onClick={loadMore}
+                  >
+                    Load More
+                  </Button>
+                </>
+              }
             </Box>
         </Box>
       </Box>

@@ -17,7 +17,7 @@ export const theme = extendTheme({
 	styles: {
 		global: (props) => ({
 			body: {
-				background: ["linear-gradient(-45deg, #000000, #000000, #000000, #000000, #008cff)", null, null, "linear-gradient(-45deg, #000000, #000000, #000000, #000000, #008cff, #00eeff)"],
+				background: ["linear-gradient(-45deg, #000000, #000000, #000000, #000000, #008cff)", null, null, "linear-gradient(-45deg, #000000, #000000, #000000, #000000, #008cff"],
 				animation: "gradient 15s ease infinite",
 			}
 		 })

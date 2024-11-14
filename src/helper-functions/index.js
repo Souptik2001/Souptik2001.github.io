@@ -94,4 +94,4 @@ export const doesSlugMatchesCustomPage = (slug) => {
 	const pagesToExclude = [];
 
 	return pagesToExclude.includes(slug);
-  }
+}

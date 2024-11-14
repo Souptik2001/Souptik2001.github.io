@@ -7,10 +7,24 @@ export default async function handler(req, res) {
 
     let whereQuery = formWhereQuery(req);
 
+    const afterQuery = formAfterQuery(req);
+
+    let extraQueries = [];
+
+    if (whereQuery.length > 0) {
+      extraQueries.push(whereQuery);
+    }
+
+    if (afterQuery.length > 0) {
+      extraQueries.push(afterQuery);
+    }
+
+    extraQueries = extraQueries.join(", ");
+
     const blogs = await client.query({
       query: gql`
         query fetchPosts {
-          posts(first: 10, after: "${req?.query?.nextCursor}", ${whereQuery}) {
+          posts(first: 10, ${extraQueries}) {
             edges {
               node {
                 id
@@ -57,6 +71,24 @@ function formWhereQuery(req) {
     where += `authorName: "${req?.query?.authorName}"`;
   }
 
+  if ( req?.query?.search !== undefined && req?.query?.search.length > 0 ) {
+    if(where.length > 0) where += ", ";
+
+    where += `search: "${req?.query?.search}"`;
+  }
+
   return "where: { " +  where + " }";
+
+}
+
+function formAfterQuery(req) {
+
+  let after = "";
+
+  if ( req?.query?.nextCursor !== undefined && req?.query?.nextCursor.length > 0 ) {
+    after = `after: "${req?.query?.nextCursor}"`;
+  }
+
+  return after;
 
 }
