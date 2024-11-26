@@ -1,4 +1,4 @@
-#### Hello everyone 👋, this is my [personal website's](https://souptik.dev) brain and brawn.
+#### Hello everyone 👋, this is my [personal website's](https://souptik.dev) brain and brawn
 
 ---
 
@@ -7,7 +7,7 @@ This is a decoupled WordPress website, I mainly use for blogging and also as my 
 
 ![Decoupled WordPress Banner](./docs/images/RepoLogo.png)
 
-#### Table of Content:
+#### Table of Content
 
 | Topics |
 | --- |
@@ -33,11 +33,12 @@ So, let's close the current website and build something better. Or on a second n
 The backend directory of the website contains the code for backend WordPress website. WordPress is responsible for storing and managing all the blogs and pages, in the backend.
 The frontend is written in Next.js which fetches the data from the WordPress backend using GraphQL and then build maximum of the static pages and serves some of the dynamic pages on the fly.
 When some page or blog is updated on the backend, *Incremental Static Regeneration* is used to rebuild the old page and then populate with the new contents.
-**The on-demand regeneration URL should have increased timeout. But anything above than 10s requires a paid plan. Refer this - https://github.com/vercel/vercel/discussions/4502. So, only solution now is asynchronous regeneration.**
+**The on-demand regeneration URL should have increased timeout. But anything above than 10s requires a paid plan. Refer this - <https://github.com/vercel/vercel/discussions/4502>. So, only solution now is asynchronous regeneration.**
 
 #### Backend
 
 Here is the list of plugins being used in the backend and there roles-
+
 - WP GraphQL ( Used for communicating between frontend and backend ).
 - WP GraphqlQL Gutenberg ( Used for getting block data of posts, i.e to get the entire content of the post to display it in the frontend ).
 - WPS Hide Login ( Used for changing the main login route i.e `wp-login.php` to something other to hide the login screen ).
@@ -50,18 +51,23 @@ Here is the list of plugins being used in the backend and there roles-
 #### Deployment 💾
 
 - The backend deployment is pretty simple. It can be deployed on any publicly accessible server. In my case my backend is deployed on my brother's home-server.
-	- One good practice here is to redirect all the links to the frontend URL of the website, except the login path i.e `wp-admin`.
-	- In top of that, `WPS Hide Login` plugin is installed to change the login screen path to something else, so that normal people can't just guess and visit the login page.
-	- Change the permalink format to anything with a slug.
-	- After that in the `Souptik2001` plugin's settings page you have to write the frontend revalidate URL and also the revalidate secret.
+  - One good practice here is to redirect all the links to the frontend URL of the website, except the login path i.e `wp-admin`.
+  - In top of that, `WPS Hide Login` plugin is installed to change the login screen path to something else, so that normal people can't just guess and visit the login page.
+  - Change the permalink format to anything with a slug.
+  - After that in the `Souptik2001` plugin's settings page you have to write the frontend revalidate URL and also the revalidate secret.
 - The frontend is written in Next.js and can be deployed on any server also. But I preferred to deploy it on Vercel, because come-on they only say **Deploy Next.js in seconds**.
 Set the environment variables mentioned in `sample.env` and that's it. Here we are done.
 
 ### Local Development
 
-#### First spin-up the backend:
+#### First spin-up the backend
 
-#### Now let's get the front-end started:
+- Go to `backend` folder.
+- Run `composer install`.
+- Run `docker composer up`.
+- To stop the service run `docker composer down`.
+
+#### Now let's get the front-end started
 
 - Run `nvm use`. If you don't have the node version installed run `nvm install`.
 - Run `npm install`.

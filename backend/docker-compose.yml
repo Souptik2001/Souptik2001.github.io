@@ -2,6 +2,20 @@ version: '3.1'
 
 services:
 
+  solr:
+    image: 'devwithlando/pantheon-index:3.6-3'
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - '8983:449'
+    volumes:
+      - './.docker/solr/schema.xml:/usr/share/solr/conf/schema.xml:delegated'
+      - 'solrdata:/usr/share/solr/data'
+    networks:
+      - common-network
+
   wordpress:
     build: .
     restart: always
@@ -23,18 +37,35 @@ services:
         define('BLOG_ID_CURRENT_SITE', 1);
     volumes:
       - wordpress:/var/www/html
+    networks:
+      - common-network
+    depends_on:
+      - db
+      - solr
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
 
   db:
-    image: mysql:5.7
+    image: 'mariadb:latest'
     restart: always
     environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MARIADB_DATABASE: exampledb
+      MARIADB_USER: exampleuser
+      MARIADB_PASSWORD: examplepass
+      MARIADB_RANDOM_ROOT_PASSWORD: '1'
+    ports:
+      - '3306:3306'
     volumes:
       - db:/var/lib/mysql
+      - './.docker/mysql/my.cnf:/etc/mysql/my.cnf'
+    networks:
+      - common-network
+
+networks:
+  common-network:
+    driver: bridge
 
 volumes:
   wordpress:
   db:
+  solrdata:

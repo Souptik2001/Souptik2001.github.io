@@ -20,3 +20,5 @@ plugins/wp-crontrol/
 node_modules
 debug.log
 db.php
+
+wp

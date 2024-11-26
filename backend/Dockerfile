@@ -32,7 +32,7 @@ RUN apt update -y && apt upgrade -y
 # Copy the files
 COPY . wp-content
 
-COPY .htaccess .
+# COPY .htaccess .
 
 VOLUME wp-content/uploads
 
