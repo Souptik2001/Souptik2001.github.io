@@ -72,7 +72,8 @@ class Plugin {
 
 		add_filter( 'post_link', [ $this, 'change_permalinks' ], 10, 3 );
 
-		add_filter( 'template_redirect', [ $this, 'redirect_if_non_logged_in' ] );
+		// Bad code -- Need to improve, then only enable.
+		// add_filter( 'template_redirect', [ $this, 'redirect_if_non_logged_in' ] );
 
 		add_filter( 'allowed_redirect_hosts', [ $this, 'allowed_redirect_hosts' ] );
 
