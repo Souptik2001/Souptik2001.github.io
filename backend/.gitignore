@@ -21,11 +21,11 @@ node_modules
 debug.log
 db.php
 
-vendor
+vendor/*
 
 plugins/*
 
-!plugins/souptik2001
-!plugins/distributor
+!plugins/souptik2001/
+!plugins/distributor/
 
 wp
