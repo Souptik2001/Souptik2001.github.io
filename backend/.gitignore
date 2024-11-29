@@ -23,8 +23,9 @@ db.php
 
 vendor
 
-plugins
+plugins/*
 
 !plugins/souptik2001
+!plugins/distributor
 
 wp
