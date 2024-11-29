@@ -118,8 +118,6 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				);
 				break;
 			case "core/paragraph":
-				console.log("HEYYYYYYYYYYY");
-				console.log(block);
 				var style = parseStyles(block.attributes, P_STYLE);
 				elements.push(
 					<Paragraph key={key} fontSize={style.typography.fontSize} fontWeight={style.typography.fontWeight} lineHeight={style.typography.lineHeight} color={style.color.text} textAlign={block.attributes.align} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} width={customAttributes.width}>

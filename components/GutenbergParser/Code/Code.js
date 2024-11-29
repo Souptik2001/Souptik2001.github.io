@@ -11,6 +11,13 @@ const Code = ({block, ...props}) => {
 	const [displayCopyIcon, setDisplayCopyIcon] = useState(false);
 	const [copied, setCopied] = useState(false);
 
+	const regex = /<pre class="wp-block-code"><code>(.*)<\/code><\/pre>/gms;
+	const matches = block.saveContent.replace(/(\r\n|\n|\r)/gm, "").match(regex);
+
+	if (matches.length === 0) return;
+
+	const codeContent = matches[0];
+
 	return (
 		<Box
 		width="100%"
@@ -23,7 +30,7 @@ const Code = ({block, ...props}) => {
 		borderRadius="5px"
 		cursor="copy"
 		onClick={() => {
-			navigator.clipboard.writeText(he.decode(block.attributes.content));
+			navigator.clipboard.writeText(he.decode(codeContent));
 			setCopied(true);
 			toast({
 				title: 'Copied to clipboard.',
@@ -47,7 +54,7 @@ const Code = ({block, ...props}) => {
 		position="relative"
 		{...props}
 		>
-			<code style={{ whiteSpace: 'pre-line' }} className="no-code-style">{he.decode(block.attributes.content)}</code>
+			<code style={{ whiteSpace: 'pre-line' }} className="no-code-style">{he.decode(codeContent)}</code>
 			<Box
 			display="flex"
 			justifyContent="center"
