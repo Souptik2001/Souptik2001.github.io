@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Text, UnorderedList } from "@chakra-ui/react";
 import he from 'he';
 import _ from "lodash";
 import { ATTRIBUTE_NAMES, BUTTON_STYLE, FLEX_LAYOUT, GROUP_STYLE, H_STYLE, P_STYLE } from "../../src/default-values";
@@ -112,16 +112,18 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				if(block?.attributes?.textColor !== undefined) style.color.text = block?.attributes?.textColor;
 				elements.push(
 					<Heading key={key} as={`h${block.attributes.level}`} fontSize={style.typography.fontSize} fontWeight={style.typography.fontWeight} letterSpacing="-0.02em" lineHeight={style.typography.lineHeight} color={style.color.text} textAlign={block.attributes.textAlign} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} width={customAttributes.width}>
-						<span dangerouslySetInnerHTML={{ __html: he.decode(block.attributes.content) }} />
+						<span dangerouslySetInnerHTML={{ __html: he.decode(block.saveContent) }} />
 						<ParseBlock blocks={block.innerBlocks} depth={depth+1} searchComponent={searchComponent} />
 					</Heading>
 				);
 				break;
 			case "core/paragraph":
+				console.log("HEYYYYYYYYYYY");
+				console.log(block);
 				var style = parseStyles(block.attributes, P_STYLE);
 				elements.push(
 					<Paragraph key={key} fontSize={style.typography.fontSize} fontWeight={style.typography.fontWeight} lineHeight={style.typography.lineHeight} color={style.color.text} textAlign={block.attributes.align} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} width={customAttributes.width}>
-						<span dangerouslySetInnerHTML={{ __html: he.decode(block.attributes.content) }} />
+						<span dangerouslySetInnerHTML={{ __html: he.decode(block.saveContent) }} />
 						<ParseBlock blocks={block.innerBlocks} depth={depth+1} searchComponent={searchComponent} />
 					</Paragraph>
 				);
@@ -151,7 +153,7 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				var style = parseStyles(block.attributes, P_STYLE);
 				elements.push(
 					<Paragraph key={key} fontSize={style.typography.fontSize} fontWeight={style.typography.fontWeight} lineHeight={style.typography.lineHeight} color={style.color.text} textAlign={block.attributes.align} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb} width={customAttributes.width}>
-						<ListItem><span dangerouslySetInnerHTML={{ __html: he.decode(block.attributes.content) }} /></ListItem>
+						<span dangerouslySetInnerHTML={{ __html: he.decode(block.saveContent) }} />
 						<ParseBlock blocks={block.innerBlocks} depth={depth+1} searchComponent={searchComponent} />
 					</Paragraph>
 				);
