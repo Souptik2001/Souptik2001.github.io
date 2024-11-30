@@ -1,7 +1,11 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
 import Footer from './Footer';
 import NavBar from "./Navbar";
 import Seo from "./Seo/Seo";
+import Notice from "./Notice";
+import Sticky from "./Sticky";
+import Link from 'next/link';
+import { GrAnnounce, GrWordpress } from "react-icons/gr";
 
 const Layout = ({
 	children,
@@ -10,6 +14,7 @@ const Layout = ({
 	customPageTitle,
 	customPageDescription,
     customSeoMeta,
+	displayWPNotice = 'no',
     customPublishedTime,
 }) => {
 
@@ -23,7 +28,20 @@ const Layout = ({
 				customPageDescription={customPageDescription}
 				customSeoMeta={customSeoMeta}
             />
-			<NavBar position="sticky" top="0" px={["15px", null, null, "92px"]} py={10} marginBottom={["46px", null, "70px"]} borderBottom="1px solid rgba(255, 255, 255, 0.2)" background="rgba(0, 0, 0, 0.6)" backdropFilter="blur(6px)" />
+			<Sticky
+				zIndex="20"
+			>
+				{
+					displayWPNotice === 'yes' && data?.link && data?.link !== ''
+					&&
+					<Notice>
+						<p>
+							<Icon as={GrAnnounce} color="white" /> <Icon as={GrWordpress} color="white" /> Check out the <Link href={data.link} legacyBehavior>WordPress site</Link> for the same content in a new experience!
+						</p>
+				</Notice>
+				}
+				<NavBar />
+			</Sticky>
 				{ children }
 			<Footer px={["15px", null, null, "128px"]} py={["32px", null, null, "64px"]}  />
 		</Box>

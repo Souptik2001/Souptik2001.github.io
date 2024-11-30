@@ -18,11 +18,13 @@ a {
   text-decoration: none;
 }
 
+.notice a,
 .container a {
   color: #71e3ff;
   transition: color 1s, text-shadow 0.5s;
 }
 
+.notice a:hover,
 .container a:hover {
   color: #b6fdff;
 }

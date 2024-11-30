@@ -9,7 +9,7 @@ const NavBar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <NavBarContainer background="black" textAlign="center" zIndex="20" {...props}>
+    <NavBarContainer textAlign="center" zIndex="20" {...props}>
       <LogoAndToggleIconContainer zIndex="10">
         <Link style={{textDecoration: "none"}} href="/"><Box fontSize="30px" cursor="pointer">✍</Box></Link>
         <MenuToggle width={["25%", null, "auto"]} toggle={toggle} isOpen={isOpen} />
@@ -109,6 +109,14 @@ const NavBarContainer = ({ children, ...props }) => {
       justifyContent="space-between"
       flexDirection="row"
       wrap="wrap"
+      position="sticky"
+      top="0"
+      px={["15px", null, null, "92px"]}
+      py={5}
+      marginBottom={["46px", null, "70px"]}
+      borderBottom="1px solid rgba(255, 255, 255, 0.2)"
+      background="rgba(0, 0, 0, 0.6)"
+      backdropFilter="blur(6px)"
       {...props}
     >
       {children}

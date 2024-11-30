@@ -10,7 +10,7 @@ import StripTags from '../../src/escaping/StripTags';
 import styles from '../../styles/Blog.module.css';
 import userStyles from '../../styles/User.module.css';
 
-export default function Blog({user, slug}) {
+export default function User({user, displayWPNotice, slug}) {
 
 	const loadMore = async () => {
 
@@ -58,8 +58,16 @@ export default function Blog({user, slug}) {
 
 	registered = ( registered.length > 0 ) ? registered[0] : '';
 
+	// We need to modify the object, therefore create a new one, otherwise the original object is not editable.
+	user = {...user};
+
+	if ( user.url && user.uri ) {
+		user.link = user?.url + user?.uri;
+	}
+
 	return(
 		<Layout
+		data={user}
 		customPageTitle={`${authorName} | Souptik's Blog`}
 		customPageDescription={`Know about our user - "${authorName}"`}
 		customSeoMeta={{
@@ -67,6 +75,7 @@ export default function Blog({user, slug}) {
 			description: `Know about our user "${authorName}"`,
 			siteName: "Souptik's Blog"
 		}}
+		displayWPNotice={displayWPNotice}
 		>
 			<Head>
 		  		<title>{`${authorName} | Souptik's Blog`}</title>
@@ -157,6 +166,8 @@ export async function getStaticProps({params}){
 						name
 						nicename
 						nickname
+						url
+						uri
 						avatar {
 							url
 						}
@@ -197,7 +208,8 @@ export async function getStaticProps({params}){
 		return {
 			props: {
 				slug,
-				user: user?.data?.user
+				user: user?.data?.user,
+				displayWPNotice: process.env.DISPLAY_WP_SITE_NOTICE,
 			}
 		}
 	} catch(error) {

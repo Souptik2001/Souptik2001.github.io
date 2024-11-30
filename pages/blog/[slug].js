@@ -18,7 +18,7 @@ const parseDate = (rawDate) => {
 
 }
 
-export default function Blog({frontend, slug}) {
+export default function Blog({frontend, displayWPNotice, slug}) {
 
 	const authorNameHoverCSS = {
 		textDecoration: "none",
@@ -41,8 +41,9 @@ export default function Blog({frontend, slug}) {
 
 	return(
 		<Layout
-		data={frontend?.data}
+		data={frontend?.data?.post}
 		yoastSeoData={frontend?.data?.post?.seo}
+		displayWPNotice={displayWPNotice}
 		>
 			<Head>
 		  		<title>{`${frontend?.data?.post?.title} | Souptik's Blog`}</title>
@@ -81,6 +82,7 @@ export async function getStaticProps({params}){
 						blocksJSON
 						date
 						title
+						link
 						author {
 							node {
 								name
@@ -152,7 +154,8 @@ export async function getStaticProps({params}){
 		return {
 			props: {
 				slug,
-				frontend: frontendData
+				frontend: frontendData,
+				displayWPNotice: process.env.DISPLAY_WP_SITE_NOTICE,
 			}
 		}
 	} catch(error) {

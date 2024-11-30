@@ -9,12 +9,13 @@ import StripTags from '../src/escaping/StripTags';
 import { doesSlugMatchesCustomPage } from '../src/helper-functions';
 import styles from '../styles/Blog.module.css';
 
-export default function Blog({frontend, slug}) {
+export default function Blog({frontend, displayWPNotice, slug}) {
 
 	return(
 		<Layout
-		data={frontend?.data}
+		data={frontend?.data?.page}
 		yoastSeoData={frontend?.data?.page?.seo}
+		displayWPNotice={displayWPNotice}
 		>
 			<Head>
 		  		<title>{`${frontend?.data?.page?.title} | Souptik's Blog`}</title>
@@ -50,6 +51,7 @@ export async function getStaticProps({params}){
 						blocksJSON
 						date
 						title
+						link
 						author {
 							node {
 							name
@@ -118,7 +120,8 @@ export async function getStaticProps({params}){
 		return {
 			props: {
 				slug,
-				frontend: frontendData
+				frontend: frontendData,
+				displayWPNotice: process.env.DISPLAY_WP_SITE_NOTICE,
 			}
 		}
 	} catch(error) {

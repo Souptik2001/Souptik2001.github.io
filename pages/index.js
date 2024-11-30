@@ -9,7 +9,7 @@ import Layout from '../components/Layout';
 import client from '../src/apollo/Client';
 import styles from '../styles/Home.module.css';
 
-export default function Home({posts, seoData}) {
+export default function Home({posts, displayWPNotice, seoData}) {
   const loadMore = () => {
     updateBlogs(searchTerm, nextCursor);
   }
@@ -55,6 +55,10 @@ export default function Home({posts, seoData}) {
       siteName: "Souptik's Blog",
       imageURL: seoData?.openGraph?.frontPage?.image?.link
     }}
+    data={{
+      link: process.env.NEXT_PUBLIC_BACKEND_URL,
+    }}
+    displayWPNotice={displayWPNotice}
     >
       <Head>
         <title>{"Souptik's Blog"}</title>
@@ -199,6 +203,7 @@ export async function getStaticProps() {
       props: {
         posts,
         seoData: seoData?.data?.seo,
+        displayWPNotice: process.env.DISPLAY_WP_SITE_NOTICE,
       }
     };
   } catch(error) {
