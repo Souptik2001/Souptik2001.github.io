@@ -1,4 +1,4 @@
-=== Twenty Twenty-Three ===
+=== Twenty Twenty-Three forked by Souptik! ===
 Contributors: wordpressdotorg
 Requires at least: 6.1
 Tested up to: 6.1
@@ -8,6 +8,8 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
+
+Twenty Twenty-Three theme modified by me to suite my needs! It's awesome though!
 
 Twenty Twenty-Three is designed to take advantage of the new design tools introduced in WordPress 6.1. With a clean, blank base as a starting point, this default theme includes ten diverse style variations created by members of the WordPress community.
 
