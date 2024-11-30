@@ -209,7 +209,7 @@ export async function getStaticProps({params}){
 			props: {
 				slug,
 				user: user?.data?.user,
-				displayWPNotice: process.env.DISPLAY_WP_SITE_NOTICE,
+				displayWPNotice: process.env.DISPLAY_WP_SITE_NOTICE ?? null,
 			}
 		}
 	} catch(error) {
