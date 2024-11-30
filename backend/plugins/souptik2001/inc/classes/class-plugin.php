@@ -70,9 +70,10 @@ class Plugin {
 
 		add_action( 'profile_update', [ $this, 'trigger_build_hook_for_user' ], 10, 3 );
 
-		add_filter( 'post_link', [ $this, 'change_permalinks' ], 10, 3 );
+		// Need to only change the permalink in mailpoet, not everywhere.
+		// add_filter( 'post_link', [ $this, 'change_permalinks' ], 10, 3 );
 
-		// Bad code -- Need to improve, then only enable.
+		// Will no longer be needed if we also expose the backend site -- need to decide.
 		// add_filter( 'template_redirect', [ $this, 'redirect_if_non_logged_in' ] );
 
 		add_filter( 'allowed_redirect_hosts', [ $this, 'allowed_redirect_hosts' ] );
