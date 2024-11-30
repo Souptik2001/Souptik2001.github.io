@@ -66,6 +66,7 @@ Set the environment variables mentioned in `sample.env` and that's it. Here we a
 - Run `composer install`.
 - Run `docker composer up`.
 - To stop the service run `docker composer down`.
+- To even delete the volumes run `docker compose down -v`.
 
 #### Now let's get the front-end started
 

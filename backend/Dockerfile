@@ -1,4 +1,4 @@
-FROM wordpress:6.3
+FROM wordpress:6.7.1
 
 WORKDIR /var/www/html
 
