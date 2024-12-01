@@ -12,7 +12,7 @@ git checkout $BUILT_BRANCH || git checkout -b $BUILT_BRANCH
 # Create backup folder.
 mkdir $HOME/hostinger-backup
 
-# Backup the required three folders.
+# Backup the required folders.
 cp -r ./backend/plugins $HOME/hostinger-backup
 cp -r ./backend/themes $HOME/hostinger-backup
 
@@ -27,6 +27,10 @@ cp -r $HOME/hostinger-backup/plugins .
 
 # Copy Themes
 cp -r $HOME/hostinger-backup/themes .
+
+# Remove .gitignore files.
+rm ./backend/plugins/souptik2001/.gitignore
+rm ./backend/themes/souptik/.gitignore
 
 # Check if we have changes
 if [[ -z $(git status -s) ]]; then
