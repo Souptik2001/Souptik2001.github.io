@@ -40,3 +40,8 @@ jobs:
           PANTHEON_GIT_BRANCH: master
           RELEASE_VERSION: ${{ github.ref_name }}
         run: bash .bin/deploy.sh
+
+      - name: Deploy to Hostinger branch - Hostinger then deploys from that branch to server
+        env:
+          BUILT_BRANCH: ${{ env.BRANCH_NAME }}-hostinger-built
+        run: bash .bin/deploy-hostinger.sh
