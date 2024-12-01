@@ -13,15 +13,14 @@ git checkout $BUILT_BRANCH || git checkout -b $BUILT_BRANCH
 mkdir $HOME/hostinger-backup
 
 # Backup the required three folders.
-cp -r ./.git $HOME/hostinger-backup
 cp -r ./backend/plugins $HOME/hostinger-backup
 cp -r ./backend/themes $HOME/hostinger-backup
 
-# Clean up the entire directory.
-rm -rf *
-
-# Copy Git folder.
-cp -r $HOME/hostinger-backup/.git .
+# Clean up the entire directory, except .git.
+for dir in ./*; do
+    [ "$dir" = ".git" ] && continue
+    rm -rf "$dir"
+done
 
 # Copy Plugins
 cp -r $HOME/hostinger-backup/plugins .
