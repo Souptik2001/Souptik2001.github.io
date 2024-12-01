@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "souptik.dev's backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "wp-scripts build --webpack-src-dir=./src/blocks/ --output-path=./dist/blocks/",
+		"start": "wp-scripts start --webpack-src-dir=./src/blocks/ --output-path=./dist/blocks/"
+  },
+  "author": "Souptik Datta",
+  "license": "ISC",
+  "dependencies": {
+    "@wordpress/scripts": "^30.6.0"
+  }
+}
