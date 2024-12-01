@@ -22,7 +22,7 @@ cp -r $GITHUB_WORKSPACE/backend/plugins wp-content
 
 # Copy Themes
 rm -rf wp-content/themes
-mv $GITHUB_WORKSPACE/backend/themes wp-content
+cp -r $GITHUB_WORKSPACE/backend/themes wp-content
 
 # Check if we have changes
 if [[ -z $(git status -s) ]]; then
