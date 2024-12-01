@@ -6,15 +6,15 @@ set -euo pipefail
 git config --global user.email "bot@souptik.dev"
 git config --global user.name "GitHub Deploy"
 
-# Checkout the the Hostinger built branch.
-git checkout $BUILT_BRANCH || git checkout -b $BUILT_BRANCH
-
 # Create backup folder.
 mkdir $HOME/hostinger-backup
 
 # Backup the required folders.
 cp -r ./backend/plugins $HOME/hostinger-backup
 cp -r ./backend/themes $HOME/hostinger-backup
+
+# Checkout the the Hostinger built branch.
+git checkout $BUILT_BRANCH || git checkout -b $BUILT_BRANCH
 
 # Clean up the entire directory, except .git.
 for dir in ./*; do
