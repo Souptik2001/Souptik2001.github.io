@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     Souptik2001
- * Description:     Contains the basic features required for the site.
+ * Description:     Contains the core features required for the site.
  * Version:         0.1.0
  * Author:          souptik
  * Author URI:      souptik.dev
