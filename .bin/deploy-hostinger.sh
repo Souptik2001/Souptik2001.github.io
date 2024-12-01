@@ -29,8 +29,8 @@ cp -r $HOME/hostinger-backup/plugins .
 cp -r $HOME/hostinger-backup/themes .
 
 # Remove .gitignore files.
-rm ./backend/plugins/souptik2001/.gitignore
-rm ./backend/themes/souptik/.gitignore
+rm ./plugins/souptik2001/.gitignore
+rm ./themes/souptik/.gitignore
 
 # Check if we have changes
 if [[ -z $(git status -s) ]]; then
