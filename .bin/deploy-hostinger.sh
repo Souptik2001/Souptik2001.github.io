@@ -28,6 +28,8 @@ cp -r $HOME/hostinger-backup/plugins .
 # Copy Themes
 cp -r $HOME/hostinger-backup/themes .
 
+ls
+
 # Remove .gitignore files.
 rm ./plugins/souptik2001/.gitignore
 rm ./themes/souptik/.gitignore

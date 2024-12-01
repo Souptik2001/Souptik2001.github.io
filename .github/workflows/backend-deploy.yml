@@ -40,13 +40,13 @@ jobs:
       - name: Build the souptik theme's assets
         run: cd backend/themes/souptik && npm ci && npm run build && rm -rf node_modules
 
-      - name: Deploy to Pantheon
-        env:
-          PANTHEON_SSH_PRIVATE_KEY: ${{ secrets.PANTHEON_SSH_PRIVATE_KEY }}
-          PANTHEON_GIT_REPOSITORY: ${{ secrets.PANTHEON_GIT_REPOSITORY }}
-          PANTHEON_GIT_BRANCH: master
-          RELEASE_VERSION: ${{ github.ref_name }}
-        run: bash .bin/deploy.sh
+      # - name: Deploy to Pantheon
+      #   env:
+      #     PANTHEON_SSH_PRIVATE_KEY: ${{ secrets.PANTHEON_SSH_PRIVATE_KEY }}
+      #     PANTHEON_GIT_REPOSITORY: ${{ secrets.PANTHEON_GIT_REPOSITORY }}
+      #     PANTHEON_GIT_BRANCH: master
+      #     RELEASE_VERSION: ${{ github.ref_name }}
+      #   run: bash .bin/deploy.sh
 
       - name: Deploy to Hostinger branch - Hostinger then deploys from that branch to server
         env:
