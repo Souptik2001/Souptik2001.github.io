@@ -36,7 +36,9 @@
         "wpackagist-plugin/add-wpgraphql-seo": "*",
         "pristas-peter/wp-graphql-gutenberg": "dev-develop",
         "wpackagist-plugin/solr-power": "*",
-        "wpackagist-plugin/auto-cloudinary": "*"
+        "wpackagist-plugin/auto-cloudinary": "*",
+        "wpackagist-plugin/litespeed-cache": "^6.5",
+        "wpackagist-plugin/hostinger": "^3.0"
     },
     "config": {
         "allow-plugins": {

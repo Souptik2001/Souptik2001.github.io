@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61ae3b7169dedfacd2dd15dbefe1ec00",
+    "content-hash": "485626ad75d5a34f2aec8b2e012ca43e",
     "packages": [
         {
             "name": "composer/installers",
@@ -531,6 +531,42 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/auto-cloudinary/"
+        },
+        {
+            "name": "wpackagist-plugin/hostinger",
+            "version": "3.0.19",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/hostinger/",
+                "reference": "tags/3.0.19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/hostinger.3.0.19.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/hostinger/"
+        },
+        {
+            "name": "wpackagist-plugin/litespeed-cache",
+            "version": "6.5.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/litespeed-cache/",
+                "reference": "tags/6.5.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/litespeed-cache.6.5.2.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/litespeed-cache/"
         },
         {
             "name": "wpackagist-plugin/mailpoet",
