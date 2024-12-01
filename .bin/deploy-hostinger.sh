@@ -37,7 +37,7 @@ else
 	git add .
 	git status
 	git commit -m "Deploy from GitHub $GITHUB_SHA"
-	git push origin $PANTHEON_GIT_BRANCH
+	git push origin $BUILT_BRANCH
 fi
 
 set +x
