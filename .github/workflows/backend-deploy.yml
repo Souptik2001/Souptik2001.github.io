@@ -11,6 +11,7 @@ on:
 
 env:
   COMPOSER_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   deploy:
@@ -20,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout to repository.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
