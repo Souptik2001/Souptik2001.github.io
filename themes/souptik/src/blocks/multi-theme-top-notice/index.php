@@ -81,7 +81,7 @@ function get_alternate_theme_site_url() {
 	if ( is_home() ) {
 		$alternate_theme_site_url = $base_frontend_url;
 	} elseif ( is_author() ) {
-		$alternate_theme_site_url = $base_frontend_url . '/user/' . get_the_author();
+		$alternate_theme_site_url = $base_frontend_url . '/user/' . get_the_author_meta( 'user_login' );
 	} elseif ( is_singular( 'post' ) ) {
 		$alternate_theme_site_url = $base_frontend_url . '/blog/' . get_post_field( 'post_name', get_the_ID() );
 	} elseif ( is_singular( 'page' ) ) {
