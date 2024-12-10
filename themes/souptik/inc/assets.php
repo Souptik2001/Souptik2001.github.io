@@ -21,5 +21,5 @@ function setup(): void {
  * Enqueue styles.
  */
 function enqueue_styles() {
-	wp_enqueue_style( 'overrides', get_stylesheet_uri() . '/assets/css/overrides.css', [], filemtime( get_stylesheet_directory() . '/assets/css/overrides.css' ) );
+	wp_enqueue_style( 'overrides', get_stylesheet_directory_uri() . '/assets/css/overrides.css', [], filemtime( get_stylesheet_directory() . '/assets/css/overrides.css' ) );
 }
