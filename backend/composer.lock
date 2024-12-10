@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "485626ad75d5a34f2aec8b2e012ca43e",
+    "content-hash": "664c77bc5c1beb3611fde765dbffaa4c",
     "packages": [
         {
             "name": "composer/installers",
@@ -549,6 +549,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/hostinger/"
+        },
+        {
+            "name": "wpackagist-plugin/jetpack",
+            "version": "14.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/jetpack/",
+                "reference": "tags/14.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/jetpack.14.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/jetpack/"
         },
         {
             "name": "wpackagist-plugin/litespeed-cache",

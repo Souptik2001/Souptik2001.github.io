@@ -38,7 +38,8 @@
         "wpackagist-plugin/solr-power": "*",
         "wpackagist-plugin/auto-cloudinary": "*",
         "wpackagist-plugin/litespeed-cache": "^6.5",
-        "wpackagist-plugin/hostinger": "^3.0"
+        "wpackagist-plugin/hostinger": "^3.0",
+        "wpackagist-plugin/jetpack": "^14.1"
     },
     "config": {
         "allow-plugins": {
