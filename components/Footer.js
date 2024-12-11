@@ -40,78 +40,18 @@ const Footer = (props) => {
 	}
 
 	return(
-		<Flex width="100%" flexDirection="column" justifyContent="center" alignItems="center" {...props}>
+		<Flex className="footer" width="100%" flexDirection="column" justifyContent="center" alignItems="center" {...props}>
 			<Box
 			width="15%"
 			border="0.5px solid rgba(255, 255, 255, 0.4)"
 			mb="40px"
 			></Box>
-			<Flex mb="20px" textAlign="center" width="100%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">
+			<Flex className="newsletter-subscribe" mb="20px" textAlign="center" width="100%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">
 				<Box textAlign="center" width={["100%", null, null, null, "100%"]} fontWeight="300" fontSize="16px" lineHeight="32px" color="white" letterSpacing="3px">
-					<em>Should we send you a notification when new blogs are published?</em>👇
-				</Box>
-			</Flex>
-			<Flex mb="20px" gap="40px" textAlign="center" width="50%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">
-				<Input
-				placeholder="Name"
-				size="lg"
-				type="text"
-				color="white"
-				ref={nameInput}
-				disabled={loading}
-				_hover={{
-					bg: "#0097233f"
-				}}
-				borderColor="#ffffff8c"
-				focusBorderColor="#ffffff8c"
-				/>
-				<Input
-				placeholder="Email"
-				size="lg"
-				type="email"
-				color="white"
-				ref={emailInput}
-				disabled={loading}
-				_hover={{
-					bg: "#0097233f"
-				}}
-				borderColor="#ffffff8c"
-				focusBorderColor="#ffffff8c"
-				/>
-			</Flex>
-			<Button
-			letterSpacing="5px"
-			mb="5px"
-			lineHeight='24px'
-			transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-			borderRadius='5px'
-			fontSize='16px'
-			padding="8px"
-			fontWeight='600'
-			bg= "#28a745"
-			border='1.5px solid #28a745'
-			color='white'
-			_hover={{
-			  bg: "#1f7032",
-			}}
-			_active={{
-			  bg: "#1f7032",
-			  transform: 'scale(0.98)',
-			}}
-			_focus={{
-			  boxShadow:
-			  '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
-			}}
-			disabled={loading}
-			onClick={subscribe}
-			>
-				Subscribe
-			</Button>
-			<Flex mb="40px" textAlign="center" width="100%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">
-				<Box textAlign="center" width={["100%", null, null, null, "100%"]} fontWeight="600" fontSize="12px" lineHeight="32px" color="white" letterSpacing="3px">
-					{ subscribedStatus !== undefined && subscribedStatus.error === true && '❌' }
-					{ subscribedStatus !== undefined && subscribedStatus.error === false && '✅' }
-					{ subscribedStatus !== undefined && subscribedStatus.message !== undefined && subscribedStatus.message }
+					<em>Should we send you a notification when new blogs are published?</em>
+					<br/>
+					{/* @TODO: Make this link dynamic */}
+					<em>Then you can <Link href="https://blog.souptik.dev/#newsletter-subscribe">subscribe to newsletter here</Link>! It is just one click, and no spam! ❤️</em>
 				</Box>
 			</Flex>
 			<Flex textAlign="center" width="100%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">

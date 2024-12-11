@@ -19,12 +19,19 @@ a {
 }
 
 .notice a,
+.footer a,
 .container a {
   color: #71e3ff;
   transition: color 1s, text-shadow 0.5s;
 }
 
+.newsletter-subscribe a,
+.notice a {
+  text-decoration: underline;
+}
+
 .notice a:hover,
+.footer a:hover,
 .container a:hover {
   color: #b6fdff;
 }

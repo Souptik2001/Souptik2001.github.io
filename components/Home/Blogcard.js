@@ -1,6 +1,7 @@
 import { Box, Heading, Link as ChakraLink, Text } from "@chakra-ui/layout";
 import Link from 'next/link';
 import StripTags from "../../src/escaping/StripTags";
+import { prepareExcerpt } from "../../src/helper-functions";
 
 const parseDate = (rawDate) => {
 
@@ -41,7 +42,7 @@ export default function Blogcard({ data, styles, ...rest }) {
 					</Box>
 					<Box className={styles.b_body}>
 						{/* There wil also be an option to insert content if excerpt is not present. */}
-						{StripTags(excerpt)}
+						{prepareExcerpt(excerpt)}
 					</Box>
 				</Box>
 			</ChakraLink>

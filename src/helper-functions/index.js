@@ -4,6 +4,7 @@ import humanFormat from 'human-format';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import _ from "lodash";
+import StripTags from "../escaping/StripTags";
 
 TimeAgo.addLocale(en);
 
@@ -94,4 +95,15 @@ export const doesSlugMatchesCustomPage = (slug) => {
 	const pagesToExclude = [];
 
 	return pagesToExclude.includes(slug);
+}
+
+export const prepareExcerpt = (excerpt) => {
+	const regex = /<p>(.*?)<\/p>/s;
+	const match = excerpt.match(regex);
+
+	if (match) {
+	  excerpt = match[1];
+	}
+
+	return StripTags(excerpt);
 }
