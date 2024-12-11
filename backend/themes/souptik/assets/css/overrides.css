@@ -1,3 +1,7 @@
 .wp-block-jetpack-subscriptions {
 	border: none;
 }
+
+.wp-block-button__link {
+	width: 100% !important;
+}
