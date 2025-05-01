@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "664c77bc5c1beb3611fde765dbffaa4c",
+    "content-hash": "5c9724bc078669016fe02a286a64716d",
     "packages": [
         {
             "name": "composer/installers",
@@ -585,6 +585,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/litespeed-cache/"
+        },
+        {
+            "name": "wpackagist-plugin/login-with-google",
+            "version": "1.3.7",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/login-with-google/",
+                "reference": "tags/1.3.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/login-with-google.1.3.7.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/login-with-google/"
         },
         {
             "name": "wpackagist-plugin/mailpoet",
