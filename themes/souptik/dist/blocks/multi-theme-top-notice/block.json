@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "souptik/multi-theme-top-notice",
+  "version": "0.1.0",
+  "title": "Multi Theme top sticky notice",
+  "category": "souptik",
+  "icon": "edit",
+  "description": "A notice banner which remains sticky at the top of the page to display the respective page's new theme link. Note: %s will be replaced by new theme site URL.",
+  "textdomain": "souptik",
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "linkText": {
+      "type": "string"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
