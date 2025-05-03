@@ -46,7 +46,8 @@
         "allow-plugins": {
             "composer/installers": true,
             "roots/wordpress-core-installer": true
-        }
+        },
+        "preferred-install": "dist"
     },
     "extra": {
         "installer-paths": {
