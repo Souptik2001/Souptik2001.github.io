@@ -18,8 +18,11 @@
   padding-right: 10vw;
 }
 
-.blog {
+.blog_wrapper {
   margin-top: 80px;
+}
+
+.blog {
   padding: 40px;
   cursor: pointer;
   transition: background-color, border-radius, backdrop-filter, -webkit-backdrop-filter;
@@ -94,4 +97,8 @@
       border-radius: 30px;
   }
 
+}
+
+.blog_category {
+  padding: 0 40px;
 }
