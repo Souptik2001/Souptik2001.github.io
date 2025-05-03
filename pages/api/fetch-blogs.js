@@ -37,6 +37,14 @@ export default async function handler(req, res) {
                     name
                   }
                 }
+                categories {
+                  edges {
+                    node {
+                    name
+                    slug
+                    }
+                  }
+                }
               }
             }
             pageInfo {
@@ -75,6 +83,12 @@ function formWhereQuery(req) {
     if(where.length > 0) where += ", ";
 
     where += `search: "${req?.query?.search}"`;
+  }
+
+  if ( req?.query?.category !== undefined ) {
+    if(where.length > 0) where += ", ";
+
+    where += `categoryName: "${req?.query?.category}"`;
   }
 
   return "where: { " +  where + " }";

@@ -9,6 +9,7 @@ import client from "../../src/apollo/Client";
 import StripTags from '../../src/escaping/StripTags';
 import { doesSlugMatchesCustomPage } from '../../src/helper-functions';
 import styles from '../../styles/Blog.module.css';
+import Categories from '../../components/Categories';
 
 const parseDate = (rawDate) => {
 
@@ -54,6 +55,9 @@ export default function Blog({frontend, displayWPNotice, slug}) {
 				</Heading>
 				<Box className={styles.b_info}>
 					Posted by <Link href={`/user/${frontend?.data?.post?.author?.node?.slug}`} legacyBehavior><ChakraLink fontWeight="600" __css={{ transition: "1s" }} _hover={authorNameHoverCSS}>{authorName}</ChakraLink></Link> on {parseDate(frontend?.data?.post?.date)}
+				</Box>
+				<Box className={styles.b_categories}>
+					<Categories categories={frontend?.data?.post?.categories?.edges ?? []} />
 				</Box>
 				<Box  marginTop="40px" display="flex" flexDirection="row" justifyContent="center" alignItems="center">
 					<Image borderRadius="10px" width={["100%", null, null, "50%"]} srcSet={frontend?.data?.post?.featuredImage?.node?.srcSet} alt={frontend?.data?.post?.featuredImage?.node?.altText} />
@@ -135,6 +139,14 @@ export async function getStaticProps({params}){
 								pageType
 								articleType
 								raw
+							}
+						}
+						categories {
+							edges {
+							  node {
+								name
+								slug
+							  }
 							}
 						}
 					}

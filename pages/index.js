@@ -169,6 +169,14 @@ export async function getStaticProps() {
                     lastName
                   }
                 }
+                categories {
+                  edges {
+                    node {
+                    name
+                    slug
+                    }
+                  }
+                }
               }
             }
             pageInfo {

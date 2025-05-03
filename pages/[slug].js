@@ -144,6 +144,10 @@ export async function getStaticPaths(){
 				  slug
 				}
 			  }
+			  pageInfo {
+				endCursor
+				hasNextPage
+			  }
 			}
 		  }
 		`
