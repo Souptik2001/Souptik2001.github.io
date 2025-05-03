@@ -10,7 +10,7 @@ import Search from '../../components/Home/Search';
 import Blogcard from '../../components/Home/Blogcard';
 import styles from '../../styles/Home.module.css';
 
-export default function Category({posts, displayWPNotice, seoData, slug}) {
+export default function Category({posts, displayWPNotice, seoData, slug, name}) {
 	const loadMore = () => {
 	  updateBlogs(searchTerm, nextCursor);
 	}
@@ -57,7 +57,7 @@ export default function Category({posts, displayWPNotice, seoData, slug}) {
 	  customSeoMeta={{
 		title: seoData?.openGraph?.frontPage?.title,
 		description: seoData?.openGraph?.frontPage?.description,
-		siteName: "Souptik's Blog | Category: " + slug,
+		siteName: "Souptik's Blog | Category: " + name,
 		imageURL: seoData?.openGraph?.frontPage?.image?.link
 	  }}
 	  data={{
@@ -66,12 +66,12 @@ export default function Category({posts, displayWPNotice, seoData, slug}) {
 	  displayWPNotice={displayWPNotice}
 	  >
 		<Head>
-		  <title>{"Souptik's Blog | Category: " + slug}</title>
+		  <title>{"Souptik's Blog | Category: " + name}</title>
 		</Head>
 		<Box className={styles.firstSec} id={styles.firstSec_i}>
 		  <Box className={styles.intro}>
 			  <Heading color="white" letterSpacing="8px" fontFamily="Heboo, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif" fontWeight="800">
-				Category: {StripTags(slug)}
+				Category: {StripTags(name)}
 			  </Heading>
 			  <Container
 				marginTop="20px"
@@ -158,6 +158,16 @@ export async function getStaticProps({params}){
 
 	try {
 
+		const category = await client.query({
+			query: gql`
+			  query fetchCategory {
+				category(id: "${slug}", idType: SLUG) {
+					name
+				}
+			  }
+			`
+		});
+
 		const posts = await client.query({
 		  query: gql`
 			query fetchPosts {
@@ -218,6 +228,7 @@ export async function getStaticProps({params}){
 		  props: {
 			posts,
 			slug,
+			name: category?.data?.category?.name,
 			seoData: seoData?.data?.seo,
 			displayWPNotice: process.env.DISPLAY_WP_SITE_NOTICE ?? null,
 		  }
