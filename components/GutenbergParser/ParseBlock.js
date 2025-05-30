@@ -212,16 +212,16 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				break;
 			case "core/embed":
 				if(block?.attributes?.providerNameSlug === 'youtube'){
-					let youtubeRegex = new RegExp( "youtube\\.com\\/watch\\?v=(.*)", "gm" );
+					let youtubeRegex = new RegExp( "(?:youtu\.be\/)([a-zA-Z0-9_-]{11})", "gm" );
 					let matches = youtubeRegex.exec( block?.attributes?.url );
 					if( matches === null || matches.length < 2 ) {
 						console.log( "YOUTUBE EMBED ERROR" );
 						break;
 					}
 					elements.push(
-						<Flex key={key} width="100%" justifyContent="center" alignItems="center">
-							<Box width={["100%", null, null, null, "50%"]}>
-								<iframe style={{aspectRatio: '16/9'}} width={"100%"} src={`https://www.youtube.com/embed/${matches[1]}`} title="Let’s Naacho! | RRR | Netflix Philippines" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+						<Flex key={key} width="100%" marginBottom={"50px"} justifyContent="center" alignItems="center">
+							<Box overflow={"hidden"} borderRadius="8%" width={["100%", null, null, null, "100%"]}>
+								<iframe style={{aspectRatio: '16/9'}} width={"100%"} src={`https://www.youtube.com/embed/${matches[1]}?feature=embed`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 							</Box>
 						</Flex>
 					);
