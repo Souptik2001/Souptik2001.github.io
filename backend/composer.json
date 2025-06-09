@@ -40,7 +40,6 @@
         "wpackagist-plugin/litespeed-cache": "^6.5",
         "wpackagist-plugin/hostinger": "^3.0",
         "wpackagist-plugin/jetpack": "^14.1",
-        "wpackagist-plugin/login-with-google": "^1.3",
         "wpackagist-plugin/view-transitions": "^1.0"
     },
     "config": {

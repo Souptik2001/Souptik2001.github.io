@@ -27,6 +27,7 @@ plugins/*
 themes/*
 
 !plugins/souptik2001/
+!plugins/login-with-google/
 !plugins/distributor/
 
 !themes/souptik
