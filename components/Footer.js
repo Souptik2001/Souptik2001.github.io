@@ -51,12 +51,12 @@ const Footer = (props) => {
 					<em>Should we send you a notification when new blogs are published?</em>
 					<br/>
 					{/* @TODO: Make this link dynamic */}
-					<em>Then you can <Link href="https://blog.souptik.dev/#newsletter-subscribe">subscribe to newsletter here</Link>! It is just one click, and no spam! ❤️</em>
+					<em>Then you can <Link href="https://blog.souptik.dev/newsletter-subscribe" target="__blank">subscribe to newsletter here</Link>! It is just one click, and no spam! ❤️</em>
 				</Box>
 			</Flex>
 			<Flex textAlign="center" width="100%" flexDirection={["column", null, null, null, "row"]} justifyContent="space-between" alignItems="center">
 				<Box textAlign="center" width={["100%", null, null, null, "100%"]} fontWeight="600" fontSize="16px" lineHeight="32px" color="white">
-					Built with 💻 by <Link isExternal href="https://www.linkedin.com/in/souptik-datta-a10072183/">Souptik</Link>
+					Built with 💻 by <Link isExternal href="https://www.linkedin.com/in/souptik-datta/">Souptik</Link>
 				</Box>
 			</Flex>
 	  </Flex>

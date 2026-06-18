@@ -17,7 +17,7 @@ export const theme = extendTheme({
 	styles: {
 		global: (props) => ({
 			body: {
-				background: ["linear-gradient(-45deg, #000000, #000000, #000000, #000000, #008cff)", null, null, "linear-gradient(-45deg, #000000, #000000, #000000, #000000, #008cff"],
+				background: ["radial-gradient(circle at 0% 0%, rgba(18, 61, 102, 0.95) 0%, rgba(11, 31, 58, 0.72) 24%, rgba(7, 17, 31, 0.35) 45%, rgba(0, 0, 0, 0) 66%), linear-gradient(135deg, #030712 0%, #000000 74%, #000000 100%)", null, null, "radial-gradient(circle at 0% 0%, rgba(18, 61, 102, 0.95) 0%, rgba(11, 31, 58, 0.72) 24%, rgba(7, 17, 31, 0.35) 45%, rgba(0, 0, 0, 0) 66%), linear-gradient(135deg, #030712 0%, #000000 74%, #000000 100%)"],
 				animation: "gradient 15s ease infinite",
 			}
 		 })

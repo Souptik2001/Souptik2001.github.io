@@ -21,7 +21,7 @@ a {
 .notice a,
 .footer a,
 .container a {
-  color: #71e3ff;
+  color: #7dd3fc;
   transition: color 1s, text-shadow 0.5s;
 }
 
@@ -33,7 +33,7 @@ a {
 .notice a:hover,
 .footer a:hover,
 .container a:hover {
-  color: #b6fdff;
+  color: #bae6fd;
 }
 
 * {

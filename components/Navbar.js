@@ -59,9 +59,9 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
     <ChakraLink
     fontWeight="600"
     style={{textDecoration: "none"}}
-    color="rgba(255, 255, 255, 0.5)"
+    color="rgba(255, 255, 255, 0.68)"
     _hover={{
-      color: "rgba(255, 255, 255, 0.8)"
+      color: "rgba(255, 255, 255, 0.9)"
     }}
     {...rest}>
       <Text display="block">
@@ -79,6 +79,7 @@ const MenuLinks = ({ isOpen, ...props }) => {
   let currentRoute = '';
 
   if(router?.query?.slug !== undefined) currentRoute = router?.query?.slug;
+  if(router?.pathname === '/blogs') currentRoute = 'blogs';
 
   return (
     <Box
@@ -93,9 +94,11 @@ const MenuLinks = ({ isOpen, ...props }) => {
         direction={["column", "column", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/" color={(currentRoute === '') ? "white" : "rgba(255, 255, 255, 0.5)"}>📖Home</MenuItem>
-        <MenuItem to="/interests" color={(currentRoute === 'interests') ? "white" : "rgba(255, 255, 255, 0.5)"}>📚Interests</MenuItem>
-        <MenuItem to="/about" color={(currentRoute === 'about') ? "white" : "rgba(255, 255, 255, 0.5)"}>👋About</MenuItem>
+        <MenuItem to="/blogs" color={(currentRoute === 'blogs') ? "white" : "rgba(255, 255, 255, 0.68)"}>Blogs</MenuItem>
+        <MenuItem to="/engineering-notes" color={(currentRoute === 'engineering-notes') ? "white" : "rgba(255, 255, 255, 0.68)"}>Engineering Notes</MenuItem>
+        <MenuItem to="/tiny-machines" color={(currentRoute === 'tiny-machines') ? "white" : "rgba(255, 255, 255, 0.68)"}>Tiny Machines</MenuItem>
+        <MenuItem to="/fpv-logbook" color={(currentRoute === 'fpv-logbook') ? "white" : "rgba(255, 255, 255, 0.68)"}>FPV Logbook</MenuItem>
+        <MenuItem to="/frames-and-stories" color={(currentRoute === 'frames-and-stories') ? "white" : "rgba(255, 255, 255, 0.68)"}>Frames & Stories</MenuItem>
       </Stack>
     </Box>
   );
@@ -115,7 +118,7 @@ const NavBarContainer = ({ children, ...props }) => {
       py={5}
       marginBottom={["46px", null, "70px"]}
       borderBottom="1px solid rgba(255, 255, 255, 0.2)"
-      background="rgba(0, 0, 0, 0.6)"
+      background="rgba(0, 0, 0, 0.72)"
       backdropFilter="blur(6px)"
       {...props}
     >

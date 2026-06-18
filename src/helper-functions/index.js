@@ -92,7 +92,7 @@ export function parseDateAndTime(dateTimeString) {
 }
 
 export const doesSlugMatchesCustomPage = (slug) => {
-	const pagesToExclude = [];
+	const pagesToExclude = ['blogs'];
 
 	return pagesToExclude.includes(slug);
 }

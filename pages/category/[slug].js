@@ -8,7 +8,7 @@ import client from "../../src/apollo/Client";
 import StripTags from '../../src/escaping/StripTags';
 import Search from '../../components/Home/Search';
 import Blogcard from '../../components/Home/Blogcard';
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/Blogs.module.css';
 
 export default function Category({posts, displayWPNotice, seoData, slug, name}) {
 	const loadMore = () => {
@@ -61,7 +61,7 @@ export default function Category({posts, displayWPNotice, seoData, slug, name}) 
 		imageURL: seoData?.openGraph?.frontPage?.image?.link
 	  }}
 	  data={{
-		link: process.env.NEXT_PUBLIC_BACKEND_URL,
+		link: `${process.env.NEXT_PUBLIC_BACKEND_URL}/category/${slug}`,
 	  }}
 	  displayWPNotice={displayWPNotice}
 	  >
@@ -70,7 +70,7 @@ export default function Category({posts, displayWPNotice, seoData, slug, name}) 
 		</Head>
 		<Box className={styles.firstSec} id={styles.firstSec_i}>
 		  <Box className={styles.intro}>
-			  <Heading color="white" letterSpacing="8px" fontFamily="Heboo, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif" fontWeight="800">
+			  <Heading className={styles.pageTitle}>
 				Category: {StripTags(name)}
 			  </Heading>
 			  <Container
@@ -97,7 +97,7 @@ export default function Category({posts, displayWPNotice, seoData, slug, name}) 
 				{
 				  ! isSearching &&
 				  <>
-					<Box marginTop="50px" marginBottom="50px">
+					<Box className={styles.blogGrid} marginTop="50px" marginBottom="50px">
 					  {
 						blogs.length > 0 &&
 						blogs.map((item, index) => {
@@ -122,14 +122,14 @@ export default function Category({posts, displayWPNotice, seoData, slug, name}) 
 					  fontSize='16px'
 					  padding="15px"
 					  fontWeight='600'
-					  bg= "#28a745"
-					  border='1.5px solid #28a745'
+					  bg= "#0f5f3a"
+					  border='1.5px solid #0f5f3a'
 					  color='white'
 					  _hover={{
-						bg: "#1f7032",
+						bg: "#0b4f31",
 					  }}
 					  _active={{
-						bg: "#1f7032",
+						bg: "#0b4f31",
 						transform: 'scale(0.98)',
 					  }}
 					  _focus={{
@@ -171,7 +171,7 @@ export async function getStaticProps({params}){
 		const posts = await client.query({
 		  query: gql`
 			query fetchPosts {
-			  posts(first: 5, where: {categoryName: "${slug}"}) {
+			  posts(first: 6, where: {categoryName: "${slug}"}) {
 				edges {
 				  node {
 					id

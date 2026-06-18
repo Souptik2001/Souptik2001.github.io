@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import { Box, Link as ChakraLink, Heading, Image } from '@chakra-ui/react';
 import { isEmpty } from 'lodash';
+import he from 'he';
 import Head from "next/head";
 import Link from 'next/link';
 import ParseBlock from '../../components/GutenbergParser/ParseBlock';
@@ -47,7 +48,7 @@ export default function Blog({frontend, displayWPNotice, slug}) {
 		displayWPNotice={displayWPNotice}
 		>
 			<Head>
-		  		<title>{`${frontend?.data?.post?.title} | Souptik's Blog`}</title>
+		  		<title>{`${he.decode(frontend?.data?.post?.title ?? '')} | Souptik's Blog`}</title>
 			</Head>
 			<Box px="10%" className="container">
 				<Heading fontWeight="300" className={styles.b_head}>

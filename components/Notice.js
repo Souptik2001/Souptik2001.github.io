@@ -15,7 +15,7 @@ const Notice = ({ children, ...props }) => {
 		px={["15px", null, null, "92px"]}
 		py={2}
 		borderBottom="1px solid rgba(255, 255, 255, 0.2)"
-		background="rgba(0, 0, 0, 0.6)"
+		background="rgba(0, 0, 0, 0.72)"
 		backdropFilter="blur(6px)"
 		textAlign="center"
 		zIndex={20}

@@ -36,7 +36,7 @@ tp-slider-nav-item[current="yes"]::before {
 tp-slider-arrow button svg {
 	width: 50px;
 	height: 50px;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.24);
 	backdrop-filter: blur(1px);
 	transition: background-color 0.2s;
 	border-radius: 50%;

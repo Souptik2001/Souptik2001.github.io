@@ -121,14 +121,14 @@ export default function User({user, displayWPNotice, slug}) {
 							fontSize='16px'
 							padding="15px"
 							fontWeight='600'
-							bg= "#28a745"
-							border='1.5px solid #28a745'
+							bg= "#0f5f3a"
+							border='1.5px solid #0f5f3a'
 							color='white'
 							_hover={{
-							bg: "#1f7032",
+							bg: "#0b4f31",
 							}}
 							_active={{
-							bg: "#1f7032",
+							bg: "#0b4f31",
 							transform: 'scale(0.98)',
 							}}
 							_focus={{
