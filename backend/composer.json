@@ -58,6 +58,6 @@
         "wordpress-install-dir": "wp"
     },
     "require-dev": {
-        "roots/wordpress": "^6.7"
+        "roots/wordpress": "^7.0"
     }
 }

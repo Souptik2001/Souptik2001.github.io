@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { css, Global } from '@emotion/react'
-import "@fontsource/heebo"
+import "@fontsource/dm-sans"
 import 'focus-visible/dist/focus-visible'
 import Router from 'next/router'
 import NProgress from 'nprogress'

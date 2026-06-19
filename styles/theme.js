@@ -23,7 +23,7 @@ export const theme = extendTheme({
 		 })
 	},
 	fonts: {
-		heading: 'Heebo, sans-serif',
-		body: 'Heebo, sans-serif',
+		heading: 'DM Sans, sans-serif',
+		body: 'DM Sans, sans-serif',
 	  },
 });
