@@ -9,6 +9,7 @@ namespace Souptik\Theme\Blocks;
 
 // Includes.
 require_once __DIR__ . '/../src/blocks/multi-theme-top-notice/index.php';
+require_once __DIR__ . '/../src/blocks/scattered-image-cards/index.php';
 
 /**
  * Setup.
@@ -20,6 +21,7 @@ function setup(): void {
 	add_filter( 'block_categories_all', __NAMESPACE__ . '\\register_custom_block_category', 10, 2 );
 
 	Multi_Theme_Top_Notice\setup();
+	Scattered_Image_Cards\setup();
 }
 
 /**

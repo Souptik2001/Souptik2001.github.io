@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "souptik/scattered-image-cards",
+	"version": "0.1.0",
+	"title": "Scattered Image Cards",
+	"category": "souptik",
+	"icon": "format-gallery",
+	"description": "Displays selected images as slightly overlapping scattered photo cards.",
+	"textdomain": "souptik",
+	"attributes": {
+		"images": {
+			"type": "array",
+			"default": []
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

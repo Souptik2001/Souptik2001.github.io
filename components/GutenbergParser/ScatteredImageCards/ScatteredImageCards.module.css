@@ -1,0 +1,60 @@
+.scatteredImageCards {
+  margin: clamp(48px, 8vw, 96px) auto;
+  max-width: min(980px, 100%);
+  overflow: visible;
+  padding: clamp(28px, 5vw, 64px) 0;
+}
+
+.stage {
+  align-items: center;
+  display: flex;
+  isolation: isolate;
+  justify-content: center;
+  min-height: clamp(280px, 42vw, 460px);
+  overflow: visible;
+  position: relative;
+  width: 100%;
+}
+
+.card {
+  aspect-ratio: 4 / 5;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 8px;
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.34), 0 8px 18px rgba(3, 7, 18, 0.22);
+  margin: 0;
+  max-width: 280px;
+  padding: 10px 10px 26px;
+  position: absolute;
+  transform: translate3d(var(--card-x), var(--card-y), 0) rotate(var(--card-rotation));
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  width: clamp(150px, 24vw, 260px);
+  z-index: var(--card-z);
+}
+
+.card:hover {
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.42), 0 10px 22px rgba(3, 7, 18, 0.28);
+  transform: translate3d(var(--card-x), calc(var(--card-y) - 8px), 0) rotate(var(--card-rotation));
+}
+
+.card img {
+  border-radius: 5px;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .scatteredImageCards {
+    padding: 30px 0;
+  }
+
+  .stage {
+    min-height: 330px;
+  }
+
+  .card {
+    width: clamp(120px, 38vw, 175px);
+  }
+}

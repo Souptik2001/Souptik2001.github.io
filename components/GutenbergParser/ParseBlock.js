@@ -11,6 +11,7 @@ import Column from "./Column";
 import Columns from "./Columns";
 import MediaText from "./MediaText";
 import Paragraph from "./Paragraph/Paragraph";
+import ScatteredImageCards from "./ScatteredImageCards/ScatteredImageCards";
 import Slider from "./Slider/Slider";
 
 const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
@@ -255,6 +256,11 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				elements.push(
 					<span dangerouslySetInnerHTML={{ __html: block.attributes.content }} />
 				)
+				break;
+			case 'souptik/scattered-image-cards':
+				elements.push(
+					<ScatteredImageCards key={key} images={block.attributes.images ?? []} />
+				);
 				break;
 			default:
 				elements.push( <Box key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}><Text as="kbd">Could not identify block of type {block.name}!</Text></Box> );
