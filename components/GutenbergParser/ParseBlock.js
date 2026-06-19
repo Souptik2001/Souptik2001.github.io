@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, ListItem, OrderedList, Text, UnorderedList } from "@chakra-ui/react";
+import { Box, Flex, Heading, ListItem, OrderedList, Text, UnorderedList } from "@chakra-ui/react";
 import he from 'he';
 import _ from "lodash";
 import { ATTRIBUTE_NAMES, BUTTON_STYLE, FLEX_LAYOUT, GROUP_STYLE, H_STYLE, P_STYLE } from "../../src/default-values";
@@ -9,6 +9,8 @@ import Buttons from "./Button/Buttons";
 import Code from "./Code/Code";
 import Column from "./Column";
 import Columns from "./Columns";
+import EmbedBlock from "./EmbedBlock/EmbedBlock";
+import ImageBlock from "./ImageBlock/ImageBlock";
 import MediaText from "./MediaText";
 import Paragraph from "./Paragraph/Paragraph";
 import ScatteredImageCards from "./ScatteredImageCards/ScatteredImageCards";
@@ -163,9 +165,9 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 				customAttributes.height = block?.attributes?.height ?? "auto";
 				customAttributes.width = block?.attributes?.width ?? "auto";
 				elements.push(
-					<Flex key={key} alignItems='center' justifyContent='center' mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}>
-						<Image borderRadius={borderRadius} src={block.attributes.url} alt={block.attributes.alt} height={customAttributes.height} width={customAttributes.width} />
-					</Flex>
+					<Box key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}>
+						<ImageBlock src={block.attributes.url} alt={block.attributes.alt} height={customAttributes.height} width={customAttributes.width} borderRadius={borderRadius} />
+					</Box>
 				);
 				break;
 			case "core/gallery":
@@ -221,11 +223,12 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 						break;
 					}
 					elements.push(
-						<Flex key={key} width="100%" marginBottom={"50px"} justifyContent="center" alignItems="center">
-							<Box overflow={"hidden"} borderRadius="8%" width={["100%", null, null, null, "100%"]}>
-								<iframe style={{aspectRatio: '16/9'}} width={"100%"} src={`https://www.youtube.com/embed/${matches[1]}?feature=embed`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-							</Box>
-						</Flex>
+						<EmbedBlock
+							key={key}
+							src={`https://www.youtube.com/embed/${matches[1]}?feature=embed`}
+							title={block?.attributes?.caption || 'YouTube video'}
+							aspectRatio="16 / 9"
+						/>
 					);
 					break;
 				}
@@ -237,11 +240,12 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 						break;
 					}
 					elements.push(
-						<Flex key={key} width="100%" justifyContent="center" alignItems="center">
-							<Box width={["80%", "60%", "40%", null, "25%"]}>
-								<iframe style={{borderRadius: "12px", aspectRatio: '5/7'}} src={`https://open.spotify.com/embed/playlist/${matches[1]}?utm_source=generator`} width="100%" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-							</Box>
-						</Flex>
+						<EmbedBlock
+							key={key}
+							src={`https://open.spotify.com/embed/playlist/${matches[1]}?utm_source=generator`}
+							title={block?.attributes?.caption || 'Spotify playlist'}
+							aspectRatio="5 / 7"
+						/>
 					);
 					break;
 				}

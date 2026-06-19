@@ -1,0 +1,35 @@
+.imageBlock {
+  display: flex;
+  justify-content: center;
+  margin: clamp(34px, 6vw, 64px) auto;
+  overflow: visible;
+  width: 100%;
+}
+
+.imageFrame {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  max-width: min(920px, 100%);
+  overflow: hidden;
+  width: 100%;
+}
+
+.image {
+  display: block;
+  height: auto !important;
+  max-height: min(72vh, 720px);
+  object-fit: contain;
+  width: 100% !important;
+}
+
+@media (max-width: 700px) {
+  .imageBlock {
+    margin: 30px auto;
+  }
+
+  .imageFrame {
+    border-radius: 8px;
+  }
+}

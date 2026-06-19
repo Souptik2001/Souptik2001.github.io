@@ -29,6 +29,8 @@ export default function Save( { attributes } ) {
 								'--card-rotation': `${ layout.rotation }deg`,
 								'--card-x': `${ layout.x }px`,
 								'--card-y': `${ layout.y }px`,
+								'--card-mobile-x': `${ layout.mobileX }px`,
+								'--card-mobile-y': `${ layout.mobileY }px`,
 								'--card-z': layout.zIndex,
 							} }
 						>

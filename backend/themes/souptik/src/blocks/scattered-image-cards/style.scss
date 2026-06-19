@@ -1,8 +1,8 @@
 .souptik-scattered-image-cards {
-	margin: clamp(48px, 8vw, 96px) auto;
+	margin: 0 auto;
 	max-width: min(980px, 100%);
 	overflow: visible;
-	padding: clamp(28px, 5vw, 64px) 0;
+	padding: 0;
 }
 
 .souptik-scattered-image-cards__button {
@@ -14,7 +14,7 @@
 	display: flex;
 	isolation: isolate;
 	justify-content: center;
-	min-height: clamp(280px, 42vw, 460px);
+	min-height: clamp(320px, 44vw, 500px);
 	overflow: visible;
 	position: relative;
 	width: 100%;
@@ -27,12 +27,12 @@
 	border-radius: 8px;
 	box-shadow: 0 22px 54px rgba(0, 0, 0, 0.34), 0 8px 18px rgba(3, 7, 18, 0.22);
 	margin: 0;
-	max-width: 280px;
+	max-width: 250px;
 	padding: 10px 10px 26px;
 	position: absolute;
 	transform: translate3d(var(--card-x), var(--card-y), 0) rotate(var(--card-rotation));
 	transition: box-shadow 0.2s ease, transform 0.2s ease;
-	width: clamp(150px, 24vw, 260px);
+	width: clamp(145px, 22vw, 235px);
 	z-index: var(--card-z);
 }
 
@@ -59,14 +59,20 @@
 
 @media (max-width: 700px) {
 	.souptik-scattered-image-cards {
-		padding: 30px 0;
+		margin: 0 auto;
+		padding: 0;
 	}
 
 	.souptik-scattered-image-cards__stage {
-		min-height: 330px;
+		min-height: 260px;
 	}
 
 	.souptik-scattered-image-cards__card {
+		transform: translate3d(var(--card-mobile-x, var(--card-x)), var(--card-mobile-y, var(--card-y)), 0) rotate(var(--card-rotation));
 		width: clamp(120px, 38vw, 175px);
+	}
+
+	.souptik-scattered-image-cards__card:hover {
+		transform: translate3d(var(--card-mobile-x, var(--card-x)), calc(var(--card-mobile-y, var(--card-y)) - 8px), 0) rotate(var(--card-rotation));
 	}
 }
