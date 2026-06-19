@@ -264,7 +264,7 @@ export default function Home({posts, displayWPNotice, seoData}) {
             <Box>
               <Text className={styles.eyebrow}>Elsewhere</Text>
               <Heading as="h2" className={styles.sectionTitle}>
-                More places to find me
+                Elsewhere, you will find my work
               </Heading>
             </Box>
           </Flex>
