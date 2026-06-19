@@ -1,0 +1,11 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "souptik/elegant-highlight-format",
+	"title": "Elegant Highlight Format",
+	"category": "souptik",
+	"description": "Build entry for the Elegant Highlight rich text format.",
+	"textdomain": "souptik",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}

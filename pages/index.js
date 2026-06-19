@@ -177,7 +177,7 @@ export default function Home({posts, displayWPNotice, seoData}) {
               My little corner on the internet.
             </Heading>
             <Text className={styles.heroText}>
-              A place for the things I build, fly, film, and keep tinkering with. <Text as="strong">Software</Text>, <Text as="strong">self-hosted setups</Text>, <Text as="strong">hardware experiments</Text>, <Text as="strong">FPV</Text>, and the visual work that is slowly taking shape around them.
+              A place for the things I build, fly, film, and keep tinkering with. <Text as="span" className="souptik-elegant-highlight">Software</Text>, <Text as="span" className="souptik-elegant-highlight">self-hosted setups</Text>, <Text as="span" className="souptik-elegant-highlight">hardware experiments</Text>, <Text as="span" className="souptik-elegant-highlight">FPV</Text>, and <Text as="span" className="souptik-elegant-highlight">the visual work</Text> that is slowly taking shape around them.
             </Text>
             <Flex className={styles.heroActions}>
               {
