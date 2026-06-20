@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client';
 import { Box, Heading } from '@chakra-ui/layout';
-import { Button, Container, Spinner, Text, VStack } from '@chakra-ui/react';
+import { Container, Spinner, Text, VStack } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useState } from 'react';
-import Blogcard from '../components/Home/Blogcard';
+import BlogList from '../components/BlogList';
 import Search from '../components/Home/Search';
 import Layout from '../components/Layout';
 import client from '../src/apollo/Client';
@@ -92,52 +92,14 @@ export default function Blogs({posts, displayWPNotice, seoData}) {
             {
               ! isSearching &&
               <>
-                <Box className={styles.blogGrid} marginTop="50px" marginBottom="50px">
-                  {
-                    blogs.length > 0 &&
-                    blogs.map((item, index) => {
-                      // The index will not change dynamically. So, safe to use index.
-                      return (
-                        <Blogcard key={`key-${index}`} data={item.node} styles={styles} />
-                      );
-
-                    })
-                  }
-                  {
-                    blogs.length === 0 &&
-                    <Box color="white" fontSize="20px" textAlign="center">
-                      😢 No blogs found. Maybe the author needs some help.
-                    </Box>
-                  }
-                </Box>
-                <Button
-                  lineHeight='24px'
-                  transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-                  borderRadius='5px'
-                  fontSize='16px'
-                  padding="15px"
-                  fontWeight='600'
-                  bg= "#0f5f3a"
-                  border='1.5px solid #0f5f3a'
-                  color='white'
-                  _hover={{
-                    bg: "#0b4f31",
-                  }}
-                  _active={{
-                    bg: "#0b4f31",
-                    transform: 'scale(0.98)',
-                  }}
-                  _focus={{
-                    boxShadow:
-                    '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
-                  }}
-                  isDisabled={!hasMore}
+                <BlogList
+                  blogs={blogs}
+                  hasMore={hasMore}
                   isLoading={isLoading}
-                  loadingText='Loading'
-                  onClick={loadMore}
-                >
-                  Load More
-                </Button>
+                  onLoadMore={loadMore}
+                  emptyMessage="😢 No blogs found. Maybe the author needs some help."
+                  styles={styles}
+                />
               </>
             }
           </Box>

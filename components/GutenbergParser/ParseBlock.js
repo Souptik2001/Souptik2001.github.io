@@ -13,6 +13,7 @@ import EmbedBlock from "./EmbedBlock/EmbedBlock";
 import ImageBlock from "./ImageBlock/ImageBlock";
 import MediaText from "./MediaText";
 import Paragraph from "./Paragraph/Paragraph";
+import QueryLoop from "./QueryLoop/QueryLoop";
 import ScatteredImageCards from "./ScatteredImageCards/ScatteredImageCards";
 import Slider from "./Slider/Slider";
 
@@ -139,6 +140,13 @@ const ParseBlock = ({blocks, depth, searchComponent, extra}) => {
 						</Box>
 					);
 				}
+				break;
+			case "core/query":
+				elements.push(
+					<Box key={key} mb={customAttributes.mb} mt={customAttributes.mt} mr={customAttributes.mr} ml={customAttributes.ml} pl={customAttributes.pl} pr={customAttributes.pr} pt={customAttributes.pt} pb={customAttributes.pb}>
+						<QueryLoop attributes={block.attributes} />
+					</Box>
+				);
 				break;
 			case "core/list":
 				var style = parseStyles(block.attributes, P_STYLE);
